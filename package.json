@@ -1,9 +1,10 @@
 {
-  "name": "storybook-image-snapshot",
+  "name": "storybook-addon-vitesnap",
   "version": "0.0.0",
   "description": "Capture and compare image snapshot automatically and manually",
   "keywords": [
-    "storybook-addons", "storybook-addons"
+    "storybook-addons",
+    "storybook-addons"
   ],
   "repository": {
     "type": "git",
@@ -62,6 +63,7 @@
     "auto": "^11.1.1",
     "boxen": "^7.1.1",
     "dedent": "^1.5.1",
+    "npm-run-all2": "^7.0.0",
     "prettier": "^3.3.3",
     "prompts": "^2.4.2",
     "react": "^18.2.0",
@@ -98,7 +100,15 @@
   "storybook": {
     "displayName": "Image Snapshot integration",
     "supportedFrameworks": [
-      "react", "vue", "angular", "web-components", "ember", "html", "svelte", "preact", "react-native"
+      "react",
+      "vue",
+      "angular",
+      "web-components",
+      "ember",
+      "html",
+      "svelte",
+      "preact",
+      "react-native"
     ],
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
   }
