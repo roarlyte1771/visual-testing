@@ -1,19 +1,19 @@
 {
 	"[json]": {
 		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true,
 		"editor.quickSuggestions": {
 			"strings": true
 		},
-		"editor.suggest.insertMode": "replace",
-		"editor.formatOnSave": true
+		"editor.suggest.insertMode": "replace"
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "biomejs.biome",
+		"editor.formatOnSave": true,
 		"editor.quickSuggestions": {
 			"strings": true
 		},
-		"editor.suggest.insertMode": "replace",
-		"editor.formatOnSave": true
+		"editor.suggest.insertMode": "replace"
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "biomejs.biome",
@@ -26,5 +26,6 @@
 	"cSpell.words": ["biomejs", "divs", "pathe", "repobuddy", "shipit", "ssim", "tsup"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit"
-	}
+	},
+	"git-graph.dialog.general.referenceInputSpaceSubstitution": "Hyphen"
 }
