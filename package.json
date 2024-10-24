@@ -3,20 +3,19 @@
 	"version": "0.0.0",
 	"description": "Capture and compare image snapshot automatically and manually",
 	"keywords": [
-		"storybook-addons",
 		"storybook-addons"
 	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/repobuddy/storybook-image-snapshot"
 	},
-	"type": "module",
 	"license": "MIT",
 	"author": {
 		"name": "Homa Wong",
 		"email": "homawong@gmail.com",
 		"url": "https://github.com/unional"
 	},
+	"type": "module",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -40,16 +39,16 @@
 	],
 	"scripts": {
 		"build": "tsup",
+		"build-storybook": "storybook build",
 		"build:watch": "npm run build -- --watch",
 		"check": "biome check",
 		"check:fix": "biome check --write",
-		"test": "vitest",
-		"start": "run-p build:watch \"storybook --quiet\"",
+		"eject-ts": "zx scripts/eject-typescript.js",
 		"prerelease": "zx scripts/prepublish-checks.js",
 		"release": "npm run build && auto shipit",
-		"eject-ts": "zx scripts/eject-typescript.js",
+		"start": "run-p build:watch \"storybook --quiet\"",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@storybook/icons": "^1.2.10",
@@ -58,6 +57,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@changesets/cli": "^2.27.9",
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
 		"@repobuddy/biome": "^1.7.1",
 		"@storybook/addon-essentials": "^8.3.6",
 		"@storybook/addon-interactions": "^8.3.6",
@@ -74,6 +76,7 @@
 		"auto": "^11.1.1",
 		"boxen": "^7.1.1",
 		"dedent": "^1.5.1",
+		"husky": "^9.1.6",
 		"npm-run-all2": "^7.0.0",
 		"playwright": "^1.48.1",
 		"prettier": "^3.3.3",
