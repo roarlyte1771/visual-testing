@@ -1,4 +1,4 @@
 export interface Result {
-  divs: DOMRect[];
-  styled: DOMRect[];
+	divs: DOMRect[]
+	styled: DOMRect[]
 }

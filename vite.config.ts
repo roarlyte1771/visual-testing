@@ -1,13 +1,11 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin'
-import react from "@vitejs/plugin-react"
-import { defineConfig } from "vite"
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),
-    storybookTest()
-  ],
-  test: {
+	plugins: [react(), storybookTest()],
+	test: {
 		name: 'sb',
 		browser: {
 			enabled: true,
@@ -27,4 +25,4 @@ export default defineConfig({
 		],
 		setupFiles: ['./.storybook/vitest.setup.ts'],
 	},
-});
+})
