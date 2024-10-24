@@ -4,7 +4,7 @@ import { cdp } from './context'
 
 export default {
 	title: 'vitest/context',
-	render: () => <></>,
+	render: () => <>unit test</>,
 } satisfies Meta
 
 export const AccessCDP = {
