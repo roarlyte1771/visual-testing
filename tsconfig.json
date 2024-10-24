@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": ".",
+		// "baseUrl": ".",
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"incremental": false,
@@ -14,7 +14,8 @@
 		"rootDir": "./src",
 		"skipLibCheck": true,
 		"target": "ES2020",
-		"types": ["vitest/globals"]
+		"types": ["vitest/globals"],
+		"verbatimModuleSyntax": true
 	},
 	"include": ["src/**/*"]
 }

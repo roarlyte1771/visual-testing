@@ -52,6 +52,7 @@
 	"dependencies": {
 		"@storybook/icons": "^1.2.10",
 		"@types/pixelmatch": "^5.2.6",
+		"pathe": "^1.1.2",
 		"pixelmatch": "^6.0.0"
 	},
 	"devDependencies": {

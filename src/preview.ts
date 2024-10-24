@@ -10,6 +10,9 @@
 //  */
 // import type { ProjectAnnotations, Renderer } from 'storybook/internal/types'
 
+// import { page } from './@vitest/browser/context'
+// import { imageSnapshot } from './@vitest/browser/page.image_snapshot'
+
 // import { KEY } from './constants'
 // import { withGlobals } from './withGlobals'
 // import { withRoundTrip } from './withRoundTrip'
@@ -26,5 +29,5 @@
 // 	},
 // }
 
-// export default preview
 export default {}
+// page.extend({ imageSnapshot })
