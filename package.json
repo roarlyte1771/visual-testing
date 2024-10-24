@@ -43,7 +43,6 @@
 		"build:watch": "npm run build -- --watch",
 		"check": "biome check",
 		"check:fix": "biome check --write",
-		"eject-ts": "zx scripts/eject-typescript.js",
 		"prerelease": "zx scripts/prepublish-checks.js",
 		"release": "npm run build && auto shipit",
 		"start": "run-p build:watch \"storybook --quiet\"",
