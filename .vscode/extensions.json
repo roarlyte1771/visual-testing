@@ -1,0 +1,11 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"dbaeumer.vscode-eslint",
+		"editorconfig.editorconfig",
+		"github.vscode-pull-request-github",
+		"neo-ltex.ltex",
+		"streetsidesoftware.code-spell-checker",
+		"unional.vscode-sort-package-json"
+	]
+}
