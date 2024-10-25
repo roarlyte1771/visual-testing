@@ -9,6 +9,7 @@ declare module '@vitest/browser/context' {
 	}
 	interface BrowserCommands {
 		existDir: (path: string) => Promise<boolean>
+		copyFile: (src: string, dest: string) => Promise<void>
 	}
 }
 

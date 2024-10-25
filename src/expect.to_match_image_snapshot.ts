@@ -41,9 +41,7 @@ export async function toMatchImageSnapshot<T extends MatcherState = MatcherState
 	assertImageSnapshot(subject)
 	const baseline = await tryReadSnapshot(subject.baselinePath)
 	if (!baseline) {
-		await page.screenshot({
-			path: subject.baselinePath,
-		})
+		await commands.copyFile(subject.resultPath, subject.baselinePath)
 	} else {
 		const baselineImage = await toImageData(baseline)
 		const diffData = new Uint8Array(baselineImage.width * baselineImage.height * 4)
