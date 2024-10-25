@@ -1,10 +1,11 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { storybookVis } from './src/vitest-plugin/index.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), storybookTest()],
+	plugins: [react(), storybookTest(), storybookVis()],
 	test: {
 		name: 'sb',
 		browser: {

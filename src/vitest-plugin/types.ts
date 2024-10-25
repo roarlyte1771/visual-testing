@@ -7,6 +7,9 @@ declare module '@vitest/browser/context' {
 	interface BrowserPage {
 		imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot>
 	}
+	interface BrowserCommands {
+		existDir: (path: string) => Promise<boolean>
+	}
 }
 
 export type ImageSnapshotOptions = {

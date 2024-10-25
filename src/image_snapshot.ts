@@ -1,4 +1,4 @@
-import { type ImageSnapshot, imageSnapshotSymbol } from './@vitest/browser/types'
+import { type ImageSnapshot, imageSnapshotSymbol } from './vitest-plugin/types'
 
 export function isImageSnapshot(subject: any): subject is ImageSnapshot {
 	return !!subject && subject.type === imageSnapshotSymbol

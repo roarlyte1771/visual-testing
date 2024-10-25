@@ -6,8 +6,8 @@ import { toId } from './page.image_snapshot.js'
 it('save file under __results__', async ({ task }) => {
 	const f1 = await page.imageSnapshot()
 	const filename = basename(task.file.name)
-	expect(f1.resultPath).toMatch(`__screenshots__/${filename}/__results__/${toId(task.name)}-1.png`)
+	expect(f1.resultPath).toMatch(`../../../__snapshots__/__results__/${filename}/${toId(task.name)}-1.png`)
 
 	const f2 = await page.imageSnapshot()
-	expect(f2.resultPath).toMatch(`__screenshots__/${filename}/__results__/${toId(task.name)}-2.png`)
+	expect(f2.resultPath).toMatch(`../../../__snapshots__/__results__/${filename}/${toId(task.name)}-2.png`)
 })

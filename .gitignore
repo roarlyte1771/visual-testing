@@ -8,3 +8,5 @@ build-storybook.log
 # project
 **/__screenshots__/*/__results__
 **/__screenshots__/*/__diffs__
+__snapshots__/__results__
+__snapshots__/__diff_output__

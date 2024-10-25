@@ -1,9 +1,9 @@
 import type { AsyncExpectationResult, MatcherState } from '@vitest/expect'
 import pixelmatch from 'pixelmatch'
 import { commands, page } from './@vitest/browser/context.js'
-import { imageSnapshotSymbol } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
 import { assertImageSnapshot, isImageSnapshot } from './image_snapshot.js'
+import { imageSnapshotSymbol } from './vitest-plugin/types.js'
 
 declare global {
 	namespace jest {
@@ -64,7 +64,7 @@ export async function toMatchImageSnapshot<T extends MatcherState = MatcherState
 			return {
 				pass: false,
 				actual,
-				message: () => `Image snapshot does not match the baseline. See the diff image at ${subject.diffPath}`,
+				message: () => `Image snapshot does not match the baseline. See the diff image at '${subject.diffPath}'`,
 			}
 		}
 	}

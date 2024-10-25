@@ -38,10 +38,11 @@ export const Failed: StoryObj = {
 	async play() {
 		try {
 			await expect(page.imageSnapshot()).toMatchImageSnapshot()
+			throw new Error('Expected image snapshot to fail')
 		} catch (e) {
 			assertType<Error>(e, (e) => e instanceof Error)
 			expect(e.message).toEqual(
-				'Image snapshot does not match the baseline. See the diff image at __screenshots__/expect.to_match_image_snapshot.stories.tsx/__diffs__/Failed-1.png',
+				`Image snapshot does not match the baseline. See the diff image at '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/Failed-1.png'`,
 			)
 		}
 	},
