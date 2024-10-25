@@ -4,11 +4,11 @@ import { page } from './context.js'
 
 export default {
 	title: 'page.imageSnapshot',
-	render:()=><>unit test</>
+	render: () => <>unit test</>,
 } as Meta
 
-export const IsStubbed: StoryObj ={
-	async play(){
+export const IsStubbed: StoryObj = {
+	async play() {
 		expect(page.imageSnapshot).toBeDefined()
-	}
+	},
 }
