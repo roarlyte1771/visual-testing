@@ -23,7 +23,7 @@
 		"editor.defaultFormatter": "biomejs.biome",
 		"editor.formatOnSave": true
 	},
-	"cSpell.words": ["biomejs", "divs", "estree", "pathe", "repobuddy", "shipit", "ssim", "tsup"],
+	"cSpell.words": ["biomejs", "divs", "estree", "pathe", "repobuddy", "Resizer", "shipit", "ssim", "tsup"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit"
 	},
