@@ -19,6 +19,7 @@
 		"rules": {
 			"a11y": {
 				"noSvgWithoutTitle": "off",
+				"useAltText": "off",
 				"useSemanticElements": "off"
 			},
 			"suspicious": {

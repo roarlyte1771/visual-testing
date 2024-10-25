@@ -7,3 +7,4 @@ build-storybook.log
 
 # project
 **/__screenshots__/*/__results__
+**/__screenshots__/*/__diffs__

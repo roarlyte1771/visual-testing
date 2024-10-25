@@ -38,3 +38,8 @@ it('should fail when the subject is the result of page.screenshot()', async () =
 		)
 	}
 })
+
+it('should work with page.imageSnapshot()', async () => {
+	await ConversionRoundtrip.run()
+	await expect(page.imageSnapshot()).toMatchImageSnapshot()
+})

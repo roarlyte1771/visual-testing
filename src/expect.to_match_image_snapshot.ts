@@ -49,12 +49,24 @@ export async function toMatchImageSnapshot<T extends MatcherState = MatcherState
 		const baselineImage = await toImageData(baseline)
 		const diffData = new Uint8Array(baselineImage.width * baselineImage.height * 4)
 
-		pixelmatch(subject.image.data, baselineImage.data, diffData, baselineImage.width, baselineImage.height)
-
-		const diffImage = new ImageData(baselineImage.width, baselineImage.height)
-		diffImage.data.set(baselineImage.data)
-		const diff = (await toDataURL(diffImage)).split(',')[1]
-		await writeSnapshot(`${subject.diffPath}`, diff!)
+		const pixelDiff = pixelmatch(
+			subject.image.data,
+			baselineImage.data,
+			diffData,
+			baselineImage.width,
+			baselineImage.height,
+		)
+		if (pixelDiff > 0) {
+			const diffImage = new ImageData(baselineImage.width, baselineImage.height)
+			diffImage.data.set(diffData)
+			const diff = (await toDataURL(diffImage)).split(',')[1]
+			await writeSnapshot(`${subject.diffPath}`, diff!)
+			return {
+				pass: false,
+				actual,
+				message: () => `Image snapshot does not match the baseline. See the diff image at ${subject.diffPath}`,
+			}
+		}
 	}
 	return {
 		pass: true,
