@@ -45,13 +45,13 @@ export default defineConfig(async (options) => {
 		{
 			...commonConfig,
 			entry: ['src/vitest-plugin.ts'],
-			// TODO: enable dts
+			// TODO: enable dts resolve?
 			// not working due to:
 			// - https://github.com/storybookjs/storybook/issues/29443
 			// - https://github.com/egoist/tsup/issues/1239
-			// dts: {
-			// 	resolve: true,
-			// },
+			dts: {
+				resolve: false,
+			},
 			format: ['esm'],
 			target: NODE_TARGET,
 			platform: 'node',

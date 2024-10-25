@@ -1,8 +1,6 @@
 // import type { Locator } from '@vitest/browser/context'
 ///  <reference types="@vitest/browser/context" />
 
-export const imageSnapshotSymbol = Symbol('imageSnapshot')
-
 declare module '@vitest/browser/context' {
 	interface BrowserPage {
 		imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot>
@@ -18,7 +16,7 @@ export type ImageSnapshotOptions = {
 }
 
 export type ImageSnapshot = {
-	type: typeof imageSnapshotSymbol
+	type: symbol
 	rootDir: string
 	testfilename: string
 	snapshotFilename: string
