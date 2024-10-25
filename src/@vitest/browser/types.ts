@@ -1,6 +1,5 @@
 // import type { Locator } from '@vitest/browser/context'
 ///  <reference types="@vitest/browser/context" />
-// import '@vitest/browser/context'
 
 export const imageSnapshotSymbol = Symbol('imageSnapshot')
 
