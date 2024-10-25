@@ -1,6 +1,6 @@
 import { setProjectAnnotations } from '@storybook/react'
 import { beforeAll } from 'vitest'
-import '../src/vitest.lifecycle.js'
+import '../src/vitest-setup.js'
 import * as projectAnnotations from './preview'
 
 // This is an important step to apply the right configuration when testing your stories.

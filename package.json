@@ -32,10 +32,12 @@
 		},
 		"./preset": "./dist/preset.cjs",
 		"./manager": "./dist/manager.js",
+		"./vitest-setup": "./dist/vitest-setup.js",
+		"./vitest-plugin": "./dist/vitest-plugin.js",
 		"./package.json": "./package.json"
 	},
 	"files": [
-		"dist/**/*",
+		"dist",
 		"README.md",
 		"*.js",
 		"*.d.ts"
@@ -113,6 +115,9 @@
 		"nodeEntries": [
 			"src/preset.ts"
 		]
+	},
+	"overrides": {
+		"@types/estree": "^1.0.0"
 	},
 	"storybook": {
 		"displayName": "Image Snapshot integration",

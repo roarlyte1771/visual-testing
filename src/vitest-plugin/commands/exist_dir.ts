@@ -1,8 +1,8 @@
 import { stat } from 'node:fs/promises'
 import { dirname, join } from 'pathe'
-import type { BrowserCommand } from 'vitest/node'
+// import type { BrowserCommand } from 'vitest/node'
 
-export const existDir: BrowserCommand<[path: string]> = async ({ testPath, provider }, path) => {
+export const existDir = async ({ testPath, provider }: any, path: string) => {
 	if (provider.name === 'playwright') {
 		return stat(join(dirname(testPath), path))
 			.then((s) => s.isDirectory())

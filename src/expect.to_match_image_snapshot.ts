@@ -3,7 +3,6 @@ import pixelmatch from 'pixelmatch'
 import { commands, page } from './@vitest/browser/context.js'
 import { toDataURL, toImageData } from './image_data.js'
 import { assertImageSnapshot, isImageSnapshot } from './image_snapshot.js'
-import { imageSnapshotSymbol } from './vitest-plugin/types.js'
 
 declare global {
 	namespace jest {

@@ -41,6 +41,31 @@ export default defineConfig(async (options) => {
 	}
 
 	const configs: Options[] = []
+	configs.push(
+		{
+			...commonConfig,
+			entry: ['src/vitest-plugin.ts'],
+			// TODO: enable dts
+			// not working due to:
+			// - https://github.com/storybookjs/storybook/issues/29443
+			// - https://github.com/egoist/tsup/issues/1239
+			// dts: {
+			// 	resolve: true,
+			// },
+			format: ['esm'],
+			target: NODE_TARGET,
+			platform: 'node',
+			external: globalManagerPackages,
+		},
+		{
+			...commonConfig,
+			entry: ['src/vitest-setup.ts'],
+			format: ['esm'],
+			target: BROWSER_TARGET,
+			platform: 'browser',
+			external: globalPreviewPackages,
+		},
+	)
 
 	// export entries are entries meant to be manually imported by the user
 	// they are not meant to be loaded by the manager or preview
