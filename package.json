@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"description": "Storybook Vitest Image Snapshot addon",
 	"keywords": [
-		"storybook-addons"
+		"image-snapshot",
+		"storybook-addons",
+		"vitest",
+		"visual-test"
 	],
 	"repository": {
 		"type": "git",

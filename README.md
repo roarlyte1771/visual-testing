@@ -1,5 +1,54 @@
-# Storybook Addon Image Snapshot integration
-Capture and compare image snapshot automatically and manually
+# storybook-addon-vis
+
+Storybook Vitest Image Snapshot add-on.
+
+Captures and compare image snapshot automatically and manually.
+
+This add-on is inspired by [jest-image-snapshot].
+
+Starting from [storybook] 8.3,
+you can run Storybook stories with [vitest] browser mode.
+
+Since it is running in actual browser, [jest-image-snapshot] does not work.
+This add-on provides similar functionality to [jest-image-snapshot].
+In addition, you can capture image snapshot manually.
+
+## Installation
+
+```sh
+npm install --save-dev storybook-addon-vis
+
+pnpm add --save-dev storybook-addon-vis
+
+yarn add --save-dev storybook-addon-vis
+```
+
+## Configuration
+
+This add-on provides features on both [storybook] and [vitest],
+thus you need to add it to both [storybook] and [vitest].
+
+```ts
+// .storybook/main.ts
+
+const config: StorybookConfig = {
+   addons: ['storybook-addon-vis'],
+}
+
+// vite.config.ts
+import { defineConfig } from 'vitest/config'
+import { storybookVis } from 'storybook-addon-vis/vitest-plugin'
+
+export default defineConfig({
+   plugins: [storybookVis()],
+   test: {
+    setupFiles: ['./vitest.setup.ts'],
+  }
+})
+
+// vitest.setup.ts
+import 'storybook-addon-vis/vitest-setup'
+```
 
 ### Development scripts
 
@@ -231,3 +280,8 @@ That will:
 - Bump the version
 - Push a release to GitHub and npm
 - Push a changelog to GitHub
+
+
+[jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
+[storybook]: https://storybook.js.org
+[vitest]: https://vitest.dev/
