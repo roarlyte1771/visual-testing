@@ -1,6 +1,6 @@
 {
 	"name": "storybook-addon-vite-imagesnap",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Capture and compare image snapshot automatically and manually",
 	"keywords": [
 		"storybook-addons"
