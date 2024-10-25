@@ -1,3 +1,16 @@
+# v0.0.3 (Fri Oct 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: add type for vitest-plugin ([@unional](https://github.com/unional))
+- chore: note fix for top-level await ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.2 (Fri Oct 25 2024)
 
 #### ⚠️ Pushed to `main`
