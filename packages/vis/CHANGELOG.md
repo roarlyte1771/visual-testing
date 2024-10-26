@@ -1,3 +1,16 @@
+# v0.0.4 (Sat Oct 26 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: clean up dependencies ([@unional](https://github.com/unional))
+- chore: monorepo ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.2 (Fri Oct 25 2024)
 
 #### ⚠️ Pushed to `main`
