@@ -52,3 +52,12 @@ node_modules
 
 # turbo
 .turbo
+
+# project
+**/__screenshots__/*/__diffs__
+**/__screenshots__/*/__results__
+**/__snapshots__/__diff_output__
+**/__snapshots__/__results__
+build-storybook.log
+dist
+storybook-static

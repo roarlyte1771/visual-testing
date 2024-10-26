@@ -7,10 +7,10 @@
 		"useIgnoreFile": true,
 		"defaultBranch": "main"
 	},
-	// "files": {
-	// 	"ignoreUnknown": false,
-	// 	"ignore": []
-	// },
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": [".vscode/*.txt"]
+	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
