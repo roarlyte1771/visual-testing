@@ -8,6 +8,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
 
       - name: Prepare repository
         run: git fetch --unshallow --tags
@@ -18,11 +19,11 @@ jobs:
           node-version: 18.x
 
       - name: Install dependencies
-        run: npm install --ignore-scripts
+        run: pnpm install --ignore-scripts
 
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm run release
+          pnpm vis release
