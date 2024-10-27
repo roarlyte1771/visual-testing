@@ -1,7 +1,7 @@
 import type { Plugin } from 'vitest/config'
-import { existDir } from './vitest-plugin/commands/exist_dir.js'
-import './vitest-plugin/types.js'
+import './types.js'
 import { copyFile } from './vitest-plugin/commands/copy_file.js'
+import { existDir } from './vitest-plugin/commands/exist_dir.js'
 
 export function storybookVis(): Plugin {
 	return {

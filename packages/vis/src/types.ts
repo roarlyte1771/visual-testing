@@ -26,3 +26,12 @@ export type ImageSnapshot = {
 	base64: string
 	image: ImageData
 }
+
+declare global {
+	namespace jest {
+		// biome-ignore lint/correctness/noUnusedVariables: augmentation must have matching type params.
+		interface Matchers<R, T> {
+			toMatchImageSnapshot(): void
+		}
+	}
+}

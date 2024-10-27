@@ -1,1 +1,1 @@
-export const imageSnapshotSymbol = Symbol('imageSnapshot')
+export const imageSnapshotSymbol = Symbol.for('storybook-addon-vis/imageSnapshot')

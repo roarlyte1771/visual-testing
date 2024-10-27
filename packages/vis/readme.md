@@ -30,7 +30,6 @@ thus you need to add it to both [storybook] and [vitest].
 
 ```ts
 // .storybook/main.ts
-
 const config: StorybookConfig = {
    addons: ['storybook-addon-vis'],
 }

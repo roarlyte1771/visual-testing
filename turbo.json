@@ -7,9 +7,16 @@
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
 			"outputs": ["dist"]
 		},
+		"clean": {
+			"cache": false
+		},
 		"dev": {
 			"cache": false,
 			"persistent": true
+		},
+		"nuke": {
+			"cache": false,
+			"dependsOn": ["clean"]
 		}
 	}
 }

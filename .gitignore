@@ -58,6 +58,7 @@ node_modules
 **/__screenshots__/*/__results__
 **/__snapshots__/__diff_output__
 **/__snapshots__/__results__
+*.tsbuildinfo
 build-storybook.log
 dist
 storybook-static

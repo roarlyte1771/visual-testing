@@ -1,5 +1,5 @@
 import { imageSnapshotSymbol } from './constants'
-import type { ImageSnapshot } from './vitest-plugin/types'
+import type { ImageSnapshot } from './types'
 
 export function isImageSnapshot(subject: any): subject is ImageSnapshot {
 	return !!subject && subject.type === imageSnapshotSymbol

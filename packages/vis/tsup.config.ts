@@ -55,15 +55,18 @@ export default defineConfig(async (options) => {
 			format: ['esm'],
 			target: NODE_TARGET,
 			platform: 'node',
-			external: globalManagerPackages,
+			// external: globalManagerPackages,
 		},
 		{
 			...commonConfig,
 			entry: ['src/vitest-setup.ts'],
+			dts: {
+				resolve: false,
+			},
 			format: ['esm'],
 			target: BROWSER_TARGET,
 			platform: 'browser',
-			external: globalPreviewPackages,
+			external: ['vitest', '@vitest/expect', '@vitest/browser', '@storybook/test'],
 		},
 	)
 
@@ -80,7 +83,14 @@ export default defineConfig(async (options) => {
 			format: ['esm'],
 			target: [...BROWSER_TARGET, ...NODE_TARGET],
 			platform: 'neutral',
-			external: [...globalManagerPackages, ...globalPreviewPackages],
+			external: [
+				...globalManagerPackages,
+				...globalPreviewPackages,
+				'vitest',
+				'@vitest/expect',
+				'@vitest/browser',
+				'@storybook/test',
+			],
 		})
 	}
 

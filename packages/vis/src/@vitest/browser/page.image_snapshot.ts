@@ -3,7 +3,7 @@ import { basename, join } from 'pathe'
 import { imageSnapshotSymbol } from '../../constants.js'
 import { toImageData } from '../../image_data.js'
 import { state } from '../../state.js'
-import type { ImageSnapshot, ImageSnapshotOptions } from '../../vitest-plugin/types.js'
+import type { ImageSnapshot, ImageSnapshotOptions } from '../../types.js'
 import { server } from './context.js'
 
 export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot> {

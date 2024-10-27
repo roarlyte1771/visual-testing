@@ -1,0 +1,2 @@
+# Storybook Visual Snapshot Addon
+

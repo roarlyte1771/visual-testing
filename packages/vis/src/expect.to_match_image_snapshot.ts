@@ -4,15 +4,6 @@ import { commands, page } from './@vitest/browser/context.js'
 import { toDataURL, toImageData } from './image_data.js'
 import { assertImageSnapshot, isImageSnapshot } from './image_snapshot.js'
 
-declare global {
-	namespace jest {
-		// biome-ignore lint/correctness/noUnusedVariables: augmentation must have matching type params.
-		interface Matchers<R, T> {
-			toMatchImageSnapshot(): void
-		}
-	}
-}
-
 export async function toMatchImageSnapshot<T extends MatcherState = MatcherState>(
 	this: T,
 	actual: any,
@@ -36,7 +27,7 @@ export async function toMatchImageSnapshot<T extends MatcherState = MatcherState
 					`\`toMatchImageSnapshot()\` expects the subject to be an element, locator, or result of \`page.imageSnapshot()\`, but got: \`${actual}\``,
 			}
 		}
-		//await page.imageSnapshot({ element: actual })
+		// subject = await page.imageSnapshot({ element: actual })
 	}
 	assertImageSnapshot(subject)
 	const baseline = await tryReadSnapshot(subject.baselinePath)
