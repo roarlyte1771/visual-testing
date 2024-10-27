@@ -1,5 +1,6 @@
-// import type { Locator } from '@vitest/browser/context'
 ///  <reference types="@vitest/browser/context" />
+
+import type { ImageSnapshot, ImageSnapshotOptions } from './@vitest/browser/types'
 
 declare module '@vitest/browser/context' {
 	interface BrowserPage {
@@ -9,22 +10,6 @@ declare module '@vitest/browser/context' {
 		existDir: (path: string) => Promise<boolean>
 		copyFile: (src: string, dest: string) => Promise<void>
 	}
-}
-
-export type ImageSnapshotOptions = {
-	element?: Element //| Locator
-}
-
-export type ImageSnapshot = {
-	type: symbol
-	rootDir: string
-	testfilename: string
-	snapshotFilename: string
-	baselinePath: string
-	resultPath: string
-	diffPath: string
-	base64: string
-	image: ImageData
 }
 
 declare global {

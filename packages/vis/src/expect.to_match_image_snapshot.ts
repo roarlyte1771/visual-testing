@@ -1,8 +1,8 @@
 import type { AsyncExpectationResult, MatcherState } from '@vitest/expect'
 import pixelmatch from 'pixelmatch'
-import { commands, page } from './@vitest/browser/context.js'
+import { commands } from './@vitest/browser/context.js'
+import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/page.image_snapshot.js'
 import { toDataURL, toImageData } from './image_data.js'
-import { assertImageSnapshot, isImageSnapshot } from './image_snapshot.js'
 
 export async function toMatchImageSnapshot<T extends MatcherState = MatcherState>(
 	this: T,

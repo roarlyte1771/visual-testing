@@ -1,5 +1,5 @@
 import type { Plugin } from 'vitest/config'
-import './types.js'
+import './augment.js'
 import { copyFile } from './vitest-plugin/commands/copy_file.js'
 import { existDir } from './vitest-plugin/commands/exist_dir.js'
 
