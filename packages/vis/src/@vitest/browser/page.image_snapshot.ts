@@ -44,5 +44,5 @@ export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOp
 }
 
 export function toId(taskName: string) {
-	return `${taskName.replace(/[^a-z0-9]/gi, '-')}`
+	return `${taskName.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`
 }
