@@ -1,8 +1,11 @@
 import { basename, dirname, join, relative } from 'pathe'
 import { beforeAll, beforeEach, expect } from 'vitest'
 import './augment.js'
+import type { StoryContext } from '@storybook/react'
+import { page } from './@vitest/browser/context.js'
 import { toMatchImageSnapshot } from './expect.to_match_image_snapshot.js'
 import { state } from './state.js'
+import { shouldTakeSnapshot } from './tags.js'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -20,4 +23,10 @@ beforeAll((suite) => {
 beforeEach((ctx) => {
 	state.taskName = ctx.task.name
 	state.snapshot[state.taskName] = state.snapshot[state.taskName] ?? { index: 1 }
+})
+
+afterEach<{ story?: StoryContext }>(async (ctx) => {
+	if (!shouldTakeSnapshot(ctx)) return
+	const r = await page.imageSnapshot()
+	await expect(r).toMatchImageSnapshot()
 })
