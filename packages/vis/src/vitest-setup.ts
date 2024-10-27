@@ -4,8 +4,9 @@ import './augment.js'
 import { toMatchImageSnapshot } from './expect.to_match_image_snapshot.js'
 import { state } from './state.js'
 
+expect.extend({ toMatchImageSnapshot })
+
 beforeAll((suite) => {
-	expect.extend({ toMatchImageSnapshot })
 	state.name = suite.name
 	state.testFilepath = suite.file.filepath
 	state.testFilename = basename(state.testFilepath)
