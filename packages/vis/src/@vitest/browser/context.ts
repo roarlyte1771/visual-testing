@@ -9,6 +9,7 @@ import {
 } from '@storybook/test'
 import type { BrowserCommands, BrowserPage, CDPSession, Platform } from '@vitest/browser/context'
 import type { SerializedConfig } from 'vitest'
+import { imageSnapshot } from './page.image_snapshot'
 
 let ctx: Awaited<typeof import('@vitest/browser/context')>
 
@@ -83,3 +84,5 @@ export const server = new Proxy<{
 		return (target as any)[prop] ?? (ctx?.server as any)[prop]
 	},
 })
+
+page.extend({ imageSnapshot })
