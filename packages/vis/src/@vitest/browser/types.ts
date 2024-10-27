@@ -6,7 +6,7 @@ export type ImageSnapshotOptions = {
 
 export type ImageSnapshot = {
 	type: symbol
-	rootDir: string
+	// rootDir: string
 	testfilename: string
 	snapshotFilename: string
 	baselinePath: string

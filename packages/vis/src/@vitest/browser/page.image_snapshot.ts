@@ -3,7 +3,7 @@ import { basename, join } from 'pathe'
 import { toImageData } from '../../image_data.js'
 import { state } from '../../state.js'
 import { imageSnapshotSymbol } from './constants.js'
-import { server } from './context.js'
+// import { server } from './context.js'
 import type { ImageSnapshot, ImageSnapshotOptions } from './types.js'
 
 export function isImageSnapshot(subject: any): subject is ImageSnapshot {
@@ -17,7 +17,7 @@ export function assertImageSnapshot(subject: any): asserts subject is ImageSnaps
 }
 
 export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot> {
-	const rootDir = server.config.root
+	// const rootDir = server.config.root
 	const testfilename = basename(state.testFilepath)
 	const snapshotFilename = `${toId(state.taskName)}-${state.snapshot[state.taskName]!.index++}.png`
 	const baselinePath = join(state.baselineDir, testfilename, snapshotFilename)
@@ -32,7 +32,7 @@ export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOp
 
 	return {
 		type: imageSnapshotSymbol,
-		rootDir,
+		// rootDir,
 		testfilename,
 		snapshotFilename,
 		baselinePath,
