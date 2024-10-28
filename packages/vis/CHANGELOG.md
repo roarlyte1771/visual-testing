@@ -1,3 +1,15 @@
+# v0.0.9 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: avoid top-level await ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.8 (Mon Oct 28 2024)
 
 #### 🐛 Bug Fix
