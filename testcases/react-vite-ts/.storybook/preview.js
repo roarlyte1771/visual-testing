@@ -1,5 +1,3 @@
-import 'storybook-addon-vis'
-
 /** @type { import('@storybook/react').Preview } */
 const preview = {
 	parameters: {
