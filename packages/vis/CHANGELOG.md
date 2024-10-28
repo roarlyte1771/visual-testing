@@ -1,3 +1,34 @@
+# v0.0.5 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: stub imagesnapshot result and handling in storybook ([@unional](https://github.com/unional))
+- feat: invert vitest expect extend ([@unional](https://github.com/unional))
+- feat: invert storybook export extend ([@unional](https://github.com/unional))
+- chore: remove extra import ([@unional](https://github.com/unional))
+- chore: comment out preset ([@unional](https://github.com/unional))
+- refactor: move logic file ([@unional](https://github.com/unional))
+- feat: invert vitest-setup ([@unional](https://github.com/unional))
+- chore: remove building managea, preview, and preset ([@unional](https://github.com/unional))
+- test: update filename ([@unional](https://github.com/unional))
+- feat: add match options ([@unional](https://github.com/unional))
+- feat: take snapshot in lowercase ([@unional](https://github.com/unional))
+- feat: basig tag support ([@unional](https://github.com/unional))
+- refactor: test image ([@unional](https://github.com/unional))
+- fix: extend vitest expect only once ([@unional](https://github.com/unional))
+- refactor: move page.extend to context ([@unional](https://github.com/unional))
+- refactor: comment out `rootDir` ([@unional](https://github.com/unional))
+- refactor: move ([@unional](https://github.com/unional))
+- fix: remove extra exports ([@unional](https://github.com/unional))
+- fix: create dest folder when not exist ([@unional](https://github.com/unional))
+- chore: rename readme ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.4 (Sat Oct 26 2024)
 
 #### ⚠️ Pushed to `main`
