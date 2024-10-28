@@ -1,3 +1,16 @@
+# v0.0.7 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: remove dep on StoryContext ([@unional](https://github.com/unional))
+- chore: import link ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.6 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
