@@ -15,8 +15,10 @@ import { imageSnapshot } from './page.image_snapshot'
 let ctx: Awaited<typeof import('@vitest/browser/context')>
 
 if ((globalThis as any).__vitest_browser__) {
-	ctx = await import('@vitest/browser/context')
-	// import('@vitest/browser/context').then((m) => (ctx = m))
+	import('@vitest/browser/context').then((m) => {
+		ctx = m
+		page.extend({ imageSnapshot })
+	})
 }
 
 // TODO: stub the functions within the `CDPSession`
@@ -88,5 +90,3 @@ export const server = new Proxy<{
 		return (target as any)[prop] ?? (ctx?.server as any)[prop]
 	},
 })
-
-page.extend({ imageSnapshot })
