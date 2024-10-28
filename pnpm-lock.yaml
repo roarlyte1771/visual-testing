@@ -47,6 +47,9 @@ importers:
 
   packages/vis:
     dependencies:
+      dedent:
+        specifier: ^1.5.1
+        version: 1.5.3
       mkdirp:
         specifier: ^3.0.1
         version: 3.0.1
@@ -111,9 +114,6 @@ importers:
       boxen:
         specifier: ^7.1.1
         version: 7.1.1
-      dedent:
-        specifier: ^1.5.1
-        version: 1.5.3
       prettier:
         specifier: ^3.3.3
         version: 3.3.3

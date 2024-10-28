@@ -1,6 +1,6 @@
 ///  <reference types="@vitest/browser/context" />
 
-import type { ImageSnapshot, ImageSnapshotOptions } from './@vitest/browser/types'
+import type { ImageSnapshot, ImageSnapshotOptions, MatchImageSnapshotOptions } from './@vitest/browser/types'
 
 declare module '@vitest/browser/context' {
 	interface BrowserPage {
@@ -16,7 +16,7 @@ declare global {
 	namespace jest {
 		// biome-ignore lint/correctness/noUnusedVariables: augmentation must have matching type params.
 		interface Matchers<R, T> {
-			toMatchImageSnapshot(): void
+			toMatchImageSnapshot(options?: MatchImageSnapshotOptions): void
 		}
 	}
 }

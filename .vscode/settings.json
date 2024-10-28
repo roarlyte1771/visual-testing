@@ -42,6 +42,7 @@
 		"Resizer",
 		"shipit",
 		"ssim",
+		"testid",
 		"tsup"
 	],
 	"editor.codeActionsOnSave": {

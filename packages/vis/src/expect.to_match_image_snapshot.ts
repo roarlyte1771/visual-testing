@@ -1,12 +1,15 @@
 import type { AsyncExpectationResult, MatcherState } from '@vitest/expect'
+import dedent from 'dedent'
 import pixelmatch from 'pixelmatch'
 import { commands } from './@vitest/browser/context.js'
 import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/page.image_snapshot.js'
+import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
 
 export async function toMatchImageSnapshot<T extends MatcherState = MatcherState>(
 	this: T,
 	actual: any,
+	options?: MatchImageSnapshotOptions | undefined,
 ): AsyncExpectationResult {
 	const subject = await actual
 	if (!isImageSnapshot(subject)) {
@@ -38,16 +41,25 @@ export async function toMatchImageSnapshot<T extends MatcherState = MatcherState
 
 	const originalImage = await toImageData(baseline)
 	const [resultImage, baselineImage] = alignImagesToSameSize(subject.image, originalImage)
-	const { width, height } = resultImage
-	const diffImage = new ImageData(width, height)
 
-	const pixelDiff = pixelmatch(resultImage.data, baselineImage.data, diffImage.data, width, height)
-	if (pixelDiff > 0) {
+	const { pass, diffAmount, diffImage } = compareImage(baselineImage, resultImage, options)
+	if (!pass) {
 		await writeSnapshot(`${subject.diffPath}`, diffImage)
 		return {
 			pass: false,
 			actual,
-			message: () => `Image snapshot does not match the baseline. See the diff image at '${subject.diffPath}'`,
+			message: () =>
+				dedent`${
+					options?.failureThreshold
+						? options?.failureThresholdType === 'percent'
+							? `Expected image to match within ${options.failureThreshold}% but was differ by ${diffAmount}%.`
+							: `Expected image to match within ${options.failureThreshold} pixels but was differ by ${diffAmount} pixels.`
+						: `Expected image to match but was differ by ${options?.failureThresholdType === 'percent' ? `${diffAmount}%` : `${diffAmount} pixels`}.`
+				}
+
+			Expected:   '${subject.baselinePath}'
+			Actual:     '${subject.resultPath}'
+			Difference: '${subject.diffPath}'`,
 		}
 	}
 	return success
@@ -113,3 +125,35 @@ const createImageResizer =
 		}
 		return result
 	}
+
+function compareImage(
+	baselineImage: ImageData,
+	resultImage: ImageData,
+	{ failureThreshold = 0, failureThresholdType = 'pixel', diffOptions }: MatchImageSnapshotOptions = {},
+) {
+	const { width, height } = resultImage
+	const diffImage = new ImageData(width, height)
+
+	const pixelDiff = pixelmatch(resultImage.data, baselineImage.data, diffImage.data, width, height, diffOptions)
+	const diffAmount = toThresholdUnit({ failureThresholdType, width, height }, pixelDiff)
+
+	return {
+		pass: diffAmount <= failureThreshold,
+		diffAmount,
+		diffImage,
+	}
+}
+
+function toThresholdUnit(
+	{ failureThresholdType, width, height }: { failureThresholdType: 'pixel' | 'percent'; width: number; height: number },
+	pixelDiff: number,
+): number {
+	switch (failureThresholdType) {
+		case 'pixel':
+			return pixelDiff
+		case 'percent':
+			return (pixelDiff / (width * height)) * 100
+		default:
+			throw new Error(`Invalid failureThresholdType: ${failureThresholdType}`)
+	}
+}
