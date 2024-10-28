@@ -9,6 +9,7 @@ import {
 } from '@storybook/test'
 import type { BrowserCommands, BrowserPage, CDPSession, Platform } from '@vitest/browser/context'
 import type { SerializedConfig } from 'vitest'
+import { imageSnapshotStubSymbol } from './constants'
 import { imageSnapshot } from './page.image_snapshot'
 
 let ctx: Awaited<typeof import('@vitest/browser/context')>
@@ -45,6 +46,9 @@ export const page = new Proxy<BrowserPage>(
 			return ((target as any)[prop] ?? ctx?.page)
 				? (ctx?.page as any)[prop]
 				: () => {
+						if (prop === 'imageSnapshot') {
+							return { type: imageSnapshotStubSymbol }
+						}
 						console.info(`\`page.${prop.toString()}\` does not exist when running in browser`)
 					}
 		},

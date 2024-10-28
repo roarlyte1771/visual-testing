@@ -1,6 +1,7 @@
 import type { AsyncExpectationResult } from '@vitest/expect'
 import dedent from 'dedent'
 import pixelmatch from 'pixelmatch'
+import { imageSnapshotStubSymbol } from './@vitest/browser/constants.js'
 import { commands } from './@vitest/browser/context.js'
 import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
 import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
@@ -11,6 +12,9 @@ export async function toMatchImageSnapshot(
 	options?: MatchImageSnapshotOptions | undefined,
 ): AsyncExpectationResult {
 	const subject = await actual
+	if (subject?.type === imageSnapshotStubSymbol) {
+		return success
+	}
 	if (!isImageSnapshot(subject)) {
 		if (subject?.path && subject?.base64) {
 			return {
