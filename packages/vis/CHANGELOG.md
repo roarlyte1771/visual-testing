@@ -1,3 +1,15 @@
+# v0.0.8 (Mon Oct 28 2024)
+
+#### 🐛 Bug Fix
+
+- Remove-reject [#4](https://github.com/repobuddy/storybook-addon-vis/pull/4) ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.7 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
