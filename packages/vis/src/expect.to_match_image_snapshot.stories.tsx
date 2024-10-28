@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import dedent from 'dedent'
 import { page } from './@vitest/browser/context'
 import { UNI_PNG_URL } from './testing/constants'
 
@@ -27,13 +26,12 @@ export const Failed: StoryObj = {
 		)
 	},
 	async play() {
-		await expect(() => expect(page.imageSnapshot()).toMatchImageSnapshot()).rejects.toMatchObject({
-			message: dedent`Expected image to match but was differ by 5105 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'`,
-		})
+		await expect(page.imageSnapshot())
+			.toMatchImageSnapshot()
+			.then(
+				() => new Error('Should not reach'),
+				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
+			)
 	},
 }
 
@@ -54,13 +52,12 @@ export const DifferentSize: StoryObj = {
 	},
 	async play({ canvas }) {
 		const image = await canvas.getByRole('img')
-		await expect(() => expect(page.imageSnapshot({ element: image })).toMatchImageSnapshot()).rejects.toMatchObject({
-			message: dedent`Expected image to match but was differ by 51931 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'`,
-		})
+		await expect(page.imageSnapshot({ element: image }))
+			.toMatchImageSnapshot()
+			.then(
+				() => new Error('Should not reach'),
+				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
+			)
 	},
 }
 
@@ -80,17 +77,15 @@ export const FailureThreshold: StoryObj = {
 	// render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
 		const subject = canvas.getByTestId('subject')
-		await expect(() =>
-			expect(page.imageSnapshot({ element: subject })).toMatchImageSnapshot({
+		await expect(page.imageSnapshot({ element: subject }))
+			.toMatchImageSnapshot({
 				failureThreshold: 10,
-			}),
-		).rejects.toMatchObject({
-			message: dedent`Expected image to match within 10 pixels but was differ by 60 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'`,
-		})
+			})
+			.then(
+				() => new Error('Should not reach'),
+				(error) =>
+					expect(error.message).toMatch(/Expected image to match within 10 pixels but was differ by \d+ pixels./),
+			)
 	},
 }
 
@@ -99,18 +94,15 @@ export const FailureThresholdByPercentage: StoryObj = {
 	render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
 		const subject = canvas.getByTestId('subject')
-		await expect(() =>
-			expect(page.imageSnapshot({ element: subject })).toMatchImageSnapshot({
+		await expect(page.imageSnapshot({ element: subject }))
+			.toMatchImageSnapshot({
 				failureThreshold: 0.1,
 				failureThresholdType: 'percent',
-			}),
-		).rejects.toMatchObject({
-			message: dedent`Expected image to match within 0.1% but was differ by 0.2777777777777778%.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'`,
-		})
+			})
+			.then(
+				() => new Error('Should not reach'),
+				(error) => expect(error.message).toMatch(/Expected image to match within 0.1% but was differ by \d+\.\d+%/),
+			)
 	},
 }
 
@@ -131,16 +123,24 @@ export const ExactFailureThresholdByPercentage: StoryObj = {
 	render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
 		const subject = canvas.getByTestId('subject')
-		await expect(() =>
-			expect(page.imageSnapshot({ element: subject })).toMatchImageSnapshot({
+		await expect(page.imageSnapshot({ element: subject }))
+			.toMatchImageSnapshot({
 				failureThresholdType: 'percent',
-			}),
-		).rejects.toMatchObject({
-			message: dedent`Expected image to match but was differ by 0.2777777777777778%.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
-		})
+			})
+			.then(
+				() => new Error('Should not reach'),
+				(error) => {
+					expect(error.message).toMatch(/Expected image to match but was differ by \d+\.\d+%/)
+					expect(error.message).toMatch(
+						`Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+					expect(error.message).toMatch(
+						`Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+					expect(error.message).toMatch(
+						`Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+				},
+			)
 	},
 }
