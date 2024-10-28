@@ -1,3 +1,15 @@
+# v0.0.6 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- test: use storybook/test ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.5 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
