@@ -1,13 +1,10 @@
 import { basename, dirname, join, relative } from 'pathe'
-import { expect } from 'vitest'
 import './augment.js'
-import { toMatchImageSnapshot } from './expect.to_match_image_snapshot.js'
 import { state } from './state.js'
 
 export * from './@vitest/browser/context.js'
+export * from './expect.to_match_image_snapshot.js'
 export * from './tags.js'
-
-expect.extend({ toMatchImageSnapshot })
 
 export function configureSnapshotBeforeAll(suite: { file: { filepath: string }; name: string }) {
 	state.name = suite.name
