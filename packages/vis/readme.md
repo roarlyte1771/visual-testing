@@ -33,8 +33,8 @@ On [vitest], you need to add `storybook-addon-vis/vitest-plugin` plugin in `vite
 ```ts
 // vite.config.ts or vitest.config.ts
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin'
-import { defineConfig } from 'vitest/config'
 import { storybookVis } from 'storybook-addon-vis/vitest-plugin'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
    plugins: [
@@ -57,23 +57,23 @@ In `vitest.setup.ts`, you need to extend [vitest] `expect` and register lifecycl
 ```ts
 // vitest.setup.ts
 import { type StoryContext, setProjectAnnotations } from '@storybook/react'
-import { afterEach, beforeAll, beforeEach, expect } from 'vitest'
 import {
   configureSnapshotBeforeAll,
   configureSnapshotBeforeEach,
   page,
   shouldTakeSnapshot,
   toMatchImageSnapshot,
-} from 'storybook-addon-vis/vitest-setup.js'
+} from 'storybook-addon-vis/vitest-setup'
+import { afterEach, beforeAll, beforeEach, expect } from 'vitest'
 import * as projectAnnotations from './preview'
 
 const project = setProjectAnnotations([projectAnnotations])
 
 expect.extend({ toMatchImageSnapshot })
 
-beforeAll((suite) => {
+beforeAll(async (suite) => {
   project.beforeAll()
-  configureSnapshotBeforeAll(suite)
+  await configureSnapshotBeforeAll(suite, /* optional options */)
 })
 
 beforeEach(configureSnapshotBeforeEach)
@@ -90,7 +90,7 @@ On [storybook], you need to extend the `expect` from `@storybook/test`
 ```ts
 // .storybook/preview.tsx
 import { expect } from '@storybook/test'
-import { toMatchImageSnapshot } from '../src/index.js'
+import { toMatchImageSnapshot } from 'storybook-addon-vis'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -138,13 +138,15 @@ export const MyStory = {
 Besides automatic snapshot, you can capture image snapshot manually.
 
 ```ts
-import { page } from 'storybook-addon-vis'
 import { expect } from '@storybook/test'
+
+// `page` and the like are proxy to `@vitest/browser/context` to work in storybook
+import { page } from 'storybook-addon-vis'
 
 export const PageSnapshot = {
   // ...
   async play() {
-    expect(page.imageSnapshot()).toMatchImageSnapshot()
+    await expect(page.imageSnapshot()).toMatchImageSnapshot()
   }
 }
 

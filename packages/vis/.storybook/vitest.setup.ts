@@ -15,9 +15,9 @@ expect.extend({ toMatchImageSnapshot })
 // More info at: https://storybook.js.org/docs/api/portable-stories/portable-stories-vitest#setprojectannotations
 const project = setProjectAnnotations([projectAnnotations])
 
-beforeAll((suite) => {
+beforeAll(async (suite) => {
 	project.beforeAll()
-	configureSnapshotBeforeAll(suite)
+	await configureSnapshotBeforeAll(suite)
 })
 
 beforeEach((ctx) => {
