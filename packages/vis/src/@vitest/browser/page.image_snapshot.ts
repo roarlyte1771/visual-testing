@@ -3,23 +3,13 @@ import { basename, join } from 'pathe'
 import { toImageData } from '../../image_data.js'
 import { state } from '../../state.js'
 import { imageSnapshotSymbol } from './constants.js'
-// import { server } from './context.js'
+import { toSnapshotId } from './image_snapshot.logic.js'
 import type { ImageSnapshot, ImageSnapshotOptions } from './types.js'
-
-export function isImageSnapshot(subject: any): subject is ImageSnapshot {
-	return !!subject && subject.type === imageSnapshotSymbol
-}
-
-export function assertImageSnapshot(subject: any): asserts subject is ImageSnapshot {
-	if (!isImageSnapshot(subject)) {
-		throw new Error('Expected subject to be an image snapshot')
-	}
-}
 
 export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot> {
 	// const rootDir = server.config.root
 	const testfilename = basename(state.testFilepath)
-	const snapshotFilename = `${toId(state.taskName)}-${state.snapshot[state.taskName]!.index++}.png`
+	const snapshotFilename = `${toSnapshotId(state.taskName)}-${state.snapshot[state.taskName]!.index++}.png`
 	const baselinePath = join(state.baselineDir, testfilename, snapshotFilename)
 	const resultPath = join(state.resultDir, testfilename, snapshotFilename)
 	const diffPath = join(state.diffDir, testfilename, snapshotFilename)
@@ -41,8 +31,4 @@ export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOp
 		base64: screenshot.base64,
 		image,
 	}
-}
-
-export function toId(taskName: string) {
-	return `${taskName.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`
 }

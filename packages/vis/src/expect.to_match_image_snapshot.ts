@@ -2,7 +2,7 @@ import type { AsyncExpectationResult, MatcherState } from '@vitest/expect'
 import dedent from 'dedent'
 import pixelmatch from 'pixelmatch'
 import { commands } from './@vitest/browser/context.js'
-import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/page.image_snapshot.js'
+import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
 import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
 
