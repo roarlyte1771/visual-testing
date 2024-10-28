@@ -1,3 +1,16 @@
+# v0.0.12 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: add editorconfig ([@unional](https://github.com/unional))
+- feat: add configureSnapshotBeforeAll options ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.11 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
