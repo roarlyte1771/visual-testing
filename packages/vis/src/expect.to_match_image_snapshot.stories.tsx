@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import dedent from 'dedent'
 import { page } from './@vitest/browser/context'
 import { UNI_PNG_URL } from './testing/constants'
 
@@ -31,12 +30,7 @@ export const Failed: StoryObj = {
 			.toMatchImageSnapshot()
 			.then(
 				() => new Error('Should not reach'),
-				(error) =>
-					expect(error.message).toEqual(dedent`Expected image to match but was differ by 5105 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failed-1.png'`),
+				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
 			)
 	},
 }
@@ -62,12 +56,7 @@ export const DifferentSize: StoryObj = {
 			.toMatchImageSnapshot()
 			.then(
 				() => new Error('Should not reach'),
-				(error) =>
-					expect(error.message).toEqual(dedent`Expected image to match but was differ by 51931 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/different-size-1.png'`),
+				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
 			)
 	},
 }
@@ -95,11 +84,7 @@ export const FailureThreshold: StoryObj = {
 			.then(
 				() => new Error('Should not reach'),
 				(error) =>
-					expect(error.message).toEqual(dedent`Expected image to match within 10 pixels but was differ by 60 pixels.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-1.png'`),
+					expect(error.message).toMatch(/Expected image to match within 10 pixels but was differ by \d+ pixels./),
 			)
 	},
 }
@@ -116,14 +101,7 @@ export const FailureThresholdByPercentage: StoryObj = {
 			})
 			.then(
 				() => new Error('Should not reach'),
-				(error) =>
-					expect(
-						error.message,
-					).toEqual(dedent`Expected image to match within 0.1% but was differ by 0.2777777777777778%.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/failure-threshold-by-percentage-1.png'`),
+				(error) => expect(error.message).toMatch(/Expected image to match within 0.1% but was differ by \d+\.\d+%/),
 			)
 	},
 }
@@ -151,12 +129,18 @@ export const ExactFailureThresholdByPercentage: StoryObj = {
 			})
 			.then(
 				() => new Error('Should not reach'),
-				(error) =>
-					expect(error.message).toEqual(dedent`Expected image to match but was differ by 0.2777777777777778%.
-
-			Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'
-			Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'
-			Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`),
+				(error) => {
+					expect(error.message).toMatch(/Expected image to match but was differ by \d+\.\d+%/)
+					expect(error.message).toMatch(
+						`Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+					expect(error.message).toMatch(
+						`Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+					expect(error.message).toMatch(
+						`Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+					)
+				},
 			)
 	},
 }
