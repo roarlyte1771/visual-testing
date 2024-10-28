@@ -1,3 +1,15 @@
+# v0.0.14 (Mon Oct 28 2024)
+
+#### 🐛 Bug Fix
+
+- Add renovate.json [#1](https://github.com/repobuddy/storybook-addon-vis/pull/1) ([@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 1
+
+- [@renovate[bot]](https://github.com/renovate[bot])
+
+---
+
 # v0.0.13 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
