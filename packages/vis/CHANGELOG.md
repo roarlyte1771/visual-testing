@@ -1,3 +1,15 @@
+# v0.0.10 (Mon Oct 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- docs: update readme ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.9 (Mon Oct 28 2024)
 
 #### ⚠️ Pushed to `main`
