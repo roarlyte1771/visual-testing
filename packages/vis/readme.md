@@ -81,7 +81,7 @@ beforeEach(configureSnapshotBeforeEach)
 afterEach<{ story?: StoryContext }>(async (ctx) => {
   if (!shouldTakeSnapshot(ctx)) return
 
-  await expect(page.imageSnapshot()).toMatchImageSnapshot()
+  await expect(page.imageSnapshot()).toMatchImageSnapshot(ctx.story?.parameters.snapshot)
 })
 ```
 
@@ -113,6 +113,21 @@ export default {
 export const MyStory = {
   // Take image snapshot automatically for this story
   tags: ['snapshot'],
+  // ...
+}
+```
+
+You can provide options to the automatic `toMatchImageSnapshot` matcher using parameters.
+
+```ts
+import { defineSnapshotParam } from 'storybook-addon-vis'
+
+export const MyStory = {
+  // Take image snapshot automatically for this story
+  tags: ['snapshot'],
+  parameters: defineSnapshotParam({
+    failureThreshold: 70,
+  })
   // ...
 }
 ```

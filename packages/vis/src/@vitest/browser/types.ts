@@ -18,7 +18,15 @@ export type ImageSnapshot = {
 }
 
 export type MatchImageSnapshotOptions = {
+	/**
+	 * Custom options passed to 'pixelmatch'
+	 */
 	diffOptions?: PixelmatchOptions | undefined
-	failureThreshold?: number | undefined
+	/**
+	 * Failure threshold should measure in `pixel` or `percent`.
+	 *
+	 * Default is `pixel`.
+	 */
 	failureThresholdType?: 'pixel' | 'percent' | undefined
+	failureThreshold?: number | undefined
 }
