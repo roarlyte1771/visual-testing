@@ -39,8 +39,9 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
    plugins: [
     storybookTest(),
-    storybookVis()],
-   test: {
+    storybookVis()
+	],
+  test: {
     browser: {
       // ...
     }
@@ -73,7 +74,7 @@ expect.extend({ toMatchImageSnapshot })
 
 beforeAll(async (suite) => {
   project.beforeAll()
-  await configureSnapshotBeforeAll(suite, /* optional options */)
+  await configureSnapshotBeforeAll(suite, /* options */)
 })
 
 beforeEach(configureSnapshotBeforeEach)
@@ -169,7 +170,7 @@ export const ElementSnapshot = {
   // ...
   async play({ canvas }) {
     const element = await canvas.getByTestid('subject')
-    await expect(page.imageSnapshot([ element ])).toMatchImageSnapshot()
+    await expect(page.imageSnapshot({ element })).toMatchImageSnapshot()
   }
 }
 ```
