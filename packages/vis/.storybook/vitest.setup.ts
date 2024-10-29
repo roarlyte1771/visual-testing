@@ -17,8 +17,20 @@ const project = setProjectAnnotations([projectAnnotations])
 
 beforeAll(async (suite) => {
 	project.beforeAll()
-	await configureSnapshotBeforeAll(suite)
+	await configureSnapshotBeforeAll(suite, {
+		snapshotPath: `__snapshots__/${getOSName()}`,
+	})
 })
+
+function getOSName() {
+	let OSName = 'unknown'
+	if (navigator.userAgent.indexOf('Win') !== -1) OSName = 'win32'
+	if (navigator.userAgent.indexOf('Mac') !== -1) OSName = 'darwin'
+	if (navigator.userAgent.indexOf('Linux') !== -1) OSName = 'linux'
+	if (navigator.userAgent.indexOf('Android') !== -1) OSName = 'android'
+	if (navigator.userAgent.indexOf('like Mac') !== -1) OSName = 'ios'
+	return OSName
+}
 
 beforeEach((ctx) => {
 	configureSnapshotBeforeEach(ctx)

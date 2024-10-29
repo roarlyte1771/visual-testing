@@ -132,13 +132,13 @@ export const ExactFailureThresholdByPercentage: StoryObj = {
 				(error) => {
 					expect(error.message).toMatch(/Expected image to match but was differ by \d+\.\d+%/)
 					expect(error.message).toMatch(
-						`Expected:   '../__snapshots__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Expected:   '../__snapshots__/linux/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 					expect(error.message).toMatch(
-						`Actual:     '../__snapshots__/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Actual:     '../__snapshots__/linux/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 					expect(error.message).toMatch(
-						`Difference: '../__snapshots__/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Difference: '../__snapshots__/linux/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 				},
 			)

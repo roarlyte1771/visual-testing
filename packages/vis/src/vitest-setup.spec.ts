@@ -9,8 +9,10 @@ import { configureSnapshotBeforeAll } from './vitest-setup.js'
 const { ConversionRoundtrip } = composeStories(ImageDataStories)
 
 it('should delete the results and diffs folder when the during `beforeAll`', async ({ task }) => {
-	await expect(commands.existDir(`../__snapshots__/__diff_output__/${basename(task.file.name)}`)).resolves.toBe(false)
-	await expect(commands.existDir(`../__snapshots__/__results__/${basename(task.file.name)}`)).resolves.toBe(false)
+	await expect(commands.existDir(`../__snapshots__/linux/__diff_output__/${basename(task.file.name)}`)).resolves.toBe(
+		false,
+	)
+	await expect(commands.existDir(`../__snapshots__/linux/__results__/${basename(task.file.name)}`)).resolves.toBe(false)
 	await ConversionRoundtrip.run()
 	await expect(page.imageSnapshot()).toMatchImageSnapshot()
 })
@@ -23,8 +25,8 @@ it('can define the snapshot root folder relative to the root of the project', as
 		},
 	),
 		expect(state).toMatchObject({
-			baselineDir: '../_sp_',
-			diffDir: '../_sp_/__diff_output__',
-			resultDir: '../_sp_/__results__',
+			baselineDir: '_sp_',
+			diffDir: '_sp_/__diff_output__',
+			resultDir: '_sp_/__results__',
 		})
 })
