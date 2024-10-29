@@ -2,6 +2,7 @@ import type { Plugin } from 'vitest/config'
 import './augment.js'
 import { copyFile } from './vitest-plugin/commands/copy_file.js'
 import { existDir } from './vitest-plugin/commands/exist_dir.js'
+import { isCI } from './vitest-plugin/commands/is_ci.js'
 import { rmDir } from './vitest-plugin/commands/rm_dir.js'
 
 export function storybookVis() {
@@ -16,6 +17,7 @@ export function storybookVis() {
 							existDir,
 							copyFile,
 							rmDir,
+							isCI,
 						},
 					},
 				},

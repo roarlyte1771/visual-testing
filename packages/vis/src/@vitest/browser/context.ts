@@ -24,7 +24,7 @@ if ((globalThis as any).__vitest_browser__) {
 // TODO: stub the functions within the `CDPSession`
 // when we better understands the use cases
 export function cdp(): CDPSession {
-	return ctx?.cdp() ?? {}
+	return ctx?.cdp() ?? ({} as any)
 }
 
 export const commands = new Proxy<BrowserCommands>({} as any, {

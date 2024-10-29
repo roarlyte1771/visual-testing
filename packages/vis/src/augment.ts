@@ -10,6 +10,7 @@ declare module '@vitest/browser/context' {
 		existDir: (path: string) => Promise<boolean>
 		copyFile: (src: string, dest: string) => Promise<void>
 		rmDir: (path: string) => Promise<void>
+		isCI: () => Promise<boolean>
 	}
 }
 
