@@ -196,9 +196,6 @@ importers:
       '@testing-library/react':
         specifier: ^16.0.1
         version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@types/prop-types':
-        specifier: ^15.7.13
-        version: 15.7.13
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.12
@@ -229,9 +226,6 @@ importers:
       playwright:
         specifier: ^1.48.1
         version: 1.48.2
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
       storybook:
         specifier: ^8.3.6
         version: 8.3.6
