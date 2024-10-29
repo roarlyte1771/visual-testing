@@ -19,14 +19,14 @@ it('should delete the results and diffs folder when the during `beforeAll`', asy
 
 it('can define the snapshot root folder relative to the root of the project', async () => {
 	await configureSnapshotBeforeAll(
-		{ name: 'name', file: { filepath: 'dummy/path' } },
+		{ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } },
 		{
 			snapshotPath: '_sp_',
 		},
 	),
 		expect(state).toMatchObject({
-			baselineDir: '_sp_',
-			diffDir: '_sp_/__diff_output__',
-			resultDir: '_sp_/__results__',
+			baselineDir: '_sp_/some.test.ts',
+			diffDir: '_sp_/__diff_output__/some.test.ts',
+			resultDir: '_sp_/__results__/some.test.ts',
 		})
 })

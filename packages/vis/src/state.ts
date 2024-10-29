@@ -12,5 +12,6 @@ export const state = {
 	resultDir: string
 	diffDir: string
 	taskName: string
+	snapshotId: string
 	snapshot: Record<string, { index: number }>
 }

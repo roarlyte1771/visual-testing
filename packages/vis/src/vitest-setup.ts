@@ -1,6 +1,7 @@
 import { basename, dirname, join, relative } from 'pathe'
 import './augment.js'
 import { commands } from './@vitest/browser/context.js'
+import { toSnapshotId } from './@vitest/browser/image_snapshot.logic.js'
 import { state } from './state.js'
 
 export * from './@vitest/browser/context.js'
@@ -29,9 +30,9 @@ export async function configureSnapshotBeforeAll(
 	state.projectDir = state.testFilepath.slice(0, -state.name.length)
 	const snapshotPath = join(state.projectDir, options?.snapshotPath ?? '__snapshots__')
 	const currentDir = dirname(state.testFilepath)
-	state.baselineDir = relative(currentDir, snapshotPath)
-	state.resultDir = relative(currentDir, join(snapshotPath, '__results__'))
-	state.diffDir = relative(currentDir, join(snapshotPath, '__diff_output__'))
+	state.baselineDir = relative(currentDir, join(snapshotPath, state.testFilename))
+	state.resultDir = relative(currentDir, join(snapshotPath, '__results__', state.testFilename))
+	state.diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', state.testFilename))
 
 	await commands.rmDir(state.resultDir)
 	await commands.rmDir(state.diffDir)
@@ -39,5 +40,6 @@ export async function configureSnapshotBeforeAll(
 
 export function configureSnapshotBeforeEach(ctx: { task: { name: string } }) {
 	state.taskName = ctx.task.name
-	state.snapshot[state.taskName] = state.snapshot[state.taskName] ?? { index: 1 }
+	const snapshotId = (state.snapshotId = toSnapshotId(state.taskName))
+	state.snapshot[snapshotId] = state.snapshot[snapshotId] ?? { index: 1 }
 }
