@@ -11,6 +11,7 @@ declare module '@vitest/browser/context' {
 		copyFile: (src: string, dest: string) => Promise<void>
 		rmDir: (path: string) => Promise<void>
 		isCI: () => Promise<boolean>
+		getSnapshotPlatform: () => Promise<string>
 	}
 }
 

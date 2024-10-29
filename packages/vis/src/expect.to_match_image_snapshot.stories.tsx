@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import { page } from './@vitest/browser/context'
+import { commands, page } from './@vitest/browser/context'
 import { UNI_PNG_URL } from './testing/constants'
 
 export default {
@@ -129,16 +129,16 @@ export const ExactFailureThresholdByPercentage: StoryObj = {
 			})
 			.then(
 				() => new Error('Should not reach'),
-				(error) => {
+				async (error) => {
 					expect(error.message).toMatch(/Expected image to match but was differ by \d+\.\d+%/)
 					expect(error.message).toMatch(
-						`Expected:   '../__snapshots__/linux/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Expected:   '../__snapshots__/${await commands.getSnapshotPlatform()}/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 					expect(error.message).toMatch(
-						`Actual:     '../__snapshots__/linux/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Actual:     '../__snapshots__/${await commands.getSnapshotPlatform()}/__results__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 					expect(error.message).toMatch(
-						`Difference: '../__snapshots__/linux/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
+						`Difference: '../__snapshots__/${await commands.getSnapshotPlatform()}/__diff_output__/expect.to_match_image_snapshot.stories.tsx/exact-failure-threshold-by-percentage-1.png'`,
 					)
 				},
 			)

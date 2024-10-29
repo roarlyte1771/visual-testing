@@ -15,6 +15,7 @@ it('register commands', () => {
 				commands: {
 					existDir: expect.any(Function),
 					copyFile: expect.any(Function),
+					getSnapshotPlatform: expect.any(Function),
 					rmDir: expect.any(Function),
 					isCI: expect.any(Function),
 				},
