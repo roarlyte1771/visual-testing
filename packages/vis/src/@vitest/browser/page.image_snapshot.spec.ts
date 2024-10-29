@@ -1,6 +1,5 @@
 import { basename } from 'pathe'
 import { expect, it } from 'vitest'
-import { getSnapshotPlatform } from '../../vitest-plugin/commands/get_snapshot_platform.js'
 import { commands, page } from './context.js'
 import { toSnapshotId } from './image_snapshot.logic.js'
 
