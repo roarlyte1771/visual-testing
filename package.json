@@ -11,6 +11,7 @@
 		"dev": "turbo run dev",
 		"nuke": "turbo nuke && rimraf node_modules",
 		"test": "vitest run",
+		"verify": "run-s build coverage",
 		"vis": "pnpm --filter=./packages/vis",
 		"w": "vitest"
 	},
