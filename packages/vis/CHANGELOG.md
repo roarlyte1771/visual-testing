@@ -1,3 +1,17 @@
+# v0.0.15 (Tue Oct 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- test: move tests to per platform ([@unional](https://github.com/unional))
+- test: add test for image resizer ([@unional](https://github.com/unional))
+- chore: remove prop-types ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.14 (Mon Oct 28 2024)
 
 #### 🐛 Bug Fix
