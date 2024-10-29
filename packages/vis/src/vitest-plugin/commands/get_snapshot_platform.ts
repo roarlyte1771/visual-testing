@@ -1,6 +1,5 @@
 import ci from 'is-ci'
-import type { BrowserCommand } from 'vitest/node'
 
-export const getSnapshotPlatform: BrowserCommand<[]> = async () => {
+export const getSnapshotPlatform = async () => {
 	return `${process.platform}${ci ? '-ci' : ''}`
 }
