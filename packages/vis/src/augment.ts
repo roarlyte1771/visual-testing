@@ -11,6 +11,11 @@ declare module '@vitest/browser/context' {
 		copyFile: (src: string, dest: string) => Promise<void>
 		rmDir: (path: string) => Promise<void>
 		isCI: () => Promise<boolean>
+		/**
+		 * Get the platform id of the snapshot `{platform}[-ci]`.
+		 *
+		 * This is useful to control where the snapshot is stored.
+		 */
 		getSnapshotPlatform: () => Promise<string>
 	}
 }
