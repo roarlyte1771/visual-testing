@@ -1,3 +1,20 @@
+# v0.0.16 (Tue Oct 29 2024)
+
+#### ⚠️ Pushed to `main`
+
+- test: cover image resizer ([@unional](https://github.com/unional))
+- fix: rename vite plugin name ([@unional](https://github.com/unional))
+- fix: rename plugin ([@unional](https://github.com/unional))
+- chore: remove extra files ([@unional](https://github.com/unional))
+- chore: add verify script ([@unional](https://github.com/unional))
+- chore: ignore __snapshots__/*/__results__ and diff ([@unional](https://github.com/unional))
+
+#### Authors: 1
+
+- Homa Wong ([@unional](https://github.com/unional))
+
+---
+
 # v0.0.15 (Tue Oct 29 2024)
 
 #### ⚠️ Pushed to `main`
