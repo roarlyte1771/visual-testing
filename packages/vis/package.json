@@ -48,7 +48,8 @@
 		"prerelease": "zx scripts/prepublish-checks.js",
 		"release": "pnpm build && auto shipit",
 		"sb": "storybook dev -p 6006",
-		"test": "vitest"
+		"test": "vitest run",
+		"w": "vitest"
 	},
 	"dependencies": {
 		"dedent": "^1.5.1",
