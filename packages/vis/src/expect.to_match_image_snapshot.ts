@@ -6,6 +6,7 @@ import { commands } from './@vitest/browser/context.js'
 import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
 import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
+import { createImageResizer } from './image_resizer.js'
 
 export async function toMatchImageSnapshot(
 	actual: any,
@@ -99,35 +100,6 @@ function getMaxSize(image1: ImageData, image2: ImageData) {
 function isSameSize(image1: ImageData, image2: ImageData) {
 	return image1.width === image2.width && image1.height === image2.height
 }
-
-const createImageResizer =
-	({ width, height }: { width: number; height: number }) =>
-	(image: ImageData) => {
-		if (image.width === width && image.height === height) {
-			return image
-		}
-		const inArea = (x: number, y: number) => y <= image.height && x <= image.width
-		const result = new ImageData(width, height, { colorSpace: image.colorSpace })
-
-		for (let y = 0; y < height; y++) {
-			for (let x = 0; x < width; x++) {
-				const idx = (width * y + x) << 2
-				if (inArea(x, y)) {
-					const old = (image.width * y + x) << 2
-					result.data[idx] = image.data[old]
-					result.data[idx + 1] = image.data[old + 1]
-					result.data[idx + 2] = image.data[old + 2]
-					result.data[idx + 3] = image.data[old + 3]
-				} else {
-					result.data[idx] = 0
-					result.data[idx + 1] = 0
-					result.data[idx + 2] = 0
-					result.data[idx + 3] = 64
-				}
-			}
-		}
-		return result
-	}
 
 function compareImage(
 	baselineImage: ImageData,
