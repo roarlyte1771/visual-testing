@@ -11,8 +11,10 @@
 		"cs": "changeset",
 		"dev": "turbo run dev",
 		"nuke": "turbo nuke && rimraf node_modules",
+		"release": "pnpm build && changeset publish",
 		"test": "vitest run",
-		"verify": "run-s build coverage",
+		"verify": "run-s check build coverage",
+		"version": "changeset version",
 		"vis": "pnpm --filter=./packages/vis",
 		"w": "vitest"
 	},

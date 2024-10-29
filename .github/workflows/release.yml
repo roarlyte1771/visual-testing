@@ -1,29 +1,21 @@
-name: Release
-
-on: [push]
+name: release
+on:
+  push:
+    branches: [main]
 
 jobs:
+  code:
+    uses: repobuddy/.github/.github/workflows/pnpm-verify.yml@main
+    with:
+      codecov-flags: biome,jest,typescript
+      os: '["ubuntu-latest", "windows-latest"]'
+      node-version: '[18, 20]'
   release:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-
-      - name: Prepare repository
-        run: git fetch --unshallow --tags
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-
-      - name: Install dependencies
-        run: pnpm install --ignore-scripts
-
-      - name: Create Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          pnpm vis release
+    uses: repobuddy/.github/.github/workflows/pnpm-release-changeset.yml@main
+    needs: code
+    secrets: inherit
+  # docgen:
+  #   uses: repobuddy/.github/.github/workflows/pnpm-docs.yml@main
+  #   needs: release
+  #   with:
+  #     publish-dir: ./website/dist
