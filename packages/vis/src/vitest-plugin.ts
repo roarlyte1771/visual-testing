@@ -6,7 +6,7 @@ import { rmDir } from './vitest-plugin/commands/rm_dir.js'
 
 export function storybookVis(): Plugin {
 	return {
-		name: 'vitest:storybook-vis',
+		name: 'vitest:storybook-addon-vis',
 		config() {
 			return {
 				test: {
