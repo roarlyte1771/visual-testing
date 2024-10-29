@@ -6,7 +6,7 @@
 	},
 	"access": "public",
 	"baseBranch": "main",
-	"changelog": "@changesets/cli/changelog",
+	"changelog": "@changesets/changelog-github",
 	"commit": false,
 	"fixed": [],
 	"ignore": [],

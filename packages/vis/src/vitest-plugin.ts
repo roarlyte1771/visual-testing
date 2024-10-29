@@ -11,7 +11,7 @@ export function storybookVis() {
 			return {
 				test: {
 					browser: {
-						name: undefined,
+						name: 'chromium',
 						commands: {
 							existDir,
 							copyFile,

@@ -8,6 +8,7 @@
 		"check:fix": "biome check --write",
 		"clean": "turbo clean",
 		"coverage": "vitest run --coverage",
+		"cs": "changeset",
 		"dev": "turbo run dev",
 		"nuke": "turbo nuke && rimraf node_modules",
 		"test": "vitest run",
@@ -17,6 +18,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.9",
 		"@commitlint/cli": "^19.5.0",
 		"@commitlint/config-conventional": "^19.5.0",
