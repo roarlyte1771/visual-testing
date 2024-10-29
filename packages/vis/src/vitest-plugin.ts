@@ -4,7 +4,7 @@ import { copyFile } from './vitest-plugin/commands/copy_file.js'
 import { existDir } from './vitest-plugin/commands/exist_dir.js'
 import { rmDir } from './vitest-plugin/commands/rm_dir.js'
 
-export function storybookVis(): Plugin {
+export function storybookVis() {
 	return {
 		name: 'vitest:storybook-addon-vis',
 		config() {
@@ -21,5 +21,5 @@ export function storybookVis(): Plugin {
 				},
 			}
 		},
-	}
+	} satisfies Plugin
 }
