@@ -60,6 +60,7 @@ node_modules
 **/__snapshots__/*/__results__
 **/__snapshots__/__diff_output__
 **/__snapshots__/__results__
+**/__snapshots__/local
 *.tsbuildinfo
 build-storybook.log
 dist

@@ -28,7 +28,10 @@ export async function configureSnapshotBeforeAll(
 	state.testFilepath = suite.file.filepath
 	state.testFilename = basename(state.testFilepath)
 	state.projectDir = state.testFilepath.slice(0, -state.name.length)
-	const snapshotPath = join(state.projectDir, options?.snapshotPath ?? '__snapshots__')
+	const snapshotPath = join(
+		state.projectDir,
+		options?.snapshotPath ?? `__snapshots__/${await commands.getSnapshotPlatform()}`,
+	)
 	const currentDir = dirname(state.testFilepath)
 	state.baselineDir = relative(currentDir, join(snapshotPath, state.testFilename))
 	state.resultDir = relative(currentDir, join(snapshotPath, '__results__', state.testFilename))

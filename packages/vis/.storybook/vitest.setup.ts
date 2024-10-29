@@ -1,7 +1,6 @@
 import { type StoryContext, setProjectAnnotations } from '@storybook/react'
 import { afterEach, beforeAll, beforeEach, expect } from 'vitest'
 import {
-	commands,
 	configureSnapshotBeforeAll,
 	configureSnapshotBeforeEach,
 	page,
@@ -18,9 +17,7 @@ const project = setProjectAnnotations([projectAnnotations])
 
 beforeAll(async (suite) => {
 	project.beforeAll()
-	await configureSnapshotBeforeAll(suite, {
-		snapshotPath: `__snapshots__/${await commands.getSnapshotPlatform()}`,
-	})
+	await configureSnapshotBeforeAll(suite)
 })
 
 beforeEach((ctx) => {
