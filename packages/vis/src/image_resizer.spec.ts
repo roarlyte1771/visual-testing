@@ -21,11 +21,7 @@ it('takes less than 200ms to resize 16 times (createImageResizer2)', async () =>
 async function testResize(fn: typeof createImageResizer, image: ImageData, factor: number, length: number) {
 	const startTime = new Date().getTime()
 	const resize = fn({ width: image.width * factor, height: image.height * factor })
-	await Promise.all(
-		Array.from({ length }).map(async () => {
-			await resize(image)
-		}),
-	)
+	await Promise.all(Array.from({ length }).map(async () => resize(image)))
 	const endTime = new Date().getTime()
 	const executionTime = endTime - startTime
 	expect(executionTime / length).toBeLessThan(200)
