@@ -54,8 +54,10 @@ node_modules
 .turbo
 
 # project
-**/__screenshots__/*/__diffs__
+**/__screenshots__/*/__diff_output__
 **/__screenshots__/*/__results__
+**/__snapshots__/*/__diff_output__
+**/__snapshots__/*/__results__
 **/__snapshots__/__diff_output__
 **/__snapshots__/__results__
 *.tsbuildinfo
