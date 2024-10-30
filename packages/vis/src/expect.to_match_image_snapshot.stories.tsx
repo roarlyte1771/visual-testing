@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import { commands, page } from './@vitest/browser/context'
+import { commands, page, server } from './@vitest/browser/context'
 import { UNI_PNG_URL } from './testing/constants'
 
 export default {
@@ -29,7 +29,9 @@ export const Failed: StoryObj = {
 		await expect(page.imageSnapshot())
 			.toMatchImageSnapshot()
 			.then(
-				() => new Error('Should not reach'),
+				() => {
+					throw new Error('Should not reach')
+				},
 				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
 			)
 	},
@@ -46,16 +48,23 @@ export const Element: StoryObj = {
 }
 
 export const DifferentSize: StoryObj = {
-	render() {
-		// return <img style={{ width: 128, height: 128 }} src={UNI_PNG_URL} />
-		return <img style={{ width: 256, height: 256 }} src={UNI_PNG_URL} />
+	loaders: [
+		async () => {
+			return { updateSnapshot: server.config.snapshotOptions.updateSnapshot }
+		},
+	],
+	render(_, { loaded: { updateSnapshot } }) {
+		const style = updateSnapshot === 'all' ? { width: 128, height: 128 } : { width: 256, height: 256 }
+		return <img style={style} src={UNI_PNG_URL} />
 	},
 	async play({ canvas }) {
 		const image = await canvas.getByRole('img')
 		await expect(page.imageSnapshot({ element: image }))
 			.toMatchImageSnapshot()
 			.then(
-				() => new Error('Should not reach'),
+				() => {
+					throw new Error('Should not reach')
+				},
 				(error) => expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./),
 			)
 	},
@@ -82,7 +91,9 @@ export const FailureThreshold: StoryObj = {
 				failureThreshold: 10,
 			})
 			.then(
-				() => new Error('Should not reach'),
+				() => {
+					throw new Error('Should not reach')
+				},
 				(error) =>
 					expect(error.message).toMatch(/Expected image to match within 10 pixels but was differ by \d+ pixels./),
 			)
@@ -100,7 +111,9 @@ export const FailureThresholdByPercentage: StoryObj = {
 				failureThresholdType: 'percent',
 			})
 			.then(
-				() => new Error('Should not reach'),
+				() => {
+					throw new Error('Should not reach')
+				},
 				(error) => expect(error.message).toMatch(/Expected image to match within 0.1% but was differ by \d+\.\d+%/),
 			)
 	},
@@ -128,7 +141,9 @@ export const ExactFailureThresholdByPercentage: StoryObj = {
 				failureThresholdType: 'percent',
 			})
 			.then(
-				() => new Error('Should not reach'),
+				() => {
+					throw new Error('Should not reach')
+				},
 				async (error) => {
 					expect(error.message).toMatch(/Expected image to match but was differ by \d+\.\d+%/)
 					expect(error.message).toMatch(
