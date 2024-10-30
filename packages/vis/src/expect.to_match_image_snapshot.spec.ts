@@ -2,6 +2,7 @@ import { composeStories } from '@storybook/react'
 import { assertType } from 'type-plus'
 import { expect, it } from 'vitest'
 import { page } from './@vitest/browser/context.js'
+import { toSnapshotId } from './@vitest/browser/image_snapshot.logic.js'
 import * as ImageDataStories from './image_data.stories.js'
 
 const { ConversionRoundtrip } = composeStories(ImageDataStories)
@@ -42,4 +43,14 @@ it('should fail when the subject is the result of page.screenshot()', async () =
 it('should work with page.imageSnapshot()', async () => {
 	await ConversionRoundtrip.run()
 	await expect(page.imageSnapshot()).toMatchImageSnapshot()
+})
+
+it('can customize snapshot filename', async ({ task }) => {
+	await ConversionRoundtrip.run()
+	const result = await page.imageSnapshot({
+		customizeFilename(id, index) {
+			return `${id}-custom-${index}`
+		},
+	})
+	expect(result.snapshotFilename).toEqual(`${toSnapshotId(task.name)}-custom-1.png`)
 })
