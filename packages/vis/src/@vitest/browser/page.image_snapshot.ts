@@ -6,7 +6,7 @@ import { imageSnapshotSymbol } from './constants.js'
 import type { ImageSnapshot, ImageSnapshotOptions } from './types.js'
 
 export async function imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot> {
-	const snapshotFilename = `${state.snapshotId}-${state.snapshot[state.snapshotId]!.index++}.png`
+	const snapshotFilename = `${state.id}-${state.snapshot[state.id]!.index++}.png`
 	const baselinePath = join(state.baselineDir, snapshotFilename)
 	const resultPath = join(state.resultDir, snapshotFilename)
 	const diffPath = join(state.diffDir, snapshotFilename)

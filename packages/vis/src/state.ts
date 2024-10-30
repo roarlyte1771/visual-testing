@@ -4,6 +4,7 @@ export const state = {
 	taskName: '',
 	snapshot: {},
 } as {
+	id: string
 	name: string
 	testFilepath: string
 	testFilename: string
@@ -12,6 +13,5 @@ export const state = {
 	resultDir: string
 	diffDir: string
 	taskName: string
-	snapshotId: string
 	snapshot: Record<string, { index: number }>
 }

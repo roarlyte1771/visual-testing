@@ -42,7 +42,8 @@ export async function configureSnapshotBeforeAll(
 }
 
 export function configureSnapshotBeforeEach(ctx: { task: { name: string } }) {
+	// console.log('configureSnapshotBeforeEach', ctx.task)
 	state.taskName = ctx.task.name
-	const snapshotId = (state.snapshotId = toSnapshotId(state.taskName))
-	state.snapshot[snapshotId] = state.snapshot[snapshotId] ?? { index: 1 }
+	const id = (state.id = toSnapshotId(state.taskName))
+	state.snapshot[id] = state.snapshot[id] ?? { index: 1 }
 }
