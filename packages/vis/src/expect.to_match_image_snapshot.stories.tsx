@@ -17,6 +17,7 @@ export const Success: StoryObj = {
 }
 
 export const Failed: StoryObj = {
+	tags: ['!test'],
 	render() {
 		return (
 			<>
@@ -48,6 +49,7 @@ export const Element: StoryObj = {
 }
 
 export const DifferentSize: StoryObj = {
+	tags: ['!test'],
 	loaders: [
 		async () => {
 			return { updateSnapshot: server.config.snapshotOptions.updateSnapshot }
@@ -82,6 +84,7 @@ export const MeetFailureThreshold: StoryObj = {
 }
 
 export const FailureThreshold: StoryObj = {
+	tags: ['!test'],
 	render: () => <div data-testid="subject">unit test</div>,
 	// render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
@@ -101,6 +104,7 @@ export const FailureThreshold: StoryObj = {
 }
 
 export const FailureThresholdByPercentage: StoryObj = {
+	tags: ['!test'],
 	// render: () => <div data-testid="subject">unit test</div>,
 	render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
@@ -132,6 +136,7 @@ export const MeetFailureThresholdByPercentage: StoryObj = {
 }
 
 export const ExactFailureThresholdByPercentage: StoryObj = {
+	tags: ['!test'],
 	// render: () => <div data-testid="subject">unit test</div>,
 	render: () => <div data-testid="subject">unit text</div>,
 	async play({ canvas }) {
