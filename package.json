@@ -12,6 +12,7 @@
 		"dev": "turbo run dev",
 		"nuke": "turbo nuke && rimraf node_modules",
 		"release": "pnpm build && changeset publish",
+		"rvt": "pnpm --filter=testcase-react-vite-ts",
 		"test": "vitest run",
 		"test:rvt": "vitest run --project=testcase-react-vite-ts",
 		"verify": "run-s check build coverage",
