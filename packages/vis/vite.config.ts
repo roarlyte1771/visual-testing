@@ -7,16 +7,15 @@ import { storybookVis } from './src/vitest-plugin.js'
 export default defineConfig({
 	plugins: [react(), storybookTest(), storybookVis()],
 	optimizeDeps: {
-		include: ['@storybook/experimental-addon-test/internal/test-utils', '@vitest/coverage-v8'],
+		include: ['@storybook/experimental-addon-test/internal/test-utils', '@vitest/coverage-v8/browser'],
 	},
 	test: {
-		name: 'sb',
+		name: 'vis',
 		browser: {
 			enabled: true,
 			headless: true,
 			name: 'chromium',
 			provider: 'playwright',
-			// screenshotFailures: true,
 		},
 		globals: true,
 		include: [

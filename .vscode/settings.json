@@ -43,7 +43,8 @@
 		"shipit",
 		"ssim",
 		"testid",
-		"tsup"
+		"tsup",
+		"Vitest"
 	],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit"
