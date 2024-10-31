@@ -13,6 +13,7 @@ const preview = {
 			},
 		},
 	},
+	tags: ['snapshot'],
 }
 
 export default preview

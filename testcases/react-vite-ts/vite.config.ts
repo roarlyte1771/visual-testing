@@ -12,7 +12,6 @@ export default defineConfig({
 			headless: true,
 			name: 'chromium',
 			provider: 'playwright',
-			// screenshotFailures: true,
 		},
 		globals: true,
 		include: [

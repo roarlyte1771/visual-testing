@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { expect } from '@storybook/test'
 import { page } from 'storybook-addon-vis'
@@ -20,7 +20,7 @@ export default {
 	},
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 	args: { onClick: fn() },
-}
+} as Meta
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: StoryObj = {
@@ -36,7 +36,7 @@ export const Primary: StoryObj = {
 
 export const Secondary = {
 	args: {
-		label: 'Button',
+		label: 'Button2',
 	},
 }
 

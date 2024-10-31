@@ -9,7 +9,7 @@
 	"changelog": ["@changesets/changelog-github", { "repo": "repobuddy/storybook-addon-vis" }],
 	"commit": false,
 	"fixed": [],
-	"ignore": [],
+	"ignore": ["testcase-*"],
 	"linked": [],
 	"updateInternalDependencies": "patch"
 }

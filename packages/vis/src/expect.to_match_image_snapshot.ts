@@ -2,7 +2,7 @@ import type { AsyncExpectationResult } from '@vitest/expect'
 import dedent from 'dedent'
 import pixelmatch from 'pixelmatch'
 import { imageSnapshotStubSymbol } from './@vitest/browser/constants.js'
-import { commands } from './@vitest/browser/context.js'
+import { commands, server } from './@vitest/browser/context.js'
 import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
 import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
@@ -48,6 +48,10 @@ export async function toMatchImageSnapshot(
 
 	const { pass, diffAmount, diffImage } = compareImage(baselineImage, resultImage, options)
 	if (!pass) {
+		if (server.config.snapshotOptions.updateSnapshot === 'all') {
+			await writeSnapshot(`${subject.baselinePath}`, resultImage)
+			return success
+		}
 		await writeSnapshot(`${subject.diffPath}`, diffImage)
 		return {
 			pass: false,

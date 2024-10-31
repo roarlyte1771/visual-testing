@@ -54,3 +54,7 @@ it('can customize snapshot filename', async ({ task }) => {
 	})
 	expect(result.snapshotFilename).toEqual(`${toSnapshotId(task.name)}-custom-1.png`)
 })
+
+it('should fail when the subject is a rejected promise', async () => {
+	expect(expect(Promise.reject('error')).toMatchImageSnapshot()).rejects.toThrowError('error')
+})
