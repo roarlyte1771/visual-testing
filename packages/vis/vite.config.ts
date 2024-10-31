@@ -6,9 +6,6 @@ import { storybookVis } from './src/vitest-plugin.js'
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react(), storybookTest(), storybookVis()],
-	optimizeDeps: {
-		include: ['@storybook/experimental-addon-test/internal/test-utils', '@vitest/coverage-v8/browser'],
-	},
 	test: {
 		name: 'vis',
 		browser: {
