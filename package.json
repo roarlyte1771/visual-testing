@@ -13,10 +13,12 @@
 		"nuke": "turbo nuke && rimraf node_modules",
 		"release": "pnpm build && changeset publish",
 		"test": "vitest run",
+		"test:rvt": "vitest run --project=react-vite-ts",
 		"verify": "run-s check build coverage",
 		"version": "changeset version",
 		"vis": "pnpm --filter=./packages/vis",
-		"w": "vitest"
+		"w": "vitest",
+		"w:rvt": "vitest  --project=react-vite-ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
