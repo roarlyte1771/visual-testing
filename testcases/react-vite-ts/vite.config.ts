@@ -6,6 +6,9 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [react(), storybookTest(), storybookVis()],
+	optimizeDeps: {
+		include: ['@storybook/experimental-addon-test/internal/test-utils', '@vitest/coverage-v8'],
+	},
 	test: {
 		browser: {
 			enabled: true,
