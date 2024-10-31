@@ -20,7 +20,7 @@ export async function toMatchImageSnapshot(
 		if (subject?.path && subject?.base64) {
 			return {
 				pass: false,
-				actual,
+				actual: subject,
 				message: () =>
 					'`toMatchImageSnapshot()` expects the subject to be the result of `page.imageSnapshot()`, but seems like you are using `page.screenshot()`?',
 			}
@@ -29,9 +29,9 @@ export async function toMatchImageSnapshot(
 		if (typeof subject !== 'object') {
 			return {
 				pass: false,
-				actual,
+				actual: subject,
 				message: () =>
-					`\`toMatchImageSnapshot()\` expects the subject to be an element, locator, or result of \`page.imageSnapshot()\`, but got: \`${actual}\``,
+					`\`toMatchImageSnapshot()\` expects the subject to be an element, locator, or result of \`page.imageSnapshot()\`, but got: \`${subject}\``,
 			}
 		}
 		// subject = await page.imageSnapshot({ element: actual })
@@ -51,7 +51,6 @@ export async function toMatchImageSnapshot(
 		await writeSnapshot(`${subject.diffPath}`, diffImage)
 		return {
 			pass: false,
-			actual,
 			message: () =>
 				dedent`${
 					options?.failureThreshold
