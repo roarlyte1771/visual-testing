@@ -41,7 +41,7 @@
 	"scripts": {
 		"build": "tsup",
 		"build:sb": "storybook build",
-		"build:watch": "pnpm build -- --watch",
+		"build:watch": "pnpm build --watch",
 		"clean": "rimraf dist",
 		"dev": "run-p build:watch \"sb --quiet\"",
 		"nuke": "rimraf node_modules",
