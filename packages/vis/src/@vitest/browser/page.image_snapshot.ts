@@ -10,8 +10,8 @@ export async function imageSnapshot(
 	options?: ImageSnapshotOptions | undefined,
 ): Promise<ImageSnapshot> {
 	const index = state.snapshot[state.id]!.index++
-	const snapshotFilename = options?.customizeFilename
-		? `${options.customizeFilename(state.id, index)}.png`
+	const snapshotFilename = options?.customizeSnapshotId
+		? `${options.customizeSnapshotId(state.id, index)}.png`
 		: `${state.id}-${index}.png`
 	const baselinePath = join(state.baselineDir, snapshotFilename)
 	const resultPath = join(state.resultDir, snapshotFilename)

@@ -50,7 +50,7 @@ it('should work with page.imageSnapshot()', async () => {
 it('can customize snapshot filename', async ({ task }) => {
 	await ConversionRoundtrip.run()
 	const result = await page.imageSnapshot({
-		customizeFilename(id, index) {
+		customizeSnapshotId(id, index) {
 			return `${id}-custom-${index}`
 		},
 	})
@@ -65,14 +65,14 @@ it(`should fail with 'Snapshot \`{test/story name}\` mismatched`, async ({ task 
 	await ConversionRoundtrip.run()
 	await expect(
 		page.imageSnapshot({
-			customizeFilename: (id) => id,
+			customizeSnapshotId: (id) => id,
 		}),
 	).toMatchImageSnapshot()
 	await Success.run()
 	try {
 		await expect(
 			page.imageSnapshot({
-				customizeFilename: (id) => id,
+				customizeSnapshotId: (id) => id,
 			}),
 		).toMatchImageSnapshot()
 		// NOTE: test WILL reach there when updating snapshot as the assertion will succeed.

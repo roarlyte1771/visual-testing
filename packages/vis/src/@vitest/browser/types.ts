@@ -3,12 +3,14 @@ import type { PixelmatchOptions } from 'pixelmatch'
 
 export type ImageSnapshotOptions = {
 	/**
-	 * Customize the filename of the snapshot.
+	 * Customize the snapshot id. This is used as the filename of the snapshot:
+	 *
+	 * `${snapshotId}.png`
 	 *
 	 * @param id The id of the snapshot.
 	 * @param index The index of the snapshot.
 	 */
-	customizeFilename?: (id: string, index: number) => string
+	customizeSnapshotId?: (id: string, index: number) => string
 	element?: Element //| Locator
 }
 
