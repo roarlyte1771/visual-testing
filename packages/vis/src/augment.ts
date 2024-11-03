@@ -1,24 +1,21 @@
 ///  <reference types="@vitest/browser/context" />
 
-import type { ImageSnapshot, ImageSnapshotOptions, MatchImageSnapshotOptions } from './@vitest/browser/types'
+import type { SnapshotCapturer } from './@vitest/browser/page.image_snapshot'
 import type { ImageSnapshotMatcher } from './expect.to_match_image_snapshot'
+import type { CopyFileCommand } from './vitest-plugin/commands/copy_file'
+import type { ExistDirCommand } from './vitest-plugin/commands/exist_dir'
+import type { GetSnapshotPlatformCommand } from './vitest-plugin/commands/get_snapshot_platform'
+import type { IsCICommand } from './vitest-plugin/commands/is_ci'
+import type { RmDirCommand } from './vitest-plugin/commands/rm_dir'
 
 declare module '@vitest/browser/context' {
-	interface BrowserPage {
-		imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot>
-	}
-	interface BrowserCommands {
-		existDir: (path: string) => Promise<boolean>
-		copyFile: (src: string, dest: string) => Promise<void>
-		rmDir: (path: string) => Promise<void>
-		isCI: () => Promise<boolean>
-		/**
-		 * Get the platform id of the snapshot `{platform}[-ci]`.
-		 *
-		 * This is useful to control where the snapshot is stored.
-		 */
-		getSnapshotPlatform: () => Promise<string>
-	}
+	interface BrowserPage extends SnapshotCapturer {}
+	interface BrowserCommands
+		extends CopyFileCommand,
+			ExistDirCommand,
+			GetSnapshotPlatformCommand,
+			RmDirCommand,
+			IsCICommand {}
 }
 
 declare global {
