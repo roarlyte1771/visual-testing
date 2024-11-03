@@ -9,6 +9,10 @@ import { toDataURL, toImageData } from './image_data.js'
 import { createImageResizer } from './image_resizer.js'
 import { state } from './state.js'
 
+export interface ImageSnapshotMatcher {
+	toMatchImageSnapshot(options?: MatchImageSnapshotOptions): Promise<void>
+}
+
 export async function toMatchImageSnapshot(
 	actual: any,
 	options?: MatchImageSnapshotOptions | undefined,
