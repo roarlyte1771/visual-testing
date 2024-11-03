@@ -2,10 +2,6 @@ name: update-snapshot
 on:
   workflow_dispatch:
     inputs:
-      ref:
-        description: 'Branch or tag to run the workflow on'
-        required: true
-        default: 'main'
       build-command:
         description: 'Command to run to build the project'
         required: true
@@ -26,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ github.head_ref }}
       - uses: pnpm/action-setup@v3
       - uses: actions/setup-node@v4
         with:
@@ -34,7 +30,7 @@ jobs:
           cache: pnpm
 
       - name: Create a branch
-        run: git checkout -b vis-bot/update-snapshot-${{ inputs.ref }}
+        run: git checkout -b vis-bot/update-snapshot-${{ github.head_ref }}
 
       - name: Cache Playwright Browsers
         uses: actions/cache@v4
