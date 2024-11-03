@@ -29,9 +29,6 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - name: Create a branch
-        run: git checkout -b vis-bot/update-snapshot-${{ github.head_ref }}
-
       - name: Cache Playwright Browsers
         uses: actions/cache@v4
         id: cache-playwright
@@ -55,6 +52,8 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "test: update snapshot"
+          branch: vis-bot/update-snapshot-${{ github.head_ref }}
+          create_branch: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
