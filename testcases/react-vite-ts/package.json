@@ -4,13 +4,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "tsc -b && vite build",
-		"build:watch": "vite build --watch",
-		"build:sb": "storybook build",
 		"clean": "rimraf dist",
 		"dev": "run-p build:watch \"sb --quiet\"",
 		"nuke": "rimraf node_modules",
-		"preview": "vite preview",
 		"test": "vitest",
 		"sb": "storybook dev -p 6106"
 	},
@@ -45,7 +41,6 @@
 		"storybook": "^8.3.6",
 		"storybook-addon-vis": "workspace:*",
 		"typescript": "~5.6.2",
-		"vite": "^5.4.9",
 		"vitest": "^2.1.3"
 	}
 }

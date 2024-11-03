@@ -1,7 +1,7 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin'
 import react from '@vitejs/plugin-react'
 import { storybookVis } from 'storybook-addon-vis/vitest-plugin'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({

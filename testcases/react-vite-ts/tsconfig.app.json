@@ -21,12 +21,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true,
 
-		"types": [
-			"vitest/globals",
-			"@testing-library/jest-dom",
-			// load `storybook-addon-vis` type augmentation
-			"storybook-addon-vis"
-		]
+		"types": ["@testing-library/jest-dom", "vitest/globals"]
 	},
 	"include": ["src"]
 }
