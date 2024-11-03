@@ -1,12 +1,19 @@
 name: update-snapshot
 on:
   workflow_dispatch:
-    # inputs:
-    #   ref:
-    #     description: 'Branch or tag to run the workflow on'
-    #     required: true
-    #     default: 'main'
-
+    inputs:
+      ref:
+        description: 'Branch or tag to run the workflow on'
+        required: true
+        default: 'main'
+      build-command:
+        description: 'Command to run to build the project'
+        required: true
+        default: 'pnpm build'
+      update-snapshot-command:
+        description: 'Command to run to update the snapshot'
+        required: true
+        default: 'pnpm test -- -u'
 jobs:
   update-snapshot:
     runs-on: ubuntu-latest
@@ -19,12 +26,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ inputs.ref }}
       - uses: pnpm/action-setup@v3
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+
+      - name: Create a branch
+        run: git checkout -b vis-bot/update-snapshot-${{ inputs.ref }}
 
       - name: Cache Playwright Browsers
         uses: actions/cache@v4
@@ -42,10 +52,13 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - run: pnpm build
-      - run: pnpm test -- -u
+      - run: ${{ inputs.build-command }}
+      - run: ${{ inputs.update-snapshot-command }}
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "test: update snapshot"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
