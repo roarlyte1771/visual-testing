@@ -54,7 +54,7 @@ jobs:
           commit-message: "test: update snapshot"
           title: "test: update snapshot"
           body: "This PR updates the snapshot"
-          branch: vis-bot/update-snapshot-${{ github.base_ref }}
+          branch: vis-bot/update-snapshot/${{ github.ref }}
           base: ${{ github.base_ref }}
           labels: "snapshot"
           assignees: "vis-bot"
