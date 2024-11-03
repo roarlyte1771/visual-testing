@@ -83,5 +83,12 @@ it(`should fail with 'Snapshot \`{test/story name}\` mismatched`, async ({ task 
 		expect(e).toBeInstanceOf(Error)
 		assertType.as<Error>(e)
 		await expect(e.message).toMatch(`Snapshot \`${task.name}\` mismatched`)
+	} finally {
+		await ConversionRoundtrip.run()
+		await expect(
+			page.imageSnapshot({
+				customizeSnapshotId: (id) => id,
+			}),
+		).toMatchImageSnapshot()
 	}
 })
