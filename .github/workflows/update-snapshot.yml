@@ -53,11 +53,10 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "test: update snapshot"
+          token: ${{ secrets.CI_GITHUB_TOKEN }}
           title: "test: update snapshot"
           body: "This PR updates the snapshot"
-          branch: vis-bot/update-snapshot/${{ github.ref }}
+          branch: vis-bot/update-snapshot/${{ github.head_ref || github.ref_name }}
           base: ${{ github.base_ref }}
           labels: "snapshot"
-          assignees: "vis-bot"
-          reviewers: "vis-bot"
           draft: false
