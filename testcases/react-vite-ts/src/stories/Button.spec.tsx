@@ -7,7 +7,7 @@ it('container snapshot', async () => {
 	const { getByText, container } = await render(<Button label="Button" />)
 	const subject = getByText('Button')
 	expect(subject).toBeInTheDocument()
-	expect(page.imageSnapshot({ element: container })).toMatchImageSnapshot()
+	await expect(page.imageSnapshot({ element: container })).toMatchImageSnapshot()
 })
 
 it('subject snapshot', async () => {

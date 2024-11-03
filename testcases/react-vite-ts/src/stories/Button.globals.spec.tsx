@@ -9,11 +9,11 @@ const stories = composeStories(rawStories)
 
 it('take whole story snapshot', async () => {
 	await stories.Primary.run()
-	expect(page.imageSnapshot()).toMatchImageSnapshot()
+	await expect(page.imageSnapshot()).toMatchImageSnapshot()
 })
 
 test('DOM snapshot', async () => {
 	const { getByTestId } = await render(<Button label="Button" data-testid="subject" />)
 	const subject = getByTestId('subject')
-	expect(subject).toMatchSnapshot()
+	await expect(subject).toMatchSnapshot()
 })
