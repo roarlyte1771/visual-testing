@@ -1,5 +1,5 @@
 diff --git a/dist/node/chunks/dep-BWSbWtLw.js b/dist/node/chunks/dep-BWSbWtLw.js
-index d7bddd3da64618901cbaa96f64dd05c2a0daa934..31d3a06dfc3ee882bf4d21bc4ddd2dbd5ea1a2d5 100644
+index d7bddd3da64618901cbaa96f64dd05c2a0daa934..5c510b3475d7392d847ca9d1b01c34a1b19f30da 100644
 --- a/dist/node/chunks/dep-BWSbWtLw.js
 +++ b/dist/node/chunks/dep-BWSbWtLw.js
 @@ -723,7 +723,7 @@ var constants$6 = {
@@ -219,7 +219,7 @@ index d7bddd3da64618901cbaa96f64dd05c2a0daa934..31d3a06dfc3ee882bf4d21bc4ddd2dbd
 +  const testPaths = []
    for (const [key, value] of Object.entries(outputs)) {
 -    if (normalizePath$3(path$n.relative(cwd, key)) === normalizedOutputPath) {
-+    const testPath = normalizePath$3(path$n.relative(cwd, path$n.join(cacheDirOutputPath, key)))
++    const testPath = normalizePath$3(path$n.relative(cwd, key))
 +    testPaths.push(testPath)
 +    if (testPath === normalizedOutputPath) {
        return value;
