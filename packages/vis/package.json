@@ -10,7 +10,8 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/repobuddy/storybook-image-snapshot"
+		"url": "https://github.com/repobuddy/storybook-image-snapshot",
+		"directory": "packages/vis"
 	},
 	"license": "MIT",
 	"author": {
