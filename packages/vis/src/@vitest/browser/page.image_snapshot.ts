@@ -24,6 +24,7 @@ export async function imageSnapshot(
 		base64: true,
 		path: resultPath,
 		element: options?.element,
+		timeout: options?.timeout ?? 3000,
 	})
 	const image = await toImageData(screenshot.base64)
 

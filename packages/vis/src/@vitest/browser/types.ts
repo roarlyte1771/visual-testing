@@ -2,6 +2,7 @@
 
 export interface ImageSnapshotOptions extends CustomizeSnapshotIdOptions {
 	element?: Element //| Locator
+	timeout?: number | undefined
 }
 
 export type CustomizeSnapshotIdOptions = {
