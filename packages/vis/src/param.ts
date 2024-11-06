@@ -1,4 +1,4 @@
-import type { MatchImageSnapshotOptions } from './@vitest/browser/types'
+import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot'
 
 export function defineSnapshotParam(snapshot: MatchImageSnapshotOptions) {
 	return { snapshot }

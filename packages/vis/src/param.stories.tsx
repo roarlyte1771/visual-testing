@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { defineSnapshotParam } from './index.js'
+import { defineSnapshotParam, page } from './index.js'
 
 export default {
 	title: 'param',
@@ -10,15 +10,19 @@ export const MeetFailureThreshold: StoryObj = {
 	parameters: defineSnapshotParam({
 		failureThreshold: 70,
 	}),
-	render: () => <div data-testid="subject">unit test</div>,
-	// render: () => <div data-testid="subject">unit text</div>,
+	loaders: [async () => ({ hasSnapshot: await page.hasImageSnapshot() })],
+	render: (_, { loaded: { hasImageSnapshot } }) => (
+		<div data-testid="subject">{hasImageSnapshot ? 'unit text' : 'unit test'}</div>
+	),
 }
 
 export const MeetFailureThresholdByPercentage: StoryObj = {
 	parameters: defineSnapshotParam({
-		failureThreshold: 0.01,
+		failureThreshold: 0.02,
 		failureThresholdType: 'percent',
 	}),
-	render: () => <div data-testid="subject">unit test</div>,
-	// render: () => <div data-testid="subject">unit text</div>,
+	loaders: [async () => ({ hasSnapshot: await page.hasImageSnapshot() })],
+	render: (_, { loaded: { hasImageSnapshot } }) => (
+		<div data-testid="subject">{hasImageSnapshot ? 'unit text' : 'unit test'}</div>
+	),
 }

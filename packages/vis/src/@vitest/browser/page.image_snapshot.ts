@@ -5,8 +5,8 @@ import { state } from '../../state.js'
 import { imageSnapshotSymbol } from './constants.js'
 import type { ImageSnapshot, ImageSnapshotOptions } from './types.js'
 
-export interface SnapshotCapturer {
-	imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions): Promise<ImageSnapshot>
+export interface ImageSnapshotAction {
+	imageSnapshot(this: BrowserPage, options?: ImageSnapshotOptions | undefined): Promise<ImageSnapshot>
 }
 
 export async function imageSnapshot(

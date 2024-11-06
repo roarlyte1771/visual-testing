@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import { commands, page, server } from './@vitest/browser/context'
+import { commands, page, server } from './index.js'
 import { UNI_PNG_URL } from './testing/constants'
 
 export default {

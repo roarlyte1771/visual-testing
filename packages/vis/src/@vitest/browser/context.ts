@@ -10,6 +10,7 @@ import {
 import type { BrowserCommands, BrowserPage, CDPSession, Platform } from '@vitest/browser/context'
 import type { SerializedConfig } from 'vitest'
 import { imageSnapshotStubSymbol } from './constants'
+import { hasImageSnapshot } from './page.has_image_snapshot'
 import { imageSnapshot } from './page.image_snapshot'
 
 let ctx: Awaited<typeof import('@vitest/browser/context')>
@@ -17,7 +18,7 @@ let ctx: Awaited<typeof import('@vitest/browser/context')>
 if ((globalThis as any).__vitest_browser__) {
 	import('@vitest/browser/context').then((m) => {
 		ctx = m
-		page.extend({ imageSnapshot })
+		page.extend({ imageSnapshot, hasImageSnapshot })
 	})
 }
 

@@ -1,16 +1,29 @@
 import type { AsyncExpectationResult } from '@vitest/expect'
 import dedent from 'dedent'
-import pixelmatch from 'pixelmatch'
+import pixelmatch, { type PixelmatchOptions } from 'pixelmatch'
 import { imageSnapshotStubSymbol } from './@vitest/browser/constants.js'
 import { commands, server } from './@vitest/browser/context.js'
 import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
-import type { MatchImageSnapshotOptions } from './@vitest/browser/types.js'
 import { toDataURL, toImageData } from './image_data.js'
 import { createImageResizer } from './image_resizer.js'
 import { state } from './state.js'
 
 export interface ImageSnapshotMatcher {
 	toMatchImageSnapshot(options?: MatchImageSnapshotOptions): Promise<void>
+}
+
+export type MatchImageSnapshotOptions = {
+	/**
+	 * Custom options passed to 'pixelmatch'
+	 */
+	diffOptions?: PixelmatchOptions | undefined
+	/**
+	 * Failure threshold should measure in `pixel` or `percent`.
+	 *
+	 * Default is `pixel`.
+	 */
+	failureThresholdType?: 'pixel' | 'percent' | undefined
+	failureThreshold?: number | undefined
 }
 
 export async function toMatchImageSnapshot(
