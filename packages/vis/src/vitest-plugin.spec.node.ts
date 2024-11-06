@@ -14,6 +14,7 @@ it('register commands', () => {
 				name: 'chromium',
 				commands: {
 					existDir: expect.any(Function),
+					existFile: expect.any(Function),
 					copyFile: expect.any(Function),
 					getSnapshotPlatform: expect.any(Function),
 					rmDir: expect.any(Function),
