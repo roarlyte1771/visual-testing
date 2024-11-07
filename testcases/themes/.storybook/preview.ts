@@ -63,12 +63,7 @@ const preview: Preview = {
 		docs: {
 			theme: themes.light,
 		},
-		// darkMode: {
-		// 	current: 'dark',
-		// 	dark: themes.dark,
-		// },
 	},
-	tags: ['snapshot'],
 }
 
 export default preview
