@@ -2,7 +2,9 @@ name: pull-request
 on:
   pull_request:
     types: [opened, synchronize]
-    branches-ignore: [vis-bot/update-snapshot/*]
+    branches-ignore:
+      - changeset-release/*
+      - vis-bot/update-snapshot/*
 jobs:
   verify:
     strategy:
