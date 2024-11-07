@@ -41,34 +41,20 @@ export default defineConfig(async (options) => {
 	}
 
 	const configs: Options[] = []
-	configs.push(
-		{
-			...commonConfig,
-			entry: ['src/vitest-plugin.ts'],
-			// TODO: enable dts resolve?
-			// not working due to:
-			// - https://github.com/storybookjs/storybook/issues/29443
-			// - https://github.com/egoist/tsup/issues/1239
-			dts: {
-				resolve: false,
-			},
-			format: ['esm'],
-			target: NODE_TARGET,
-			platform: 'node',
-			// external: globalManagerPackages,
+	configs.push({
+		...commonConfig,
+		entry: ['src/vitest-plugin.ts'],
+		// TODO: enable dts resolve?
+		// not working due to:
+		// - https://github.com/storybookjs/storybook/issues/29443
+		// - https://github.com/egoist/tsup/issues/1239
+		dts: {
+			resolve: false,
 		},
-		{
-			...commonConfig,
-			entry: ['src/vitest-setup.ts'],
-			dts: {
-				resolve: false,
-			},
-			format: ['esm'],
-			target: BROWSER_TARGET,
-			platform: 'browser',
-			external: ['vitest', '@vitest/expect', '@vitest/browser', '@storybook/test'],
-		},
-	)
+		format: ['esm'],
+		target: NODE_TARGET,
+		platform: 'node',
+	})
 
 	// export entries are entries meant to be manually imported by the user
 	// they are not meant to be loaded by the manager or preview
@@ -77,6 +63,7 @@ export default defineConfig(async (options) => {
 		configs.push({
 			...commonConfig,
 			entry: exportEntries,
+			splitting: true,
 			dts: {
 				resolve: true,
 			},

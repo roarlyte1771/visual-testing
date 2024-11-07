@@ -96,7 +96,8 @@
 	},
 	"bundler": {
 		"exportEntries": [
-			"src/index.ts"
+			"src/index.ts",
+			"src/vitest-setup.ts"
 		]
 	},
 	"storybook": {
