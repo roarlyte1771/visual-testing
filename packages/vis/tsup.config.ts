@@ -51,6 +51,7 @@ export default defineConfig(async (options) => {
 		dts: {
 			resolve: false,
 		},
+		minify: false,
 		format: ['esm'],
 		target: NODE_TARGET,
 		platform: 'node',
@@ -67,6 +68,7 @@ export default defineConfig(async (options) => {
 			dts: {
 				resolve: true,
 			},
+			minify: false,
 			format: ['esm'],
 			target: [...BROWSER_TARGET, ...NODE_TARGET],
 			platform: 'neutral',
