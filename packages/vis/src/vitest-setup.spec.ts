@@ -4,7 +4,7 @@ import { expect, it } from 'vitest'
 import { commands, page } from './@vitest/browser/context.js'
 import * as ImageDataStories from './image_data.stories.js'
 import { state } from './state.js'
-import { configureSnapshotBeforeAll } from './vitest-setup.js'
+import { setupVitestVis } from './vitest-setup.js'
 
 const { ConversionRoundtrip } = composeStories(ImageDataStories)
 
@@ -21,12 +21,9 @@ it('should delete the results and diffs folder when the during `beforeAll`', asy
 })
 
 it('can define the snapshot root folder relative to the root of the project', async () => {
-	await configureSnapshotBeforeAll(
-		{ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } },
-		{
-			snapshotPath: '_sp_',
-		},
-	),
+	await setupVitestVis({
+		snapshotPath: '_sp_',
+	}).beforeAll({ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } }),
 		expect(state).toMatchObject({
 			baselineDir: '_sp_/some.test.ts',
 			diffDir: '_sp_/__diff_output__/some.test.ts',
