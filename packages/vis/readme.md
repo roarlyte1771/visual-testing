@@ -143,6 +143,7 @@ much like `!test`.
 ```ts
 export default {
   title: 'Button',
+	// Enable image snapshot for all stories in this file
   tags: ['snapshot']
 }
 
