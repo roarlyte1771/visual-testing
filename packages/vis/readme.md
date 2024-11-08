@@ -40,7 +40,7 @@ export default defineConfig({
    plugins: [
     storybookTest(),
     storybookVis()
-	],
+  ],
   test: {
     browser: {
       // ...
