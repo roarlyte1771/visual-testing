@@ -104,6 +104,7 @@ export default defineConfig(async (options) => {
 		configs.push({
 			...commonConfig,
 			entry: previewEntries,
+			splitting: true,
 			dts: {
 				resolve: true,
 			},

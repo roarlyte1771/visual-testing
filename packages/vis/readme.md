@@ -82,20 +82,26 @@ beforeEach(configureSnapshotBeforeEach)
 afterEach<{ story?: StoryContext }>(async (ctx) => {
   if (!shouldTakeSnapshot(ctx)) return
 
-  await expect(page.imageSnapshot()).toMatchImageSnapshot(ctx.story?.parameters.snapshot)
+  await expect(page.imageSnapshot()).toMatchImageSnapshot()
 })
 ```
 
-On [storybook], you need to extend the `expect` from `@storybook/test`
+On [storybook], you need to extend the `expect` from `@storybook/test`,
+and register `beforeEach` hook to set up the test environment.
 
 ```ts
 // .storybook/preview.tsx
 import { expect } from '@storybook/test'
-import { toMatchImageSnapshot } from 'storybook-addon-vis'
+import { toMatchImageSnapshot, visStorybookPreview } from 'storybook-addon-vis'
 
 expect.extend({ toMatchImageSnapshot })
 
-// ...
+const preview: Preview = {
+	// ...
+	beforeEach: visStorybookPreview.beforeEach,
+}
+
+export default preview
 ```
 
 ## Usage - automatic snapshot

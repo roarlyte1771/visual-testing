@@ -1,3 +1,5 @@
+import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot'
+
 export const state = {
 	name: '',
 	testFilepath: '',
@@ -13,5 +15,9 @@ export const state = {
 	resultDir: string
 	diffDir: string
 	taskName: string
+	parameters: {
+		snapshot?: MatchImageSnapshotOptions | undefined
+		[key: string]: any
+	}
 	snapshot: Record<string, Record<string, { index: number }>>
 }

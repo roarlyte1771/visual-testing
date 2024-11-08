@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react'
 import { expect } from '@storybook/test'
-import { toMatchImageSnapshot } from '../src/index.js'
+import { toMatchImageSnapshot, visStorybookPreview } from '../src/index.js'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -16,6 +16,7 @@ const preview: Preview = {
 	initialGlobals: {
 		background: { value: 'light' },
 	},
+	beforeEach: visStorybookPreview.beforeEach,
 }
 
 export default preview
