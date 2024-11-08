@@ -28,7 +28,7 @@
 		},
 		"./vitest-setup": "./dist/vitest-setup.js",
 		"./vitest-plugin": {
-			"types": "./dist/vitest-plugin.d.ts",
+			"types": "./vitest-plugin.d.ts",
 			"import": "./dist/vitest-plugin.js"
 		},
 		"./package.json": "./package.json"
