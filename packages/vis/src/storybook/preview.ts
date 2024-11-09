@@ -7,11 +7,11 @@ expect.extend({ toMatchImageSnapshot })
 
 export const storybookPreviewVis = defineVisPreview()
 
-export function defineVisPreview<R extends Renderer>(): ProjectAnnotations<R> {
+export function defineVisPreview<R extends Renderer>() {
 	return {
 		beforeEach(ctx: StoryContext) {
 			state.tags = ctx.tags
 			state.parameters = ctx.parameters
 		},
-	}
+	} satisfies ProjectAnnotations<R>
 }
