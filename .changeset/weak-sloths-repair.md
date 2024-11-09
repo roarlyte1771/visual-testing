@@ -4,7 +4,7 @@
 
 Change `shouldTakeSnapshot(ctx)` to accept `any`.
 Check is done at runtime.
-This change allows the user to skip the type param in `afterEach` hook.
+This change allows the user to skip the type parameter in `afterEach` hook.
 
 ```ts
 // from
@@ -22,4 +22,4 @@ afterEach(async (ctx) => {
 	if (!shouldTakeSnapshot(ctx)) return
 	// ...
 })
-
+```
