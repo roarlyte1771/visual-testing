@@ -3,10 +3,11 @@ import type { ProjectAnnotations, Renderer, StoryContext } from 'storybook/inter
 import { toMatchImageSnapshot } from '../expect.to_match_image_snapshot'
 import { state } from '../state'
 
+expect.extend({ toMatchImageSnapshot })
+
 export const storybookPreviewVis = defineVisPreview()
 
 export function defineVisPreview<R extends Renderer>(): ProjectAnnotations<R> {
-	expect.extend({ toMatchImageSnapshot })
 	return {
 		beforeEach(ctx: StoryContext) {
 			state.tags = ctx.tags
