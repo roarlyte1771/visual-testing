@@ -1,4 +1,4 @@
-import { type StoryContext, setProjectAnnotations } from '@storybook/react'
+import { setProjectAnnotations } from '@storybook/react'
 import { afterEach, beforeAll, expect } from 'vitest'
 import { page, setupVitestVis, shouldTakeSnapshot, toMatchImageSnapshot } from '../src/vitest-setup.js'
 import * as projectAnnotations from './preview'
@@ -15,7 +15,7 @@ beforeAll(async (suite) => {
 	await vis.beforeAll(suite)
 })
 
-afterEach<{ story?: StoryContext }>(async (ctx) => {
+afterEach(async (ctx) => {
 	if (!shouldTakeSnapshot(ctx)) return
 	const r = await page.imageSnapshot()
 	expect(r).toMatchImageSnapshot()
