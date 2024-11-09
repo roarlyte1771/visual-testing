@@ -126,13 +126,12 @@ export const MyStory = {
 }
 ```
 
-You can provide options `toMatchImageSnapshot` matcher using parameters.
+You can provide options to the `toMatchImageSnapshot` matcher using parameters.
 
 ```ts
 import { defineSnapshotParam } from 'storybook-addon-vis'
 
 export const MyStory = {
-	// Take image snapshot automatically for this story
 	parameters: defineSnapshotParam({
 		failureThreshold: 70,
 	})
@@ -160,7 +159,7 @@ export const PageSnapshot = {
 }
 
 export const ElementSnapshot = {
-		// typically you want to disable automatic snapshot when using manual snapshot
+	// typically you want to disable automatic snapshot when using manual snapshot
 	tags: ['!snapshot'],
 	// ...
 	async play({ canvas }) {
