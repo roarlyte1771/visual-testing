@@ -146,7 +146,7 @@ Besides automatic snapshot, you can capture image snapshot manually.
 ```ts
 import { expect } from '@storybook/test'
 
-// `page` and the like are proxy to `@vitest/browser/context` to work in storybook
+// `page` and the like are proxies of `@vitest/browser/context` to work within storybook
 import { page } from 'storybook-addon-vis'
 
 export const PageSnapshot = {
