@@ -41,6 +41,7 @@ export const state = {
 		snapshot?: MatchImageSnapshotOptions | undefined
 		[key: string]: any
 	}
+	tags: string[]
 	snapshot: Record<string, Record<string, { index: number }>>
 	getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined): {
 		snapshotFilename: string

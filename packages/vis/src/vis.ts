@@ -3,8 +3,8 @@ import { expect } from 'vitest'
 import { commands, page } from './@vitest/browser/context.js'
 import './augment.js'
 import { toMatchImageSnapshot } from './expect.to_match_image_snapshot.js'
+import { shouldTakeSnapshot } from './should_take_snapshot.js'
 import { state } from './state.js'
-import { shouldTakeSnapshot } from './tags.js'
 import type { VisOptions } from './types.js'
 
 export function createVisConfig(options?: VisOptions) {
@@ -42,14 +42,14 @@ export function createVisConfig(options?: VisOptions) {
 			}
 		},
 		afterEach: {
-			matchImageSnapshot: async (ctx: any) => {
-				if (!shouldTakeSnapshot(ctx)) return
+			async matchImageSnapshot() {
+				if (!shouldTakeSnapshot()) return
 				const r = await page.imageSnapshot()
 				expect(r).toMatchImageSnapshot()
 			},
 			matchPerTheme(themes: Record<string, () => Promise<void> | void>) {
-				return async (ctx: any) => {
-					if (!shouldTakeSnapshot(ctx)) return
+				return async function matchImageSnapshot() {
+					if (!shouldTakeSnapshot()) return
 					for (const themeId in themes) {
 						await themes[themeId]()
 						const r = await page.imageSnapshot({

@@ -9,6 +9,7 @@ export function defineVisPreview<R extends Renderer>(): ProjectAnnotations<R> {
 	expect.extend({ toMatchImageSnapshot })
 	return {
 		beforeEach(ctx: StoryContext) {
+			state.tags = ctx.tags
 			state.parameters = ctx.parameters
 		},
 	}
