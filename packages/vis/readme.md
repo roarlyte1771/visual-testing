@@ -50,9 +50,6 @@ export default defineConfig({
 })
 ```
 
-Also note that you need to add `vitest.setup.ts` file to set up the test environment.
-You need to do that anyway when you set up [storybook] with [vitest].
-
 In `vitest.setup.ts`, you can use one of the presets to do the setup for you.
 You can also use the provided hooks to set up the test environment manually.
 
