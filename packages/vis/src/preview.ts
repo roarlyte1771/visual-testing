@@ -1,3 +1,3 @@
-import { visStorybookPreview } from './storybook/preview'
+import { storybookPreviewVis } from './storybook/preview'
 
-export default visStorybookPreview
+export default storybookPreviewVis

@@ -1,4 +1,4 @@
-import { visStorybookPreview } from 'storybook-addon-vis'
+import { storybookPreviewVis } from 'storybook-addon-vis'
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -10,7 +10,7 @@ const preview = {
 			},
 		},
 	},
-	beforeEach: visStorybookPreview.beforeEach,
+	beforeEach: storybookPreviewVis.beforeEach,
 	tags: ['snapshot'],
 }
 

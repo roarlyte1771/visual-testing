@@ -3,7 +3,7 @@ import type { ProjectAnnotations, Renderer, StoryContext } from 'storybook/inter
 import { toMatchImageSnapshot } from '../expect.to_match_image_snapshot'
 import { state } from '../state'
 
-export const visStorybookPreview = defineVisPreview()
+export const storybookPreviewVis = defineVisPreview()
 
 export function defineVisPreview<R extends Renderer>(): ProjectAnnotations<R> {
 	expect.extend({ toMatchImageSnapshot })
