@@ -1,5 +1,6 @@
 import { basename, dirname, join, relative } from 'pathe'
 import type { StoryContext } from 'storybook/internal/types'
+import { required } from 'type-plus'
 import { getCurrentTest } from 'vitest/suite'
 import { commands } from './@vitest/browser/context.js'
 import { toSnapshotId } from './@vitest/browser/image_snapshot.logic'
@@ -8,6 +9,8 @@ import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot
 import type { VisOptions } from './types.js'
 
 function createStore() {
+	let suiteOptions: VisOptions = {}
+
 	const state = {
 		name: '',
 		testFilepath: '',
@@ -27,7 +30,8 @@ function createStore() {
 			state.resultDir = relative(currentDir, join(snapshotPath, '__results__', state.testFilename))
 			state.diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', state.testFilename))
 
-			state.timeout = options?.timeout ?? 3000
+			suiteOptions = options
+
 			if (!state.snapshot[state.testFilepath]) {
 				state.snapshot[state.testFilepath] = {}
 				await commands.rmDir(state.resultDir)
@@ -39,7 +43,10 @@ function createStore() {
 			state.parameters = ctx.parameters
 		},
 		getTimeout(timeout?: number | undefined) {
-			return timeout ?? state.timeout
+			return timeout ?? suiteOptions?.timeout ?? 3000
+		},
+		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions) {
+			return required(state.parameters?.snapshot, options)
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()
@@ -69,7 +76,6 @@ function createStore() {
 		resultDir: string
 		diffDir: string
 		taskName: string
-		timeout: number
 		parameters: {
 			snapshot?: MatchImageSnapshotOptions | undefined
 			[key: string]: any
@@ -83,6 +89,7 @@ function createStore() {
 			diffPath: string
 		}
 		getTimeout(timeout?: number | undefined): number
+		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions): MatchImageSnapshotOptions
 		incrementSnapshotIndex(): void
 		setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions): Promise<void>
 		setupStory(ctx: StoryContext): void

@@ -82,8 +82,11 @@ async function toMatchImageSnapshotInternal(
 
 	// const test = getCurrentTest()
 	// console.log('test', test)
-	options = required(state.parameters?.snapshot, options)
-	const { pass, diffAmount, diffImage } = compareImage(baselineImage, resultImage, options)
+	const { pass, diffAmount, diffImage } = compareImage(
+		baselineImage,
+		resultImage,
+		state.mergeMatchImageSnapshotOptions(options),
+	)
 
 	if (!pass) {
 		if (server.config.snapshotOptions.updateSnapshot === 'all') {
