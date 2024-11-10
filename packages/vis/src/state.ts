@@ -6,6 +6,7 @@ import type { ImageSnapshotOptions } from './@vitest/browser/types'
 import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot'
 import type { VisOptions } from './types.js'
 
+import type { ProjectAnnotations, Renderer, StoryContext } from 'storybook/internal/types'
 function createStore() {
 	const state = {
 		name: '',
@@ -31,6 +32,10 @@ function createStore() {
 				await commands.rmDir(state.resultDir)
 				await commands.rmDir(state.diffDir)
 			}
+		},
+		setupStory(ctx: StoryContext) {
+			state.tags = ctx.tags
+			state.parameters = ctx.parameters
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()
@@ -74,6 +79,7 @@ function createStore() {
 		}
 		incrementSnapshotIndex(): void
 		setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions): Promise<void>
+		setupStory(ctx: StoryContext): void
 	}
 	return state
 }

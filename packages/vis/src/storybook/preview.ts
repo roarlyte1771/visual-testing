@@ -10,8 +10,7 @@ export const storybookPreviewVis = defineVisPreview()
 export function defineVisPreview<R extends Renderer>() {
 	return {
 		beforeEach(ctx: StoryContext) {
-			state.tags = ctx.tags
-			state.parameters = ctx.parameters
+			state.setupStory(ctx)
 		},
 	} satisfies ProjectAnnotations<R>
 }
