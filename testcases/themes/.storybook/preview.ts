@@ -61,7 +61,6 @@ const preview: Preview = {
 			theme: themes.light,
 		},
 	},
-	beforeEach: storybookPreviewVis.beforeEach,
 }
 
 export default preview

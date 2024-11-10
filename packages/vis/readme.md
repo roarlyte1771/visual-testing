@@ -72,18 +72,19 @@ createVisConfig(/* options */).presets.theme({
 })
 ```
 
-On [storybook], you need to register `beforeEach` hook to set up the test environment.
+On [storybook], you need to register [storybook-addon-vis] in `.storybook/main.ts`.
 
 ```ts
-// .storybook/preview.tsx
-import { storybookPreviewVis } from 'storybook-addon-vis'
+// .storybook/main.tsx
 
-const preview: Preview = {
+export default {
 	// ...
-	beforeEach: storybookPreviewVis.beforeEach,
+	addons: [
+		// ...
+		'storybook-addon-vis'
+	]
+	// ...
 }
-
-export default preview
 ```
 
 ## Usage - automatic snapshot

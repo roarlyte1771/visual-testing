@@ -1,11 +1,10 @@
 import type { AsyncExpectationResult } from '@vitest/expect'
 import dedent from 'dedent'
 import pixelmatch, { type PixelmatchOptions } from 'pixelmatch'
-import { required } from 'type-plus'
 import { getCurrentTest } from 'vitest/suite'
 import { imageSnapshotStubSymbol } from './@vitest/browser/constants.js'
 import { commands, page, server } from './@vitest/browser/context.js'
-import { assertImageSnapshot, isImageSnapshot, toSnapshotId } from './@vitest/browser/image_snapshot.logic.js'
+import { assertImageSnapshot, isImageSnapshot } from './@vitest/browser/image_snapshot.logic.js'
 import { toDataURL, toImageData } from './image_data.js'
 import { createImageResizer } from './image_resizer.js'
 import { state } from './state.js'
@@ -25,6 +24,11 @@ export type MatchImageSnapshotOptions = {
 	 * Default is `pixel`.
 	 */
 	failureThresholdType?: 'pixel' | 'percent' | undefined
+	/**
+	 * Failure tolerance threshold.
+	 *
+	 * Default is `0`.
+	 */
 	failureThreshold?: number | undefined
 }
 
