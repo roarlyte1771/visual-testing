@@ -176,7 +176,22 @@ export const ElementSnapshot = {
 
 ## Snapshot folder
 
-The snapshots are stored under the `__vis__` folder next to the test/story file.
+The snapshots are stored under the `__vis__` folder next to the test/story file:
+
+```sh
+├── __vis__
+	├── __diff_output__ # where the diff images are stored
+	├── __result__ # where the resulting snapshot of the current run are stored
+	├── darwin # snapshot generated on macos by CI
+	├── linux # snapshot generated on linux by CI
+	├── local # snapshot generated on local machine
+		└── story.tsx
+			├── snapshot-1.png
+			├── snapshot-2.png
+			└── ...
+└── story.tsx
+```
+
 This is a similar approach to [playwright]'s `page.screenshot()` which saves the screenshots under the `__screenshot__` folder.
 
 This is different from [jest-image-snapshot] which stores the snapshots under the `__snapshots__` folder at the root of the project.
@@ -197,6 +212,22 @@ import { createVisConfig } from 'storybook-addon-vis/vitest-setup'
 createVisConfig({
 	snapshotDir: 'path/to/snapshot'
 })
+```
+
+### .gitignore snapshot folders
+
+Some snapshot folders should be ignored by git.
+
+With the default snapshot folder structure, you might want to add the following to your `.gitignore`:
+
+```sh
+
+Looking at the snapshot folder structure, you might want to add the following to your `.gitignore`:
+
+```sh
+**/__vis__/*/__diff_output__
+**/__vis__/*/__results__
+**/__vis__/local
 ```
 
 [jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
