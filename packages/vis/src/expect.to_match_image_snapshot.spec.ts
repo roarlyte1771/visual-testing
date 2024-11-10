@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react'
 import { screen } from '@testing-library/react'
 import { assertType } from 'type-plus'
-import { expect, it } from 'vitest'
+import { expect, it, test } from 'vitest'
 import { page } from './@vitest/browser/context.js'
 import { toSnapshotId } from './@vitest/browser/image_snapshot.logic.js'
 import * as ToMatchStories from './expect.to_match_image_snapshot.stories.js'

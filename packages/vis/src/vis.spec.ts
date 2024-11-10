@@ -1,3 +1,4 @@
+import { expect, it } from 'vitest'
 import { state } from './state.js'
 import { createVisConfig } from './vis.js'
 
