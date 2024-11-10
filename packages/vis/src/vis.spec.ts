@@ -11,3 +11,11 @@ it('can define the snapshot root folder relative to the root of the project', as
 			resultDir: '_sp_/__results__/some.test.ts',
 		})
 })
+
+it('can define the timeout value for taking the snapshot', async () => {
+	await createVisConfig({
+		timeout: 30000,
+	}).beforeAll({ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } })
+
+	expect(state.getTimeout()).toEqual(30000)
+})

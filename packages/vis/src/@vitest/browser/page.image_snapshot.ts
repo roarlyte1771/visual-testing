@@ -1,6 +1,4 @@
 import type { BrowserPage } from '@vitest/browser/context'
-import { join } from 'pathe'
-import { getCurrentTest } from 'vitest/suite'
 import { toImageData } from '../../image_data.js'
 import { state } from '../../state.js'
 import { imageSnapshotSymbol } from './constants.js'
@@ -19,7 +17,7 @@ export async function imageSnapshot(
 		base64: true,
 		path: resultPath,
 		element: options?.element,
-		timeout: options?.timeout ?? 3000,
+		timeout: state.getTimeout(options?.timeout),
 	})
 	state.incrementSnapshotIndex()
 	const image = await toImageData(screenshot.base64)

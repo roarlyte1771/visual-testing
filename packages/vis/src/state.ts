@@ -1,4 +1,5 @@
 import { basename, dirname, join, relative } from 'pathe'
+import type { StoryContext } from 'storybook/internal/types'
 import { getCurrentTest } from 'vitest/suite'
 import { commands } from './@vitest/browser/context.js'
 import { toSnapshotId } from './@vitest/browser/image_snapshot.logic'
@@ -6,7 +7,6 @@ import type { ImageSnapshotOptions } from './@vitest/browser/types'
 import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot'
 import type { VisOptions } from './types.js'
 
-import type { ProjectAnnotations, Renderer, StoryContext } from 'storybook/internal/types'
 function createStore() {
 	const state = {
 		name: '',
@@ -27,6 +27,7 @@ function createStore() {
 			state.resultDir = relative(currentDir, join(snapshotPath, '__results__', state.testFilename))
 			state.diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', state.testFilename))
 
+			state.timeout = options?.timeout ?? 3000
 			if (!state.snapshot[state.testFilepath]) {
 				state.snapshot[state.testFilepath] = {}
 				await commands.rmDir(state.resultDir)
@@ -36,6 +37,9 @@ function createStore() {
 		setupStory(ctx: StoryContext) {
 			state.tags = ctx.tags
 			state.parameters = ctx.parameters
+		},
+		getTimeout(timeout?: number | undefined) {
+			return timeout ?? state.timeout
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()
@@ -65,6 +69,7 @@ function createStore() {
 		resultDir: string
 		diffDir: string
 		taskName: string
+		timeout: number
 		parameters: {
 			snapshot?: MatchImageSnapshotOptions | undefined
 			[key: string]: any
@@ -77,6 +82,7 @@ function createStore() {
 			resultPath: string
 			diffPath: string
 		}
+		getTimeout(timeout?: number | undefined): number
 		incrementSnapshotIndex(): void
 		setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions): Promise<void>
 		setupStory(ctx: StoryContext): void

@@ -1,6 +1,5 @@
-import { basename, dirname, join, relative } from 'pathe'
 import { expect } from 'vitest'
-import { commands, page } from './@vitest/browser/context.js'
+import { page } from './@vitest/browser/context.js'
 import './augment.js'
 import { toMatchImageSnapshot } from './expect.to_match_image_snapshot.js'
 import { shouldTakeSnapshot } from './should_take_snapshot.js'
