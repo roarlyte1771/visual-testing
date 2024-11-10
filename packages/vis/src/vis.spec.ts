@@ -21,3 +21,13 @@ it('can define the timeout value for taking the snapshot', async () => {
 
 	expect(state.getTimeout()).toEqual(30000)
 })
+
+it('can define default failureThreshold', async () => {
+	await createVisConfig({
+		failureThreshold: 50,
+	}).beforeAll({ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } })
+
+	expect(state.mergeMatchImageSnapshotOptions()).toMatchObject({
+		failureThreshold: 50,
+	})
+})

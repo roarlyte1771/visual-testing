@@ -1,6 +1,6 @@
 import { basename, dirname, join, relative } from 'pathe'
 import type { StoryContext } from 'storybook/internal/types'
-import { required } from 'type-plus'
+import { omit, required } from 'type-plus'
 import { getCurrentTest } from 'vitest/suite'
 import { commands } from './@vitest/browser/context.js'
 import { toSnapshotId } from './@vitest/browser/image_snapshot.logic'
@@ -44,7 +44,7 @@ function createStore() {
 			resultDir = relative(currentDir, join(snapshotPath, '__results__', testFilename))
 			diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', testFilename))
 
-			suiteOptions = options
+			suiteOptions = options ?? {}
 			snapshot = snapshot ?? {}
 			if (!snapshot[testFilepath]) {
 				snapshot[testFilepath] = {}
@@ -64,10 +64,10 @@ function createStore() {
 			return taskName
 		},
 		getTimeout(timeout?: number | undefined) {
-			return timeout ?? suiteOptions?.timeout ?? 3000
+			return timeout ?? suiteOptions.timeout ?? 3000
 		},
 		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions) {
-			return required(parameters?.snapshot, options)
+			return required(omit(suiteOptions, 'snapshotPath'), parameters?.snapshot, options)
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()
