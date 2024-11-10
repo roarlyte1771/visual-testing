@@ -26,6 +26,7 @@
 			"import": "./dist/index.js",
 			"require": "./dist/index.cjs"
 		},
+		"./preset": "./dist/preset.cjs",
 		"./vitest-setup": "./dist/vitest-setup.js",
 		"./vitest-plugin": {
 			"types": "./vitest-plugin.d.ts",
@@ -100,6 +101,9 @@
 			"src/index.ts",
 			"src/vitest-setup.ts",
 			"src/preview.ts"
+		],
+		"nodeEntries": [
+			"./src/preset.ts"
 		]
 	},
 	"storybook": {
