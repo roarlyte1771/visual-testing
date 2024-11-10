@@ -5,10 +5,12 @@ it('can define the snapshot root folder relative to the root of the project', as
 	await createVisConfig({
 		snapshotPath: '_sp_',
 	}).beforeAll({ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } }),
-		expect(state).toMatchObject({
-			baselineDir: '_sp_/some.test.ts',
-			diffDir: '_sp_/__diff_output__/some.test.ts',
-			resultDir: '_sp_/__results__/some.test.ts',
+		expect(state.getSnapshotFilePaths()).toMatchObject({
+			baselinePath: '_sp_/some.test.ts/can-define-the-snapshot-root-folder-relative-to-the-root-of-the-project-1.png',
+			diffPath:
+				'_sp_/__diff_output__/some.test.ts/can-define-the-snapshot-root-folder-relative-to-the-root-of-the-project-1.png',
+			resultPath:
+				'_sp_/__results__/some.test.ts/can-define-the-snapshot-root-folder-relative-to-the-root-of-the-project-1.png',
 		})
 })
 

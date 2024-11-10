@@ -97,7 +97,7 @@ async function toMatchImageSnapshotInternal(
 		return {
 			pass: false,
 			message: () =>
-				dedent`Snapshot \`${state.taskName}\` mismatched
+				dedent`Snapshot \`${state.getName()}\` mismatched
 
 			${
 				options?.failureThreshold

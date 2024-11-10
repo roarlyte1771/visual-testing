@@ -9,95 +9,84 @@ import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot
 import type { VisOptions } from './types.js'
 
 function createStore() {
+	// test suite (runner.beforeAll) states
+	let name: string
+	let testFilepath: string
+	let testFilename: string
+	let baselineDir: string
+	let resultDir: string
+	let diffDir: string
+	let snapshot: Record<string, Record<string, { index: number }>>
 	let suiteOptions: VisOptions = {}
 
+	// story states (story.beforeEach)
+	let tags: string[] | undefined
+	let parameters: Record<string, any> | undefined
+	let taskName: string
+	let id: string
+
 	const state = {
-		name: '',
-		testFilepath: '',
-		taskName: '',
+		baselineDir,
+		resultDir,
+		diffDir,
 		snapshot: {},
 		async setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions) {
-			state.name = suite.name
-			state.testFilepath = suite.file.filepath
-			state.testFilename = basename(state.testFilepath)
-			state.projectDir = state.testFilepath.slice(0, -state.name.length)
+			name = suite.name
+			testFilepath = suite.file.filepath
+			testFilename = basename(testFilepath)
+			const projectDir = testFilepath.slice(0, -name.length)
 			const snapshotPath = join(
-				state.projectDir,
+				projectDir,
 				options?.snapshotPath ?? `__snapshots__/${await commands.getSnapshotPlatform()}`,
 			)
-			const currentDir = dirname(state.testFilepath)
-			state.baselineDir = relative(currentDir, join(snapshotPath, state.testFilename))
-			state.resultDir = relative(currentDir, join(snapshotPath, '__results__', state.testFilename))
-			state.diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', state.testFilename))
+			const currentDir = dirname(testFilepath)
+			baselineDir = relative(currentDir, join(snapshotPath, testFilename))
+			resultDir = relative(currentDir, join(snapshotPath, '__results__', testFilename))
+			diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', testFilename))
 
 			suiteOptions = options
-
-			if (!state.snapshot[state.testFilepath]) {
-				state.snapshot[state.testFilepath] = {}
-				await commands.rmDir(state.resultDir)
-				await commands.rmDir(state.diffDir)
+			snapshot = snapshot ?? {}
+			if (!snapshot[testFilepath]) {
+				snapshot[testFilepath] = {}
+				await commands.rmDir(resultDir)
+				await commands.rmDir(diffDir)
 			}
 		},
 		setupStory(ctx: StoryContext) {
-			state.tags = ctx.tags
-			state.parameters = ctx.parameters
+			tags = ctx.tags
+			parameters = ctx.parameters
 		},
 		shouldTakeSnapshot() {
-			if (!state.tags) return false
-			return state.tags.lastIndexOf('!snapshot') < state.tags.lastIndexOf('snapshot')
+			if (!tags) return false
+			return tags.lastIndexOf('!snapshot') < tags.lastIndexOf('snapshot')
+		},
+		getName() {
+			return taskName
 		},
 		getTimeout(timeout?: number | undefined) {
 			return timeout ?? suiteOptions?.timeout ?? 3000
 		},
 		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions) {
-			return required(state.parameters?.snapshot, options)
+			return required(parameters?.snapshot, options)
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()
-			state.taskName = test.name
-			const id = (state.id = toSnapshotId(state.taskName))
-			state.snapshot[state.testFilepath][id] = state.snapshot[state.testFilepath][id] ?? { index: 1 }
+			taskName = test.name
+			id = toSnapshotId(taskName)
+			snapshot[testFilepath][id] = snapshot[testFilepath][id] ?? { index: 1 }
 
-			const index = state.snapshot[state.testFilepath][state.id]!.index
+			const index = snapshot[testFilepath][id]!.index
 			const snapshotFilename = options?.customizeSnapshotId
-				? `${options.customizeSnapshotId(state.id, index)}.png`
-				: `${state.id}-${index}.png`
-			const baselinePath = join(state.baselineDir, snapshotFilename)
-			const resultPath = join(state.resultDir, snapshotFilename)
-			const diffPath = join(state.diffDir, snapshotFilename)
+				? `${options.customizeSnapshotId(id, index)}.png`
+				: `${id}-${index}.png`
+			const baselinePath = join(baselineDir, snapshotFilename)
+			const resultPath = join(resultDir, snapshotFilename)
+			const diffPath = join(diffDir, snapshotFilename)
 			return { snapshotFilename, baselinePath, resultPath, diffPath }
 		},
 		incrementSnapshotIndex() {
-			state.snapshot[state.testFilepath][state.id]!.index++
+			snapshot[testFilepath][id]!.index++
 		},
-	} as unknown as {
-		id: string
-		name: string
-		testFilepath: string
-		testFilename: string
-		projectDir: string
-		baselineDir: string
-		resultDir: string
-		diffDir: string
-		taskName: string
-		parameters: {
-			snapshot?: MatchImageSnapshotOptions | undefined
-			[key: string]: any
-		}
-		tags: string[]
-		snapshot: Record<string, Record<string, { index: number }>>
-		shouldTakeSnapshot(): boolean
-		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined): {
-			snapshotFilename: string
-			baselinePath: string
-			resultPath: string
-			diffPath: string
-		}
-		getTimeout(timeout?: number | undefined): number
-		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions): MatchImageSnapshotOptions
-		incrementSnapshotIndex(): void
-		setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions): Promise<void>
-		setupStory(ctx: StoryContext): void
 	}
 	return state
 }
