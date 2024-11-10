@@ -1,3 +1,4 @@
+import { expect, it } from 'vitest'
 import { cdp, commands, page, server } from './context'
 
 it('is accessible in vitest', () => {
