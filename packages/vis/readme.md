@@ -231,6 +231,7 @@ Looking at the snapshot folder structure, you might want to add the following to
 ```
 
 [jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
+[playwright]: https://playwright.dev/docs/screenshots
 [storybook-addon-vis]: https://github.com/repobuddy/storybook-addon-vis
 [storybook]: https://storybook.js.org
 [vitest]: https://vitest.dev/
