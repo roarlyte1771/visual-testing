@@ -32,7 +32,7 @@ it('can define default failureThreshold', async () => {
 	})
 })
 
-it('can define default failureThresholdType', async () => {
+it('can define default customizeSnapshotId', async () => {
 	await createVisConfig({
 		snapshotPath: '_sp_',
 		customizeSnapshotId: (id) => id.slice(0, id.indexOf('-')),
