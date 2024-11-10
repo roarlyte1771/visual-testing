@@ -174,6 +174,31 @@ export const ElementSnapshot = {
 }
 ```
 
+## Snapshot folder
+
+The snapshots are stored under the `__vis__` folder next to the test/story file.
+This is a similar approach to [playwright]'s `page.screenshot()` which saves the screenshots under the `__screenshot__` folder.
+
+This is different from [jest-image-snapshot] which stores the snapshots under the `__snapshots__` folder at the root of the project.
+
+The reason for this is we need to support both [storybook] stories and [vitest] tests at the same time.
+Stories have a unique ID enforced by [storybook], and [jest-image-snapshot] uses it to uniquely identify the snapshots.
+This makes it possible to store the snapshots in the same folder.
+
+With [vitest] tests, we don't have such unique ID (that is stable across runs and humanly readable),
+meaning we have to retain the folder structure to uniquely identify the snapshots.
+This makes the single folder approach much less attractive.
+
+You can change the snapshot folder by providing the `snapshotDir` option to the `createVisConfig` function.
+
+```ts
+import { createVisConfig } from 'storybook-addon-vis/vitest-setup'
+
+createVisConfig({
+	snapshotDir: 'path/to/snapshot'
+})
+```
+
 [jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
 [storybook-addon-vis]: https://github.com/repobuddy/storybook-addon-vis
 [storybook]: https://storybook.js.org

@@ -1,4 +1,4 @@
-import { basename, dirname, join, relative } from 'pathe'
+import { basename, join } from 'pathe'
 import type { StoryContext } from 'storybook/internal/types'
 import { omit, required } from 'type-plus'
 import { getCurrentTest } from 'vitest/suite'
@@ -10,7 +10,6 @@ import type { VisOptions } from './types.js'
 
 function createStore() {
 	// test suite (runner.beforeAll) states
-	let name: string
 	let testFilepath: string
 	let testFilename: string
 	let baselineDir: string
@@ -31,18 +30,13 @@ function createStore() {
 		diffDir,
 		snapshot: {},
 		async setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions) {
-			name = suite.name
+			const snapshotPath = options?.snapshotDir ?? `__vis__/${await commands.getSnapshotPlatform()}`
+
 			testFilepath = suite.file.filepath
 			testFilename = basename(testFilepath)
-			const projectDir = testFilepath.slice(0, -name.length)
-			const snapshotPath = join(
-				projectDir,
-				options?.snapshotPath ?? `__snapshots__/${await commands.getSnapshotPlatform()}`,
-			)
-			const currentDir = dirname(testFilepath)
-			baselineDir = relative(currentDir, join(snapshotPath, testFilename))
-			resultDir = relative(currentDir, join(snapshotPath, '__results__', testFilename))
-			diffDir = relative(currentDir, join(snapshotPath, '__diff_output__', testFilename))
+			baselineDir = join(snapshotPath, testFilename)
+			resultDir = join(snapshotPath, '__results__', testFilename)
+			diffDir = join(snapshotPath, '__diff_output__', testFilename)
 
 			suiteOptions = options ?? {}
 			snapshot = snapshot ?? {}
@@ -67,7 +61,7 @@ function createStore() {
 			return timeout ?? suiteOptions.timeout ?? 30000
 		},
 		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions) {
-			return required(omit(suiteOptions, 'snapshotPath'), parameters?.snapshot, options)
+			return required(omit(suiteOptions, 'snapshotDir'), parameters?.snapshot, options)
 		},
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined) {
 			const test = getCurrentTest()

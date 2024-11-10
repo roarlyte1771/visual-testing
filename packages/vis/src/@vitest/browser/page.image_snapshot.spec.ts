@@ -7,11 +7,11 @@ it('save file under __results__', async ({ task }) => {
 	const f1 = await page.imageSnapshot()
 	const filename = basename(task.file.name)
 	expect(f1.resultPath).toMatch(
-		`../../../__snapshots__/${await commands.getSnapshotPlatform()}/__results__/${filename}/${toSnapshotId(task.name)}-1.png`,
+		`__snapshots__/${await commands.getSnapshotPlatform()}/__results__/${filename}/${toSnapshotId(task.name)}-1.png`,
 	)
 
 	const f2 = await page.imageSnapshot()
 	expect(f2.resultPath).toMatch(
-		`../../../__snapshots__/${await commands.getSnapshotPlatform()}/__results__/${filename}/${toSnapshotId(task.name)}-2.png`,
+		`__snapshots__/${await commands.getSnapshotPlatform()}/__results__/${filename}/${toSnapshotId(task.name)}-2.png`,
 	)
 })

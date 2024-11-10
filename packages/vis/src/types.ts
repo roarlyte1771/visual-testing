@@ -8,11 +8,11 @@ import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot
  */
 export interface VisOptions extends MatchImageSnapshotOptions, CustomizeSnapshotIdOptions {
 	/**
-	 * The snapshot folder relative to the root of the project.
+	 * The snapshot folder relative to the test file.
 	 *
 	 * Default: `__snapshots__/<local | CI platform>`
 	 */
-	snapshotPath?: string | undefined
+	snapshotDir?: string | undefined
 	/**
 	 * Timeout for taking the snapshot.
 	 *
