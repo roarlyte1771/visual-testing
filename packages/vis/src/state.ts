@@ -76,9 +76,9 @@ function createStore() {
 			snapshot[testFilepath][id] = snapshot[testFilepath][id] ?? { index: 1 }
 
 			const index = snapshot[testFilepath][id]!.index
-			const snapshotFilename = options?.customizeSnapshotId
-				? `${options.customizeSnapshotId(id, index)}.png`
-				: `${id}-${index}.png`
+			const customizeSnapshotId =
+				suiteOptions.customizeSnapshotId ?? options?.customizeSnapshotId ?? ((id, index) => `${id}-${index}`)
+			const snapshotFilename = `${customizeSnapshotId(id, index)}.png`
 			const baselinePath = join(baselineDir, snapshotFilename)
 			const resultPath = join(resultDir, snapshotFilename)
 			const diffPath = join(diffDir, snapshotFilename)

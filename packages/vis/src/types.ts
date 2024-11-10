@@ -1,3 +1,4 @@
+import type { CustomizeSnapshotIdOptions } from './@vitest/browser/types'
 import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot'
 
 /**
@@ -5,7 +6,7 @@ import type { MatchImageSnapshotOptions } from './expect.to_match_image_snapshot
  *
  * These parameters are set per project in the `.storybook/preview.ts` file.
  */
-export interface VisOptions extends MatchImageSnapshotOptions {
+export interface VisOptions extends MatchImageSnapshotOptions, CustomizeSnapshotIdOptions {
 	/**
 	 * The snapshot folder relative to the root of the project.
 	 *
