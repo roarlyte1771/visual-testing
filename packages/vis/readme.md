@@ -61,8 +61,15 @@ import * as projectAnnotations from './preview'
 
 const project = setProjectAnnotations([projectAnnotations])
 
-// other presets are available
+// capture image snapshot for all stories with `snapshot` tag
 createVisConfig(/* options */).presets.basic()
+
+// capture image snapshot for all stories with `snapshot` tag,
+// for both light and dark themes
+createVisConfig(/* options */).presets.theme({
+	light() { document.body.classList.remove('dark') },
+	dark() { document.body.classList.add('dark') },
+})
 ```
 
 On [storybook], you need to register `beforeEach` hook to set up the test environment.

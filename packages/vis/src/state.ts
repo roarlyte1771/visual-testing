@@ -64,7 +64,7 @@ function createStore() {
 			return taskName
 		},
 		getTimeout(timeout?: number | undefined) {
-			return timeout ?? suiteOptions.timeout ?? 3000
+			return timeout ?? suiteOptions.timeout ?? 30000
 		},
 		mergeMatchImageSnapshotOptions(options?: MatchImageSnapshotOptions) {
 			return required(omit(suiteOptions, 'snapshotPath'), parameters?.snapshot, options)

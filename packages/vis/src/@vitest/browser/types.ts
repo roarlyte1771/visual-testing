@@ -2,6 +2,11 @@
 
 export interface ImageSnapshotOptions extends CustomizeSnapshotIdOptions {
 	element?: Element //| Locator
+	/**
+	 * Timeout for taking the snapshot.
+	 *
+	 * Default: 30000
+	 */
 	timeout?: number | undefined
 }
 
