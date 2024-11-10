@@ -34,12 +34,13 @@ it('can define default failureThreshold', async () => {
 
 it('can define default failureThresholdType', async () => {
 	await createVisConfig({
+		snapshotPath: '_sp_',
 		customizeSnapshotId: (id) => id.slice(0, id.indexOf('-')),
 	}).beforeAll({ name: 'some.test.ts', file: { filepath: 'dummy/some.test.ts' } })
 
 	expect(state.getSnapshotFilePaths()).toMatchObject({
-		baselinePath: '__snapshots__/local/some.test.ts/can.png',
-		diffPath: '__snapshots__/local/__diff_output__/some.test.ts/can.png',
-		resultPath: '__snapshots__/local/__results__/some.test.ts/can.png',
+		baselinePath: '_sp_/some.test.ts/can.png',
+		diffPath: '_sp_/__diff_output__/some.test.ts/can.png',
+		resultPath: '_sp_/__results__/some.test.ts/can.png',
 	})
 })
