@@ -22,7 +22,7 @@ export function createVisConfig(options?: VisOptions) {
 			},
 		},
 		async beforeAll(suite: { file: { filepath: string }; name: string }) {
-			state.setupSuite(suite, options)
+			return state.setupSuite(suite, options)
 		},
 		afterEach: {
 			async matchImageSnapshot() {
