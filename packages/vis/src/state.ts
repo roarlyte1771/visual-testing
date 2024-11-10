@@ -42,6 +42,10 @@ function createStore() {
 			state.tags = ctx.tags
 			state.parameters = ctx.parameters
 		},
+		shouldTakeSnapshot() {
+			if (!state.tags) return false
+			return state.tags.lastIndexOf('!snapshot') < state.tags.lastIndexOf('snapshot')
+		},
 		getTimeout(timeout?: number | undefined) {
 			return timeout ?? suiteOptions?.timeout ?? 3000
 		},
@@ -82,6 +86,7 @@ function createStore() {
 		}
 		tags: string[]
 		snapshot: Record<string, Record<string, { index: number }>>
+		shouldTakeSnapshot(): boolean
 		getSnapshotFilePaths(options?: ImageSnapshotOptions | undefined): {
 			snapshotFilename: string
 			baselinePath: string

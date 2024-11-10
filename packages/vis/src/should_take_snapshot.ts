@@ -8,6 +8,5 @@ import { state } from './state'
  * disabled by `!snapshot` tag: false
  */
 export function shouldTakeSnapshot() {
-	if (!state.tags) return false
-	return state.tags.lastIndexOf('!snapshot') < state.tags.lastIndexOf('snapshot')
+	return state.shouldTakeSnapshot()
 }
