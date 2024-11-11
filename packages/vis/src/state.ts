@@ -49,12 +49,12 @@ function createStore() {
 			}
 		},
 		setupStory(ctx: StoryContext) {
-			console.debug('setupStory', ctx.name)
+			// console.debug('setupStory', ctx.name)
 			tags = ctx.tags
 			parameters = ctx.parameters
 		},
 		shouldTakeSnapshot() {
-			console.debug('shouldTakeSnapshot', taskName, tags)
+			// console.debug('shouldTakeSnapshot', taskName, tags)
 			if (!tags) return false
 			return tags.lastIndexOf('!snapshot') < tags.lastIndexOf('snapshot')
 		},
