@@ -223,6 +223,20 @@ With the default snapshot folder structure, you might want to add the following 
 **/__vis__/local
 ```
 
+## Troubleshooting
+
+> Internal server error: Failed to resolve import "pathe"
+
+This is likely [a compatibility issue with `pnpm` and `vite` in monorepo](https://discord.com/channels/917386801235247114/1305110710229008435/1305325581839368202).
+
+To work around this, you can add [`shamefully-hoist`](https://pnpm.io/npmrc#shamefully-hoist) to your `.npmrc`:
+
+```sh
+# .npmrc
+
+shamefully-hoist=true
+```
+
 [jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
 [playwright]: https://playwright.dev/docs/screenshots
 [storybook-addon-vis]: https://github.com/repobuddy/storybook-addon-vis
