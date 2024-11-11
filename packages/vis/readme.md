@@ -217,8 +217,6 @@ Some snapshot folders should be ignored by git.
 
 With the default snapshot folder structure, you might want to add the following to your `.gitignore`:
 
-Looking at the snapshot folder structure, you might want to add the following to your `.gitignore`:
-
 ```sh
 **/__vis__/*/__diff_output__
 **/__vis__/*/__results__
