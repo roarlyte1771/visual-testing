@@ -13,6 +13,7 @@ export async function imageSnapshot(
 	options?: ImageSnapshotOptions | undefined,
 ): Promise<ImageSnapshot> {
 	const { snapshotFilename, baselinePath, resultPath, diffPath } = state.getSnapshotFilePaths(options)
+	// console.debug('taking snapshot', state.getName(), snapshotFilename)
 	const screenshot = await this.screenshot({
 		base64: true,
 		path: resultPath,

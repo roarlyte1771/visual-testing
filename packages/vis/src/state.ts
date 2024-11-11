@@ -30,6 +30,8 @@ function createStore() {
 		diffDir,
 		snapshot: {},
 		async setupSuite(suite: { file: { filepath: string }; name: string }, options?: VisOptions) {
+			// console.debug('setupSuite', suite.name)
+
 			const snapshotPath = options?.snapshotDir ?? `__vis__/${await commands.getSnapshotPlatform()}`
 
 			testFilepath = suite.file.filepath
@@ -47,10 +49,12 @@ function createStore() {
 			}
 		},
 		setupStory(ctx: StoryContext) {
+			console.debug('setupStory', ctx.name)
 			tags = ctx.tags
 			parameters = ctx.parameters
 		},
 		shouldTakeSnapshot() {
+			console.debug('shouldTakeSnapshot', taskName, tags)
 			if (!tags) return false
 			return tags.lastIndexOf('!snapshot') < tags.lastIndexOf('snapshot')
 		},

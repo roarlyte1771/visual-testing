@@ -1,3 +1,4 @@
+import { storybookPreviewVis } from 'storybook-addon-vis'
 /** @type { import('@storybook/react').Preview } */
 const preview = {
 	parameters: {
@@ -9,6 +10,7 @@ const preview = {
 		},
 	},
 	tags: ['snapshot'],
+	beforeEach: storybookPreviewVis.beforeEach,
 }
 
 export default preview

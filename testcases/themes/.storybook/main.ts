@@ -19,7 +19,6 @@ const config = {
 		getAbsolutePath('@storybook/addon-interactions'),
 		getAbsolutePath('@storybook/experimental-addon-test'),
 		getAbsolutePath('@storybook/addon-themes'),
-		getAbsolutePath('storybook-addon-vis'),
 	],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),

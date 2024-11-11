@@ -26,6 +26,7 @@ export function createVisConfig(options?: VisOptions) {
 		afterEach: {
 			async matchImageSnapshot() {
 				if (!shouldTakeSnapshot()) return
+				// console.debug('taking automatic snapshot', state.getName())
 				const r = await page.imageSnapshot()
 				expect(r).toMatchImageSnapshot()
 			},
@@ -34,6 +35,7 @@ export function createVisConfig(options?: VisOptions) {
 					if (!shouldTakeSnapshot()) return
 					for (const themeId in themes) {
 						await themes[themeId]()
+						// console.debug('taking automatic snapshot', state.getName(), themeId)
 						const r = await page.imageSnapshot({
 							customizeSnapshotId: (id) => `${id}-${themeId}`,
 						})

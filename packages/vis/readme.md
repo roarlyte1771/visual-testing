@@ -72,18 +72,15 @@ createVisConfig(/* options */).presets.theme({
 })
 ```
 
-On [storybook], you need to register [storybook-addon-vis] in `.storybook/main.ts`.
+On [storybook], you need to register the `beforeEach` hook in `.storybook/preview.ts`.
 
 ```ts
-// .storybook/main.tsx
+// .storybook/preview.tsx
+import { storybookPreviewVis } from 'storybook-addon-vis'
 
 export default {
 	// ...
-	addons: [
-		// ...
-		'storybook-addon-vis'
-	]
-	// ...
+	beforeEach: storybookPreviewVis.beforeEach
 }
 ```
 
