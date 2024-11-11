@@ -211,13 +211,14 @@ createVisConfig({
 })
 ```
 
-### .gitignore snapshot folders
+### Ignore snapshot folders
 
 Some snapshot folders should be ignored by git.
 
 With the default snapshot folder structure, you might want to add the following to your `.gitignore`:
 
 ```sh
+# .gitignore
 **/__vis__/*/__diff_output__
 **/__vis__/*/__results__
 **/__vis__/local
