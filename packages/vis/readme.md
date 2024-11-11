@@ -217,8 +217,6 @@ Some snapshot folders should be ignored by git.
 
 With the default snapshot folder structure, you might want to add the following to your `.gitignore`:
 
-```sh
-
 Looking at the snapshot folder structure, you might want to add the following to your `.gitignore`:
 
 ```sh
