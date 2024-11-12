@@ -1,4 +1,4 @@
-import { dirname, join, relative, resolve } from 'pathe'
+import { dirname, join, relative } from 'pathe'
 import type { StoryContext } from 'storybook/internal/types'
 import { omit, required } from 'type-plus'
 import { getCurrentTest } from 'vitest/suite'
