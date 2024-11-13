@@ -16,7 +16,7 @@ function createStore() {
 	let resultDir: string
 	let diffDir: string
 	let snapshot: Record<string, Record<string, { index: number }>>
-	let suiteOptions: VisOptions = {}
+	let suiteOptions: VisOptions = Object.create(null)
 
 	// story states (story.beforeEach)
 	let tags: string[] | undefined
@@ -45,7 +45,7 @@ function createStore() {
 			suiteOptions = options
 			snapshot = snapshot ?? {}
 			if (!snapshot[testFilepath]) {
-				snapshot[testFilepath] = {}
+				snapshot[testFilepath] = Object.create(null)
 				await commands.rmDir(resultDir)
 				await commands.rmDir(diffDir)
 			}
@@ -113,7 +113,7 @@ function defaultCustomizeSnapshotSubpath(suiteName: string) {
 }
 
 let platformP: Promise<string>
-function getPlatform(): Promise<string> {
+function getPlatform() {
 	if (platformP) return platformP
 
 	return (platformP = commands.getSnapshotPlatform())
