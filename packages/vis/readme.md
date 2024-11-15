@@ -175,7 +175,7 @@ export const ElementSnapshot = {
 
 By default, the snapshots are stored under the `__vis__` folder at the root of the project:
 
-```sh
+```ini
 v __vis__
     ˃ __diff_output__ # where the diff images are stored
     ˃ __result__ # where the resulting snapshot of the current run are stored
@@ -217,7 +217,7 @@ createVisConfig({
 
 With the above configuration, the snapshot folder structure will look like this:
 
-```sh
+```ini
 v __vis__
     > # ...
     v local # snapshot generated on local machine
@@ -247,7 +247,7 @@ Some snapshot folders should be ignored by git.
 
 With the default snapshot folder structure, you should add the following to your `.gitignore`:
 
-```sh
+```ini
 # .gitignore
 **/__vis__/__diff_output__
 **/__vis__/__results__
