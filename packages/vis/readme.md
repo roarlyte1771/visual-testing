@@ -44,11 +44,30 @@ export default defineConfig({
     test: {
         browser: {
             // ...
-        }
+        },
+        global: false, // recommend to set to false
         setupFiles: ['./vitest.setup.ts'],
     }
 })
 ```
+
+Note that we recommend to set `global` to `false`.
+Setting `global` to `true` actually works ok during test,
+although you need to access the functions from the `globalThis` or `window` object.
+
+However, the problem is when the story is run within [storybook].
+In [storybook], the `global` field has no effect.
+And in fact, you need to import the functions from `@storybook/test` instead:
+
+```ts
+// some.test.ts
+import { expect } from 'vitest'
+
+// some.stories.ts
+import { expect } from '@storybook/test'
+```
+
+Therefore, to avoid confusion, we recommend to set `global` to `false`.
 
 In `vitest.setup.ts`, you can use one of the presets to do the setup for you.
 You can also use the provided hooks to set up the test environment manually.
