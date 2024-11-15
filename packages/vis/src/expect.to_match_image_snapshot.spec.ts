@@ -13,7 +13,7 @@ const { Success } = composeStories(ToMatchStories)
 const { TakeSnapshot } = composeStories(PerStory)
 
 it('should reject if the subject is undefined', async () => {
-	expect(() => expect(undefined).toMatchImageSnapshot()).rejects.toThrowError(
+	await expect(() => expect(undefined).toMatchImageSnapshot()).rejects.toThrowError(
 		'`toMatchImageSnapshot()` expects the subject to be an element, locator, or result of `page.imageSnapshot()`, but got: `undefined`',
 	)
 })
