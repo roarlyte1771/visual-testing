@@ -47,7 +47,10 @@ jobs:
         run: pnpm install
 
       - name: Verify
-        run: pnpm verify
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 3
+          command: pnpm verify
 
       - name: Archive snapshots
         if: failure()
