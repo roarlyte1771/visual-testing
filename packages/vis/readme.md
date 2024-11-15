@@ -208,7 +208,7 @@ v src
     button.stories.tsx
 ```
 
-You can change the snapshot folder by providing the `snapshotDir` option to the `createVisConfig` function.
+You can change the snapshot folder by providing the `snapshotRootDir` option to the `createVisConfig` function.
 
 ```ts
 import { createVisConfig } from 'storybook-addon-vis/vitest-setup'
