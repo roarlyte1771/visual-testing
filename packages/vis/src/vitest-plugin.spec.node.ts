@@ -1,3 +1,4 @@
+import { expect, it } from 'vitest'
 import { storybookVis } from './vitest-plugin'
 
 it('name as `vitest:storybook-addon-vis`', () => {
