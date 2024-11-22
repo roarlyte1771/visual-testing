@@ -109,7 +109,7 @@ async function toMatchImageSnapshotInternal(
 					? options?.failureThresholdType === 'percent'
 						? `Expected image to match within ${options.failureThreshold}% but was differ by ${diffAmount}%.`
 						: `Expected image to match within ${options.failureThreshold} pixels but was differ by ${diffAmount} pixels.`
-					: `Expected simage to match but was differ by ${options?.failureThresholdType === 'percent' ? `${diffAmount}%` : `${diffAmount} pixels`}.`
+					: `Expected image to match but was differ by ${options?.failureThresholdType === 'percent' ? `${diffAmount}%` : `${diffAmount} pixels`}.`
 			}
 
 			Expected:   '${resolve(state.getCurrentDir(), subject.baselinePath)}'
