@@ -1,11 +1,12 @@
+import { join } from 'node:path'
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin'
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import { storybookVis } from './src/vitest-plugin.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), storybookTest(), storybookVis()],
+	plugins: [react(), storybookTest({ configDir: join(import.meta.dirname, '.storybook') }), storybookVis()],
 	test: {
 		name: 'vis:node',
 		coverage: {
