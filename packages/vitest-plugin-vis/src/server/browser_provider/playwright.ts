@@ -7,7 +7,7 @@ export function playwright(context: BrowserCommandContext): BrowserApi {
 			// The `Locator` type from `vitest` has less props than the `Locator` in `playwright`
 			const subject = context.iframe.locator(selector ?? 'body')
 			const buffer = await subject.screenshot({
-				timeout: options?.timeout ?? 1000,
+				timeout: options?.timeout,
 				path: filePath,
 			})
 			return buffer.toString('base64')

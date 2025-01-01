@@ -1,4 +1,5 @@
 import dedent from 'dedent'
+import ci from 'is-ci'
 import { mkdirp } from 'mkdirp'
 import { dirname, resolve } from 'pathe'
 import { PNG } from 'pngjs'
@@ -43,6 +44,7 @@ export const matchImageSnapshot: BrowserCommand<
 
 	// vitest:browser passes in `null` when not defined
 	if (!options) options = {}
+	options.timeout = options.timeout ?? (ci ? 30000 : 5000)
 
 	const info = visContext.getSnapshotInfo(context.testPath, taskId, options)
 	const baselineBase64 = await file.tryReadFileBase64(info.baselinePath)

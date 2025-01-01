@@ -1,4 +1,3 @@
-import ci from 'is-ci'
 import { join, relative } from 'pathe'
 import type { VisOptions } from '../config/types.ts'
 import { DIFF_DIR, RESULT_DIR } from '../shared/constants.ts'
@@ -60,7 +59,7 @@ export function createVisContext() {
 			const info = context.getSuiteInfo(testPath, name)
 			const snapshotFilename = context.getSnapshotFilename(info, options?.snapshotFileId)
 
-			const { suiteId, baselineDir, resultDir, diffDir, task } = info
+			const { baselineDir, resultDir, diffDir, task } = info
 
 			task.count = task.count + 1
 			const baselinePath = join(baselineDir, snapshotFilename)
@@ -68,12 +67,9 @@ export function createVisContext() {
 			const diffPath = join(diffDir, snapshotFilename)
 
 			return {
-				suiteId,
-				snapshotFilename,
 				baselinePath,
 				resultPath,
 				diffPath,
-				snapshotTimeout: visOptions.timeout ?? (ci ? 30000 : 5000),
 			}
 		},
 		getTaskCount(testPath: string, taskId: string) {
