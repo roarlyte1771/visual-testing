@@ -337,6 +337,47 @@ export const ElementSnapshot = {
 }
 ```
 
+## Usage - has image snapshot
+
+While less common, you can also check if a snapshot exists:
+
+```ts
+import { hasImageSnapshot } from 'storybook-addon-vis'
+
+export const HasImageSnapshot = {
+	tags: ['!snapshot'],
+	loaders: [
+		async () => {
+			return { hasImageSnapshot: await hasImageSnapshot() }
+		},
+	],
+	render(_, { loaded: { hasImageSnapshot } }) {
+		return <div data-testid="subject">Has snapshot: {String(hasImageSnapshot)}</div>
+	},
+	async play({ canvas, loaded: { hasImageSnapshot } }) {
+		const subject = canvas.getByTestId('subject')
+		if (!hasImageSnapshot) {
+			await expect(subject).toMatchImageSnapshot()
+			return
+		}
+
+		// This will only execute in Vitest
+		await expect(subject)
+			.toMatchImageSnapshot()
+			.then(
+				() => {
+					throw new Error('Should not reach')
+				},
+				(error) => {
+					expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./)
+				},
+			)
+	},
+}
+```
+
+This is useful when you are performing some negative test.
+
 ### Ignore snapshot folders
 
 Some snapshot folders should be ignored by git.
