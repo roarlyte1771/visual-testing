@@ -179,7 +179,7 @@ Note that we recommend to set `globals` to `false` (which is the default).
 Setting `globals` to `true` actually works ok during test.
 But they don't exist in the story files:
 
-```ts
+```tsx
 // some.stories.tsx
 export const Story = {
 	async play() {
@@ -252,7 +252,7 @@ With the `auto` preset, [`storybook-addon-vis`][storybook-addon-vis] automatical
 
 As how tags work in [Storybook], you can add the tag globally, per story file, or per story.
 
-```ts
+```tsx
 // .storybook/preview.tsx
 export default {
 	// Enable image snapshot for all stories
@@ -275,7 +275,7 @@ export const MyStory = {
 
 You can disable snapshot with the `!snapshot` tag, much like `!test`.
 
-```ts
+```tsx
 export default {
 	title: 'Button',
 	// Enable image snapshot for all stories in this file
@@ -296,7 +296,7 @@ no snapshot will be taken either.
 You can provide options to the `toMatchImageSnapshot` matcher using parameters.
 `defineAutoSnapshotParam()` is a helper function to provide autocompletion:
 
-```ts
+```tsx
 import { defineAutoSnapshotParam } from 'storybook-addon-vis'
 
 export const MyStory = {
@@ -311,7 +311,7 @@ export const MyStory = {
 
 Besides automatic snapshot, you can capture image snapshot manually.
 
-```ts
+```tsx
 import { expect } from '@storybook/test'
 
 // `page` and the like are proxies of `@vitest/browser/context` to work within storybook
@@ -341,7 +341,7 @@ export const ElementSnapshot = {
 
 While less common, you can also check if a snapshot exists:
 
-```ts
+```tsx
 import { hasImageSnapshot } from 'storybook-addon-vis'
 
 export const HasImageSnapshot = {
