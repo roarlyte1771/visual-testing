@@ -196,11 +196,11 @@ it('manual snapshot with options', async () => {
 	page.render(<div data-testid="subject">hello world</div>)
 	const subject = page.getByTestId('subject')
 	await expect(subject).toMatchImageSnapshot({
-		customizeSnapshotId: (id, index) => `${id}-${index}`,
+		customizeSnapshotId: (id, index) => `${id}-custom-${index}`,
 		failureThreshold: 0.01,
 		failureThresholdType: 'percent',
 		diffOptions: {
-		threshold: 0.1
+			threshold: 0.1
 		},
 		timeout: 15000
 	})
