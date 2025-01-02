@@ -125,7 +125,7 @@ export default defineConfig({
 ```
 
 Typically, you place your test files either in a dedicated `tests` folder or in the `src` folder along with your source code.
-By default, [storybook-addon-vis] removes that folder to reduces nesting.
+By default, [`storybook-addon-vis`][storybook-addon-vis] removes that folder to reduces nesting.
 
 If you place your test files in multiple folders,
 such as in both `tests` and `src` folders,
@@ -248,9 +248,9 @@ vis.presets.theme({
 
 ## Usage - automatic snapshot
 
-With the `auto` preset, [storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
+With the `auto` preset, [`storybook-addon-vis`][storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
 
-As with how tags work in [storybook], you can add the tag globally, per story file, or per story.
+As how tags work in [Storybook], you can add the tag globally, per story file, or per story.
 
 ```ts
 // .storybook/preview.tsx
