@@ -6,3 +6,5 @@ import type { ToMatchImageSnapshotOptions } from 'vitest-plugin-vis/client'
 export function defineAutoSnapshotParam(snapshot: ToMatchImageSnapshotOptions) {
 	return { snapshot }
 }
+
+export type { ToMatchImageSnapshotOptions }
