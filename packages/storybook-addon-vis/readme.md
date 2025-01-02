@@ -5,7 +5,7 @@
 
 [![Release][github_release]][github_action_url]
 
-[`storybook-addon-vis`][storybook-addon-vis] captures and compare image snapshot automatically and manually.
+[`storybook-addon-vis`][storybook-addon-vis] captures and compares image snapshot automatically and manually.
 
 This addon is inspired by [`jest-image-snapshot`][jest-image-snapshot].
 
