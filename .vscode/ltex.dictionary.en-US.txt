@@ -9,3 +9,4 @@ pathe
 vitest-plugin-vis
 addon
 Addon
+npm

@@ -1,2 +1,5 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qstorybook-addon-vis\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qvitest-plugin-vis supports zero-config setup.\\E$"}
+{"rule":"GITHUB","sentence":"^\\Q[Release]github_action_url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Release]github_action_url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm_url [NPM downloads]npm_url\\E$"}
