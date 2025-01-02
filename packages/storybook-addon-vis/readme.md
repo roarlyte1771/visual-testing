@@ -346,11 +346,7 @@ import { hasImageSnapshot } from 'storybook-addon-vis'
 
 export const HasImageSnapshot = {
 	tags: ['!snapshot'],
-	loaders: [
-		async () => {
-			return { hasImageSnapshot: await hasImageSnapshot() }
-		},
-	],
+	loaders: [async () => ({ hasImageSnapshot: await hasImageSnapshot(/* options */) })],
 	render(_, { loaded: { hasImageSnapshot } }) {
 		return <div data-testid="subject">Has snapshot: {String(hasImageSnapshot)}</div>
 	},

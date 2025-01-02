@@ -28,11 +28,7 @@ export const MatchingBase64Image: StoryObj = {
 }
 
 export const FailWithDifferentImage: StoryObj = {
-	loaders: [
-		async () => {
-			return { hasImageSnapshot: await hasImageSnapshot() }
-		},
-	],
+	loaders: [async () => ({ hasImageSnapshot: await hasImageSnapshot() })],
 	render(_, { loaded: { hasImageSnapshot } }) {
 		return hasImageSnapshot ? (
 			<img data-testid="subject" style={{ width: 128, height: 128 }} src={UNI_PNG_URL} />
@@ -62,11 +58,7 @@ export const FailWithDifferentImage: StoryObj = {
 }
 
 export const FailInPercent: StoryObj = {
-	loaders: [
-		async () => {
-			return { hasImageSnapshot: await hasImageSnapshot() }
-		},
-	],
+	loaders: [async () => ({ hasImageSnapshot: await hasImageSnapshot() })],
 	render(_, { loaded: { hasImageSnapshot } }) {
 		const text = hasImageSnapshot ? 'unit text' : 'unit test'
 		return <div data-testid="subject">{text}</div>
