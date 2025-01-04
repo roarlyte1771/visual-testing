@@ -103,7 +103,7 @@ vis.presets.auto()
 vis.presets.manual()
 
 
-// or capture image snapshot for all stories with `snapshot` tag,
+// or capture image snapshot for all rendering tests
 // for multiple themes (light and dark in this example)
 vis.presets.theme({
 	light() { document.body.classList.remove('dark') },
@@ -115,7 +115,8 @@ vis.presets.theme({
 
 ### Auto Snapshot
 
-By default, the plugin will use the `auto` preset, which will take a snapshot at the end of each test.
+By default, the plugin will use the `auto` preset,
+which will take a snapshot at the end of each test.
 
 You can control how the auto snapshot is taken using the `setAutoSnapshotOptions` function:
 
@@ -150,6 +151,23 @@ describe('nested scope', () => {
 		// or
 		setAutoSnapshotOptions(/* options */)
 	})
+})
+```
+
+The options are similar to `expect(...).toMatchImageSnapshot(options)`:
+
+```ts
+// enable/disable auto snapshot
+setAutoSnapshotOptions(true /* or false */)
+
+// detailed options
+setAutoSnapshotOptions({
+	enable: true,
+	customizeSnapshotId: (id, index) => `${id}-custom-${index}`,
+	diffOptions: { threshold: 0.01 } // pixelmatch options,
+	failureThreshold: 0.01,
+	failureThresholdType: 'percent',
+	timeout: 15000
 })
 ```
 
