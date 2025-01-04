@@ -82,7 +82,8 @@ This default configuration will:
 - Image snapshots of the current test run are saved in the `<root>/__vis__/__results__` directory.
 - Diff images are saved in the `<root>/__vis__/__diffs__` directory.
 
-You can customize the configuration:
+You can customize `storybookVis()` by providing additional `options`.
+It is the same option in [`vitest-plugin-vis`][vitest-plugin-vis] minus the `preset`:
 
 ```ts
 // vitest.config.ts
@@ -103,12 +104,8 @@ export default defineConfig({
 })
 ```
 
-Note that compare to [`vitest-plugin-vis`][vitest-plugin-vis],
-`storybookVis()` does not provide the `auto` or `manual` presets.
-This is because you will need to [provide your `vitest.setup.ts`][storybook-test-addon#example-config] to make the story configuration available to Vitest anyway. So it is better to do the setup in one place.
-
-You can customize `storybookVis()` by providing additional `options`.
-It is the same option in [`vitest-plugin-vis`][vitest-plugin-vis] minus the `preset`.
+`storybookVis()` does not provide the `auto` or `manual` presets because you will need to [provide your `vitest.setup.ts`][storybook-test-addon#example-config] to make the story configuration available to Vitest anyway.
+So it is better to do the setup in one place.
 
 ##### Snapshot folder
 
