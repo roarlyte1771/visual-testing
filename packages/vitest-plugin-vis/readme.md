@@ -53,14 +53,14 @@ You can customize the configuration:
 ```ts
 // vitest.config.ts
 import { defineConfig } from 'vitest/config'
-import { vis } from 'vitest-plugin-vis/config'
+import { vis, trimCommonFolder } from 'vitest-plugin-vis/config'
 
 export default defineConfig({
 	plugins: [
 		vis({
 			preset: 'auto',
 			snapshotRootDir: '__vis__',
-			customizeSnapshotSubpath: (subpath) => subpath,
+			customizeSnapshotSubpath: (subpath) => trimCommonFolder(subpath),
 			customizeSnapshotId: (id, index) => `${id}-${index}`,
 			diffOptions: undefined, // pixelmatch options
 			failureThresholdType: 'pixel',
