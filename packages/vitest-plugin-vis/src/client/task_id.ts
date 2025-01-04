@@ -3,6 +3,9 @@ type Task = {
 	suite?: Task | undefined
 }
 
+/**
+ * @deprecated not needed anymore. Use `matchImageSnapshot` directly instead.
+ */
 export function toTaskId(task: Task) {
 	const l: any[] = []
 	let t = task
