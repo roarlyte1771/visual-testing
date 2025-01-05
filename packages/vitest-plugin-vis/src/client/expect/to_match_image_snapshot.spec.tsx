@@ -263,7 +263,7 @@ it('should fail with additional info when it does not fail with expectToFail', a
 			(error) => {
 				expect(error.message).toMatch(/Snapshot .* matched but expected to fail/)
 				expect(error.message).toMatch(/Options:\s+failureThreshold: 10 pixel/)
-				expect(error.message).toMatch(/DiffAmount: 0 pixels/)
+				expect(error.message).toMatch(/Diff:\s+0 pixels/)
 			},
 		)
 })
