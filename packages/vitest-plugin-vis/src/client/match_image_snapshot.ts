@@ -46,7 +46,7 @@ export function imageSnapshotMatcher(
 					dedent`Snapshot \`${taskId}\` matched but expected to fail.
 
 							Options:    ${prettifyOptions(options)}
-							DiffAmount: ${options.failureThresholdType === 'percent' ? `${diffAmount}%` : `${diffAmount} pixels`}
+							Diff:       ${options.failureThresholdType === 'percent' ? `${diffAmount}%` : `${diffAmount} pixels`}
 
 							Expected:   ${resolve(info.projectRoot, info.baselinePath)}
 							Actual:     ${resolve(info.projectRoot, info.resultPath)}`,
