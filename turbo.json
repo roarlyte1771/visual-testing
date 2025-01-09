@@ -13,20 +13,22 @@
 		},
 		"coverage": {
 			"dependsOn": ["^build"],
-			"outputs": ["coverage/**"]
+			"outputs": ["coverage/**", "__vis__/**"]
 		},
 		"nuke": {
 			"cache": false,
 			"dependsOn": ["clean"]
 		},
 		"test": {
-			"dependsOn": ["^build"]
+			"dependsOn": ["^build"],
+			"outputs": ["__vis__/**"]
 		},
 		"testcase": {
 			"dependsOn": ["^build"]
 		},
 		"w": {
 			"dependsOn": ["^build"],
+			"outputs": ["__vis__/**"],
 			"persistent": true
 		}
 	}
