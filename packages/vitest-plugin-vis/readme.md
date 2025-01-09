@@ -300,8 +300,6 @@ It is recommended to run your tests serially to avoid flakiness.
 
 Some features in [`jest-image-snapshot`][jest-image-snapshot] are not implemented in [`vitest-plugin-vis`][vitest-plugin-vis] yet.
 This is because through our own usage, we do not found a good use case for them.
-For example, the `ssim` comparison method is not implemented in [`vitest-plugin-vis`][vitest-plugin-vis],
-because we found that figuring out what is the delta using `ssim` is quite difficult.
 
 If you have a good use case for these features, please open an issue or PR.
 
