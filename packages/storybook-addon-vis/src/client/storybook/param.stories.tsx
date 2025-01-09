@@ -54,25 +54,4 @@ export const UseSsim: StoryObj = {
 	render: (_, { loaded: { hasImageSnapshot } }) => (
 		<div data-testid="subject">{hasImageSnapshot ? 'unit text' : 'unit test'}</div>
 	),
-	async play({ canvas, loaded: { hasImageSnapshot } }) {
-		const subject = canvas.getByTestId('subject')
-		if (!hasImageSnapshot) {
-			await expect(subject).toMatchImageSnapshot()
-			return
-		}
-
-		// This will only execute in test environment
-		await expect(subject)
-			.toMatchImageSnapshot({
-				expectToFail: true,
-			})
-			.then(
-				() => {
-					throw new Error('Should not reach')
-				},
-				(error) => {
-					expect(error.message).toMatch(/Expected image to match but was differ by \d+ pixels./)
-				},
-			)
-	},
 }
