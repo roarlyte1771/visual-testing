@@ -41,6 +41,7 @@ export default defineConfig({
 
 This default configuration will:
 
+- Use `pixelmatch` as the image comparison method.
 - Use the `auto` preset, taking image snapshot at the end on each rendering test.
 - Set config to compare image snapshot with a failure threshold of `0 pixels`.
 - Local (non-CI) image snapshots are saved in the `<root>/__vis__/local` directory.
@@ -59,6 +60,7 @@ export default defineConfig({
 	plugins: [
 		vis({
 			preset: 'auto',
+			comparisonMethod: 'pixel',
 			snapshotRootDir: '__vis__',
 			customizeSnapshotSubpath: (subpath) => trimCommonFolder(subpath),
 			customizeSnapshotId: (id, index) => `${id}-${index}`,
@@ -181,8 +183,10 @@ setAutoSnapshotOptions(true /* or false */)
 // detailed options
 setAutoSnapshotOptions({
 	enable: true,
+	comparisonMethod: 'pixel',
 	customizeSnapshotId: (id, index) => `${id}-custom-${index}`,
-	diffOptions: { threshold: 0.01 } // pixelmatch options,
+	// pixelmatch or ssim.js options, depending on `comparisonMethod`.
+	diffOptions: { threshold: 0.01 },
 	failureThreshold: 0.01,
 	failureThresholdType: 'percent',
 	timeout: 15000

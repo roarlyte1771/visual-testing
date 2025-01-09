@@ -76,6 +76,7 @@ export default defineConfig({
 
 This default configuration will:
 
+- Use `pixelmatch` as the diffing algorithm.
 - Set config to compare image snapshot with a failure threshold of `0 pixels`.
 - Local (non-CI) image snapshots are saved in the `<root>/__vis__/local` directory.
 - CI image snapshots are saved in the `<root>/__vis__/<process.platform>` directory.
@@ -92,10 +93,12 @@ import { storybookVis, trimCommonFolder } from 'storybook-addon-vis/vitest-plugi
 export default defineConfig({
 	plugins: [
 		storybookVis({
+			comparisonMethod: 'pixel',
 			snapshotRootDir: '__vis__',
 			customizeSnapshotSubpath: (subpath) => trimCommonFolder(subpath),
 			customizeSnapshotId: (id, index) => `${id}-${index}`,
-			diffOptions: undefined, // pixelmatch options
+			// pixelmatch or ssim.js options, depending on `comparisonMethod`.
+			diffOptions: undefined,
 			failureThresholdType: 'pixel',
 			failureThreshold: 0,
 			timeout: 5000 // 30000 on CI
