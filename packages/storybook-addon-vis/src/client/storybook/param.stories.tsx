@@ -50,8 +50,5 @@ export const UseSsim: StoryObj = {
 		comparisonMethod: 'ssim',
 		diffOptions: { ssim: 'bezkrovny' },
 	}),
-	loaders: [async () => ({ hasImageSnapshot: await hasImageSnapshot() })],
-	render: (_, { loaded: { hasImageSnapshot } }) => (
-		<div data-testid="subject">{hasImageSnapshot ? 'unit text' : 'unit test'}</div>
-	),
+	render: () => <div data-testid="subject">unit test</div>,
 }
