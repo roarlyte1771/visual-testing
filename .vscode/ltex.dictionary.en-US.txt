@@ -10,3 +10,5 @@ vitest-plugin-vis
 addon
 Addon
 npm
+pnpm
+corepack
