@@ -94,9 +94,9 @@ export default defineConfig({
 	plugins: [
 		storybookVis({
 			snapshotRootDir: '__vis__',
+			platform: '...', // {process.platform} or `local`
 			customizeSnapshotSubpath: (subpath) => trimCommonFolder(subpath),
 			customizeSnapshotId: (id, index) => `${id}-${index}`,
-			platform: '...', // {process.platform} or `local`
 			comparisonMethod: 'pixel',
 			// pixelmatch or ssim.js options, depending on `comparisonMethod`.
 			diffOptions: undefined,
