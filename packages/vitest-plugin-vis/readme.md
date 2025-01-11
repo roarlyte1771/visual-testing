@@ -60,11 +60,11 @@ export default defineConfig({
 	plugins: [
 		vis({
 			preset: 'auto',
-			comparisonMethod: 'pixel',
 			snapshotRootDir: '__vis__',
 			customizeSnapshotSubpath: (subpath) => trimCommonFolder(subpath),
 			customizeSnapshotId: (id, index) => `${id}-${index}`,
 			platform: '...', // {process.platform} or `local`
+			comparisonMethod: 'pixel',
 			// pixelmatch or ssim.js options, depending on `comparisonMethod`.
 			diffOptions: undefined,
 			failureThresholdType: 'pixel',
