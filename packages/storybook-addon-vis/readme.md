@@ -376,7 +376,7 @@ Note that since they are captured during test,
 if you set `tags: ['!test']` to disable testing,
 no snapshot will be taken either.
 
-You can provide options to the `toMatchImageSnapshot` matcher using parameters.
+You can provide options to the `toMatchImageSnapshot` matcher using Storybook parameters.
 `defineAutoSnapshotParam()` is a helper function to provide autocompletion:
 
 ```tsx
