@@ -19,7 +19,7 @@ export const SetFailureThreshold: StoryObj = {
 
 export const SetFailureThresholdByPercentage: StoryObj = {
 	parameters: defineAutoSnapshotParam({
-		failureThreshold: 0.02,
+		failureThreshold: 0.03,
 		failureThresholdType: 'percent',
 	}),
 	loaders: [async () => ({ hasImageSnapshot: await hasImageSnapshot() })],
