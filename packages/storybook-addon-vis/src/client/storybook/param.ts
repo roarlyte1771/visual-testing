@@ -1,19 +1,26 @@
 import type {
 	AutoSnapshotOptions,
 	ComparisonMethod,
+	FailureThresholdOptions,
 	ImageSnapshotCompareOptions,
 	ImageSnapshotIdOptions,
 	ImageSnapshotTimeoutOptions,
+	PixelComparisonOptions,
+	SsimComparisonOptions,
 	ToMatchImageSnapshotOptions,
 } from 'vitest-plugin-vis/client'
 
 // This fix the inferred type cannot be named error
 export type {
 	AutoSnapshotOptions,
-	ToMatchImageSnapshotOptions,
+	ComparisonMethod,
 	ImageSnapshotCompareOptions,
 	ImageSnapshotIdOptions,
 	ImageSnapshotTimeoutOptions,
+	ToMatchImageSnapshotOptions,
+	SsimComparisonOptions,
+	PixelComparisonOptions,
+	FailureThresholdOptions,
 }
 
 /**
