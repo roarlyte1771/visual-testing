@@ -218,9 +218,9 @@ export default defineConfig({
 // some.test.ts
 import 'vitest-browser-react' // do this in your setup file to get `page.render`
 import { page } from '@vitest/browser/context'
-import { expect, it } from 'vitest'
+import { it } from 'vitest'
 
-it('manual snapshot', async () => {
+it('manual snapshot', async ({ expect }) => {
 	page.render(<div data-testid="subject">hello world</div>)
 	await expect(document.body).toMatchImageSnapshot(/* options */)
 	// or
@@ -235,9 +235,9 @@ You can customize the snapshot comparison options per assertion:
 // some.test.ts
 import 'vitest-browser-react' // do this in your setup file to get `page.render`
 import { page } from '@vitest/browser/context'
-import { expect, it } from 'vitest'
+import { it } from 'vitest'
 
-it('manual snapshot with options', async () => {
+it('manual snapshot with options', async ({ expect }) => {
 	page.render(<div data-testid="subject">hello world</div>)
 	const subject = page.getByTestId('subject')
 	await expect(subject).toMatchImageSnapshot({
@@ -258,9 +258,9 @@ While less common, you can also check if a snapshot exists:
 
 ```ts
 import { page } from '@vitest/browser/context'
-import { expect, it } from 'vitest'
+import { it } from 'vitest'
 
-it('Has Snapshot', async () => {
+it('Has Snapshot', async ({ expect }) => {
 	const hasSnapshot = await page.hasImageSnapshot(/* options */)
 	if (!hasSnapshot) {
 		// do something
