@@ -76,7 +76,7 @@
 		"w:wb": "cross-env BROWSER=firefox BROWSERPROVIDER=webdriverio vitest"
 	},
 	"dependencies": {
-		"type-plus": "^8.0.0-beta.6",
+		"type-plus": "8.0.0-beta.7",
 		"vitest-plugin-vis": "workspace:*"
 	},
 	"devDependencies": {
