@@ -1,5 +1,8 @@
 # Vitest Visual Testing Plugin
 
+[![NPM version][npm_image]][npm_url]
+[![NPM downloads][downloads_image]][npm_url]
+
 Vitest visual testing plugin allowing you to capture and compare image snapshots automatically and manually.
 
 It requires [Vitest Browser Mode][vitest-browser-mode] to work.
@@ -340,8 +343,11 @@ This is because through our own usage, we do not found a good use case for them.
 
 If you have a good use case for these features, please open an issue or PR.
 
+[downloads_image]: https://img.shields.io/npm/dm/vitest-plugin-vis.svg?style=flat
 [firefox]: https://www.mozilla.org/en-US/firefox/
 [jest-image-snapshot]: https://github.com/americanexpress/jest-image-snapshot
+[npm_image]: https://img.shields.io/npm/v/vitest-plugin-vis.svg?style=flat
+[npm_url]: https://npmjs.org/package/vitest-plugin-vis
 [storybook-addon-vis]: https://github.com/repobuddy/storybook-addon-vis
 [vitest-browser-mode]: https://vitest.dev/guide/browser/
 [vitest-plugin-vis]: https://www.npmjs.com/package/vitest-plugin-vis
