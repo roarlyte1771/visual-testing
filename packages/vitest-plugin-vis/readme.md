@@ -130,6 +130,10 @@ vis.presets.manual()
 
 // or capture image snapshot for all rendering tests
 // for multiple themes (light and dark in this example)
+//
+// Note that this changes the theme in the `afterEach` hook.
+// If you want to capture manual snapshots in different themes,
+// configure Vitest to run the tests in different themes.
 vis.presets.theme({
 	async light() { document.body.classList.remove('dark') },
 	async dark() { document.body.classList.add('dark') },

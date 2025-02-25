@@ -60,12 +60,20 @@ export default defineConfig({
 		storybookVis(/* options */)
 	],
 	test: {
+		// vitest v2
 		browser: {
-			// typical browser config
 			enabled: true,
 			provider: 'playwright',
-			name: 'chromium'
+			name: 'chromium',
 		},
+		// vitest v3
+		browser: {
+			enabled: true,
+			provider: 'playwright',
+			instances: [
+				{ browser: 'chromium' }
+			]
+		}
 		// recommend to set to false
 		globals: false,
 		// Needed by both Storybook Test Addon and Storybook Visual Testing
@@ -151,7 +159,16 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
 	plugins: [
 		storybookVis({
-			snapshotRootDir: 'path/to/snapshot'
+			snapshotRootDir: 'path/to/snapshot',
+			// or if you need super power
+			snapshotRootDir: ({
+				ci, // true if running on CI
+				platform, // process.platform
+				providerName, // 'playwright' or 'webdriverio'
+				browserName,
+				screenshotFailures, // from `browser` config
+				screenshotDirectory, // from `browser` config
+			}) => string,
 		})
 	],
 	// ...
@@ -274,7 +291,11 @@ vis.presets.manual()
 vis.presets.auto()
 
 // capture image snapshot at the end of each test and story with `snapshot` tag
-// for multiple themes (light and dark in this example)
+// for multiple themes (light and dark in this example).
+//
+// Note that this changes the theme in the `afterEach` hook.
+// If you want to capture manual snapshots in different themes,
+// configure Vitest to run the tests in different themes.
 vis.presets.theme({
 	async light() { document.body.classList.remove('dark') },
 	async dark() { document.body.classList.add('dark') },
