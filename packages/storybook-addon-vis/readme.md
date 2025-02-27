@@ -543,6 +543,23 @@ or hoist the `pathe` package:
 hoist-pattern[] = pathe
 ```
 
+> It takes empty snapshots on regular tests
+
+If you are using Storybook 8.5 and using the workaround to run both stories and tests [as described here](https://github.com/storybookjs/storybook/issues/30307),
+Storybook are also transforming the tests as if they are stories.
+That causes it to inject elements into the DOM and this addon detect that as some rendering by your tests,
+thus taking an image snapshot.
+
+Since it is a bug to be addressed soon,
+please disable the snapshots for your tests by adding a `beforeAll` hook:
+
+```ts
+import { setAutoSnapshotOptions } from 'storybook-addon-vis'
+import { beforeAll } from 'vitest'
+
+beforeAll(() => setAutoSnapshotOptions(false))
+```
+
 [@storybook/experimental-addon-test]: https://www.npmjs.com/package/@storybook/experimental-addon-test
 [downloads_image]: https://img.shields.io/npm/dm/storybook-addon-vis.svg?style=flat
 [github_action_url]: https://github.com/repobuddy/storybook-addon-vis/actions
