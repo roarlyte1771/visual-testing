@@ -174,6 +174,8 @@ import { beforeEach, it } from 'vitest'
 beforeAll((suite) => {
 	// Apply options to all tests in the current suite (file)
 	setAutoSnapshotOptions(suite, /* options */)
+	// or
+	setAutoSnapshotOptions(/* options */)
 })
 
 beforeEach(({ task }) => {
