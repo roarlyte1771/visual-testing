@@ -8,6 +8,7 @@
 [`storybook-addon-vis`][storybook-addon-vis] captures and compares image snapshot automatically and manually.
 
 This addon is inspired by [`jest-image-snapshot`][jest-image-snapshot].
+Internally, it uses [`vitest-plugin-vis`][vitest-plugin-vis] to do the heavy lifting.
 
 Starting from [Storybook] 8.3,
 Storybook introduces [Storybook Test addon][storybook-test-addon].
@@ -43,7 +44,7 @@ thus you need to add it to both [Storybook] and [Vitest].
 
 For [Vitest], you need to:
 
-- Add the `storybookVis` plugin in your `vitest.config.ts`.
+- Add the `storybookVis` plugin in `vitest.config.ts`.
 - Add project annotations and setup Vitest life cycle in `vitest.setup.ts`.
 
 #### Edit Vitest Config
@@ -127,7 +128,7 @@ export default defineConfig({
 })
 ```
 
-`storybookVis()` does not provide the `auto` or `manual` presets because you will need to [provide your `vitest.setup.ts`][storybook-test-addon#example-config] to make the story configuration available to Vitest anyway.
+`storybookVis()` does not provide the `auto`, `enable`, or `manual` presets because you will need to [provide your `vitest.setup.ts`][storybook-test-addon#example-config] to make the story configuration available to Vitest anyway.
 So it is better to do the setup in one place.
 
 ##### Snapshot folder
@@ -284,10 +285,15 @@ const project = setProjectAnnotations([
 	projectAnnotations
 ])
 
-// setup visual testing but no post-test image snapshot
+// setup visual testing but no post-test image snapshot support
 vis.presets.manual()
 
+// setup visual testing with post-test image snapshot support.
+// use `setAutoSnapshotOptions()` in your test to enable it.
+vis.presets.enable()
+
 // capture image snapshot at the end of each test and story with `snapshot` tag
+// Note: starting in 1.0.0, the `snapshot` tag will be automatically added.
 vis.presets.auto()
 
 // capture image snapshot at the end of each test and story with `snapshot` tag
@@ -365,7 +371,7 @@ To address this, you can add the following to your `tsconfig.json`:
 
 ## Usage - automatic snapshot
 
-With the `auto` preset, [`storybook-addon-vis`][storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
+With the `auto` or `enable` preset, [`storybook-addon-vis`][storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
 
 As how tags work in [Storybook], you can add the tag globally, per story file, or per story.
 
@@ -420,8 +426,8 @@ export const MyStory = {
 
 // in vitest.setup.ts
 vis.presets.theme({
-	light(options) {
-		if (options.tags.includes('!light')) return false
+	async light({ tags }) {
+		if (tags.includes('!light')) return false
 		document.body.classList.remove('dark')
 	}
 })
@@ -516,8 +522,8 @@ With the default snapshot folder structure, you should add the following to your
 
 ```ini
 # .gitignore
-**/__vis__/__diffs__
-**/__vis__/__results__
+**/__vis__/**/__diffs__
+**/__vis__/**/__results__
 **/__vis__/local
 ```
 
@@ -543,7 +549,7 @@ or hoist the `pathe` package:
 hoist-pattern[] = pathe
 ```
 
-> It takes empty snapshots on regular tests
+> It takes empty snapshots on Vitest tests
 
 If you are using Storybook 8.5 and using the workaround to run both stories and tests [as described here](https://github.com/storybookjs/storybook/issues/30307),
 Storybook are also transforming the tests as if they are stories.
