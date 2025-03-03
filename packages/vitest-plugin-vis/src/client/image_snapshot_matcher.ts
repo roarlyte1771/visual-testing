@@ -1,4 +1,3 @@
-import { isA } from '@vitest/expect'
 import dedent from 'dedent'
 import { resolve } from 'pathe'
 import type { ImageSnapshotNextIndexCommand } from '../commands.ts'
