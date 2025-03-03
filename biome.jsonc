@@ -29,8 +29,5 @@
 				"noArrayIndexKey": "off"
 			}
 		}
-	},
-	"organizeImports": {
-		"enabled": true
 	}
 }
