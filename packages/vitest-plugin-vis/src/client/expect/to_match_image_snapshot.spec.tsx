@@ -7,6 +7,7 @@ import { ctx } from '../ctx.ts'
 import { setAutoSnapshotOptions } from '../snapshot_options.ts'
 
 beforeEach(({ task }) => setAutoSnapshotOptions(task, { enable: false }))
+
 afterEach(() => ctx.__test__reset())
 
 it('throws when not running in a test', ({ expect }) => {
@@ -158,7 +159,9 @@ it('passes when the image is different but within failure threshold in pixels', 
 	})
 })
 
-it('fails when the image is different beyond failure threshold in pixels', async ({ expect }) => {
+it('fails when the image is different beyond failure threshold in pixels', async ({ expect, task }) => {
+	const isWebdriverIO = /\:wd/.test(task.file.projectName ?? '')
+	const failureThreshold = isWebdriverIO ? 5 : 20
 	render(<div data-testid="subject">unit test</div>)
 	const subject = page.getByTestId('subject')
 
@@ -170,14 +173,16 @@ it('fails when the image is different beyond failure threshold in pixels', async
 		.toMatchImageSnapshot({
 			customizeSnapshotId: ({ id }) => id,
 			expectToFail: true,
-			failureThreshold: 20,
+			failureThreshold,
 		})
 		.then(
 			() => {
 				throw new Error('Should not reach')
 			},
 			(error) => {
-				expect(error.message).toMatch(/Expected image to match within 20 pixels but was differ by \d+ pixels./)
+				expect(error.message).toMatch(
+					new RegExp(`Expected image to match within ${failureThreshold} pixels but was differ by \\d+ pixels.`),
+				)
 			},
 		)
 })
@@ -197,7 +202,9 @@ it('passes when the image is different but within failure threshold in percentag
 	})
 })
 
-it('fails when the image is different beyond failure threshold in percentage', async ({ expect }) => {
+it('fails when the image is different beyond failure threshold in percentage', async ({ expect, task }) => {
+	const isWebdriverIO = /\:wd/.test(task.file.projectName ?? '')
+	const failureThreshold = isWebdriverIO ? 0.1 : 0.3
 	render(<div data-testid="subject">unit test</div>)
 	const subject = page.getByTestId('subject')
 
@@ -209,7 +216,7 @@ it('fails when the image is different beyond failure threshold in percentage', a
 		.toMatchImageSnapshot({
 			customizeSnapshotId: ({ id }) => id,
 			expectToFail: true,
-			failureThreshold: 0.3,
+			failureThreshold,
 			failureThresholdType: 'percent',
 		})
 		.then(
@@ -217,7 +224,9 @@ it('fails when the image is different beyond failure threshold in percentage', a
 				throw new Error('Should not reach')
 			},
 			(error) => {
-				expect(error.message).toMatch(/Expected image to match within 0.3% but was differ by \d+.\d+%./)
+				expect(error.message).toMatch(
+					new RegExp(`Expected image to match within ${failureThreshold}% but was differ by \\d+.\\d+%.`),
+				)
 			},
 		)
 })
