@@ -1,5 +1,11 @@
 # vitest-plugin-vis
 
+## 2.4.2
+
+### Patch Changes
+
+- [#251](https://github.com/repobuddy/visual-testing/pull/251) [`349e021`](https://github.com/repobuddy/visual-testing/commit/349e02112ced61af05cc37bfbafa28363485c223) Thanks [@unional](https://github.com/unional)! - Fix handling of server options introduced by workspace support.
+
 ## 2.4.1
 
 ### Patch Changes

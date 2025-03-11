@@ -1,5 +1,12 @@
 # v0.0.16 (Tue Oct 29 2024)
 
+## 0.19.2
+
+### Patch Changes
+
+- Updated dependencies [[`349e021`](https://github.com/repobuddy/visual-testing/commit/349e02112ced61af05cc37bfbafa28363485c223)]:
+  - vitest-plugin-vis@2.4.2
+
 ## 0.19.1
 
 ### Patch Changes
