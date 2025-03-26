@@ -1,5 +1,11 @@
 # vitest-plugin-vis
 
+## 2.4.3
+
+### Patch Changes
+
+- [#265](https://github.com/repobuddy/visual-testing/pull/265) [`57be521`](https://github.com/repobuddy/visual-testing/commit/57be5217c3c12a7313c724c144c9227a4f227a4c) Thanks [@unional](https://github.com/unional)! - Pass down options for `playwright`.
+
 ## 2.4.2
 
 ### Patch Changes
