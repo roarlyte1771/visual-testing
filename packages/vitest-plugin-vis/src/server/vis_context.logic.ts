@@ -183,10 +183,7 @@ export function getSuiteId(
 	options: Pick<VisOptions, 'customizeSnapshotSubpath'>,
 ) {
 	const suiteId = getSnapshotSubpath(relative(state.projectRoot, testPath), options)
-	/**
-	 * Removes any '..' or '../' from the suiteId to prevent invalid file paths
-	 */
-	const parsedSuiteId = suiteId.replaceAll('../', '').replaceAll('..', '')
+	const parsedSuiteId = suiteId.replaceAll('..', '__')
 	return parsedSuiteId
 }
 
