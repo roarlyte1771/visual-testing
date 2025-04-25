@@ -81,7 +81,7 @@
 	},
 	"dependencies": {
 		"type-plus": "8.0.0-beta.7",
-		"vitest-plugin-vis": "workspace:*"
+		"vitest-plugin-vis": "workspace:^"
 	},
 	"devDependencies": {
 		"@storybook/addon-essentials": "^8.6.3",
