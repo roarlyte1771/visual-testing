@@ -182,7 +182,9 @@ export function getSuiteId(
 	testPath: string,
 	options: Pick<VisOptions, 'customizeSnapshotSubpath'>,
 ) {
-	return getSnapshotSubpath(relative(state.projectRoot, testPath), options)
+	const suiteId = getSnapshotSubpath(relative(state.projectRoot, testPath), options)
+	const parsedSuiteId = suiteId.replaceAll('..', '__')
+	return parsedSuiteId
 }
 
 function getVisOptions(visOptionsRecord: Record<string, VisOptions<any>>, context: PartialBrowserCommandContext) {
