@@ -6,7 +6,7 @@
 	},
 	"access": "public",
 	"baseBranch": "main",
-	"changelog": ["@changesets/changelog-github", { "repo": "repobuddy/storybook-addon-vis" }],
+	"changelog": ["@changesets/changelog-github", { "repo": "repobuddy/visual-testing" }],
 	"commit": false,
 	"fixed": [],
 	"ignore": ["testcase-*"],
