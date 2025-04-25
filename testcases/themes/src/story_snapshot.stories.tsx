@@ -25,6 +25,6 @@ export const Secondary: StoryObj = {
 		label: 'Button2',
 	},
 	async play() {
-		expect(await hasImageSnapshot()).toEqual(false)
+		await expect(await hasImageSnapshot()).toEqual(false)
 	},
 }
