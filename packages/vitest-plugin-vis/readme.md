@@ -116,12 +116,12 @@ vis.setup({
 ```
 
 As seen in the example above,
-you can configure the `auto` preset to:
+you can configure the `auto` snapshot strategy to:
 
 - Enable/disable auto snapshot for all tests with `auto: true/false`,
 - Perform some actions before the snapshot is taken,
 - Skip certain snapshots for specific tests by returning `false` in the function,
-- Take snapshots for different themes by providing an object.
+- Take snapshots for different themes or scenarios by providing an object.
 
 ### Customizing snapshot path
 

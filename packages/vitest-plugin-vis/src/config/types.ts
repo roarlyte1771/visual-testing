@@ -33,6 +33,11 @@ export type VisOptions<M extends ComparisonMethod = 'pixel'> = (M extends 'ssim'
 	ImageSnapshotSubjectOptions & {
 		/**
 		 * Loads the `test.setupFiles` of the specified preset.
+		 *
+		 * Note: 'enable` is deprecated. Use `manual` for the same effect.
+		 *
+		 * @default 'auto'
+		 *
 		 */
 		preset?: 'enable' | 'manual' | 'auto' | 'none' | undefined
 		/**
