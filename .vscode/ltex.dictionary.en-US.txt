@@ -1,5 +1,4 @@
 Vitest
 monorepo
-params
-pathe
 addon
+pathe

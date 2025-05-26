@@ -13,7 +13,7 @@ const config: StorybookConfig = {
 		{
 			name: './local-preset.cjs',
 			options: {
-				visSuites: [
+				visProjects: [
 					{
 						snapshotRootDir: '__vis__/linux',
 					},

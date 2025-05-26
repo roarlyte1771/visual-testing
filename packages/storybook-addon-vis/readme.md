@@ -407,7 +407,7 @@ const config: StorybookConfig = {
 		[{
 			name: 'storybook-addon-vis',
 			options: {
-				visSuites: [
+				visProjects: [
 					{
 						// or `snapshotRootDir: '__vis__/custom'`
 						snapshotRootDir: ({ ci, platform }) => '..your-snapshot-folder...',
@@ -420,7 +420,7 @@ const config: StorybookConfig = {
 }
 ```
 
-You can provide multiple suites to the addon,
+You can provide multiple projects to the addon,
 which is useful if you want to see the results from different environments,
 or from different Vitest configurations.
 

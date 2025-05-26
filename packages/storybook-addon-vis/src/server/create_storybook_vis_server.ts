@@ -8,7 +8,7 @@ import { BASELINE_DIR, DIFF_DIR, SNAPSHOT_ROOT_DIR, trimCommonFolder } from 'vit
 import type { StorybookVisOptions } from './vis_options.ts'
 
 export function createStorybookVisServer(options: StorybookVisOptions) {
-	const visSuites = options.visSuites ?? [{ snapshotRootDir: SNAPSHOT_ROOT_DIR }]
+	const visSuites = options.visProjects ?? [{ snapshotRootDir: SNAPSHOT_ROOT_DIR }]
 	return {
 		options,
 		async getImageSnapshotResults(name: string, importPath: string) {
