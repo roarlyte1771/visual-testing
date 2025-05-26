@@ -13,7 +13,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/repobuddy/storybook-image-snapshot",
+		"url": "https://github.com/repobuddy/visual-testing",
 		"directory": "packages/storybook-addon-vis"
 	},
 	"license": "MIT",
@@ -24,8 +24,7 @@
 	},
 	"type": "module",
 	"imports": {
-		"#storybook-addon-vis/vitest-plugin": "./src/vitest-plugin.ts",
-		"#storybook-addon-vis/server": "./src/server.ts"
+		"#storybook-addon-vis/vitest-plugin": "./src/vitest-plugin.ts"
 	},
 	"exports": {
 		".": {

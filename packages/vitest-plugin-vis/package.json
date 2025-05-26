@@ -9,8 +9,8 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/repobuddy/storybook-image-snapshot",
-		"directory": "packages/vitest-image-snapshot"
+		"url": "https://github.com/repobuddy/visual-testing",
+		"directory": "packages/vitest-plugin-vis"
 	},
 	"license": "MIT",
 	"author": {
