@@ -122,7 +122,7 @@ export type VisClientConfigurator<GM extends Record<string, any> | unknown = unk
 }
 
 export function createVis<GM extends Record<string, any> | unknown = unknown>(commands: SetupVisSuiteCommand) {
-	let subjectDataTestId: string | undefined
+	let subject: string | undefined
 
 	const vis: VisClientConfigurator<GM> = {
 		setup(options) {
@@ -172,7 +172,7 @@ export function createVis<GM extends Record<string, any> | unknown = unknown>(co
 		},
 		beforeAll: {
 			async setup() {
-				subjectDataTestId = (await commands.setupVisSuite()).subject
+				subject = (await commands.setupVisSuite()).subject
 			},
 		},
 		afterEach: {
@@ -193,8 +193,7 @@ export function createVis<GM extends Record<string, any> | unknown = unknown>(co
 							const theme = themes[themeId]
 							const r = typeof theme === 'function' ? await theme(meta! as any) : theme
 							if (r === false) continue
-							const subject = getSubject(meta?.subject ?? subjectDataTestId)
-							await test!.context.expect(subject).toMatchImageSnapshot({
+							await test!.context.expect(getSubject(meta?.subject ?? subject)).toMatchImageSnapshot({
 								...meta,
 								snapshotKey: meta?.snapshotKey ?? themeId,
 							})
@@ -223,6 +222,6 @@ export function createVis<GM extends Record<string, any> | unknown = unknown>(co
 	return vis
 }
 
-function getSubject(subject: string | undefined) {
-	return subject ? (document.querySelector(subject) ?? document.body) : document.body
+function getSubject(selectors: string | undefined) {
+	return selectors ? (document.querySelector(selectors) ?? document.body) : document.body
 }

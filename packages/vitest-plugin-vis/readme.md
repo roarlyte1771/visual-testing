@@ -253,8 +253,8 @@ import { vis } from 'vitest-plugin-vis/config'
 export default defineConfig({
 	plugins: [
 		vis({
-			// set a default subject (e.g. 'subject') to capture image snapshot
-			subjectDataTestId: undefined,
+			// set a default subject selector (e.g. `[data-testid="subject"]`) to capture image snapshot
+			subject: undefined,
 			comparisonMethod: 'pixel', // or 'ssim'
 			// pixelmatch or ssim.js options, depending on `comparisonMethod`.
 			diffOptions: undefined,

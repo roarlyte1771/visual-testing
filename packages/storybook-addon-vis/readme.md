@@ -23,7 +23,7 @@ Since it is running in an actual browser,
 This add-on provides similar functionality to [`jest-image-snapshot`][jest-image-snapshot].
 
 In addition, you can capture image snapshot manually,
-and more controls to the auto image snapshot taken.
+and controls how the auto image snapshot(s) are taken.
 
 ## Install
 
@@ -80,7 +80,7 @@ const project = setProjectAnnotations([
 	projectAnnotations
 ])
 
-vis()
+vis.setup()
 ```
 
 ## Config
@@ -162,8 +162,8 @@ export default defineConfig({
 			}) => `__vis__/${ci ? platform : 'local'}`,
 			snapshotSubpath: ({ subpath }) => trimCommonFolder(subpath),
 			snapshotKey: 'auto',
-			// set a default subject (e.g. 'subject') to capture image snapshot
-			subjectDataTestId: undefined,
+			// set a default subject selector (e.g. `[data-testid="subject"]`) to capture image snapshot
+			subject: undefined,
 			comparisonMethod: 'pixel', // or 'ssim'
 			// pixelmatch or ssim.js options, depending on `comparisonMethod`.
 			diffOptions: undefined,
@@ -324,36 +324,35 @@ beforeAll(project.beforeAll)
 Edit it to add the following:
 
 ```ts
-import * as visAnnotations from 'storybook-addon-vis/preview'
-import { vis } from 'storybook-addon-vis/vitest-setup'
+import { vis, visAnnotations } from 'storybook-addon-vis/vitest-setup'
 
 const project = setProjectAnnotations([
 	visAnnotations, // add this
 	projectAnnotations
 ])
 
-// setup visual testing but no post-test image snapshot support
-vis.presets.manual()
-
-// setup visual testing with post-test image snapshot support.
+// setup visual testing.
+// This setup does not capture image snapshot in test files automatically.
 // use `setAutoSnapshotOptions()` in your test to enable it.
-vis.presets.enable()
+vis.setup()
 
-// capture image snapshot at the end of each test and story with `snapshot` tag
-// Note: starting in 1.0.0, the `snapshot` tag will be automatically added.
-vis.presets.auto()
+// capture image snapshot at the end of each test
+vis.setup({ auto: true })
 
-// capture image snapshot at the end of each test and story with `snapshot` tag
-// for multiple themes (light and dark in this example).
+// capture image snapshot at the end of each test for multiple themes (light and dark in this example).
 //
 // Note that this changes the theme in the `afterEach` hook.
 // If you want to capture manual snapshots in different themes,
 // configure Vitest to run the tests in different themes.
-vis.presets.theme({
-	async light() { document.body.classList.remove('dark') },
-	async dark() { document.body.classList.add('dark') },
+vis.setup({
+	auto: {
+		async light() { document.body.classList.remove('dark') },
+		async dark() { document.body.classList.add('dark') },
+	}
 })
 ```
+
+All setup above will enable snapshot testing in storybook when the story has the `snapshot` tag.
 
 ### Storybook Configuration
 
@@ -398,7 +397,7 @@ const config: StorybookConfig = {
 }
 ```
 
-If you customize the `snapshotRootDir` or `snapshotSubpath`, you need to provide those info to the addon:
+If you customize the `snapshotRootDir` or `snapshotSubpath`, you need to provide them to the addon:
 
 ```ts
 // .storybook/main.ts
@@ -410,8 +409,8 @@ const config: StorybookConfig = {
 				visSuites: [
 					{
 						// or `snapshotRootDir: '__vis__/custom'`
-						snapshotRootDir: ({ ci, platform }) => `__vis__/${ci ? platform : 'local'}`,
-						snapshotSubpath: ({ subpath }) => trimCommonFolder(subpath),
+						snapshotRootDir: ({ ci, platform }) => '..your-snapshot-folder...',
+						snapshotSubpath: ({ subpath }) => '...your-subpath...',
 					},
 				],
 			}
@@ -421,7 +420,7 @@ const config: StorybookConfig = {
 ```
 
 You can provide multiple suites to the addon,
-which is useful if you want to check the result from different environments,
+which is useful if you want to see the results from different environments,
 or from different Vitest configurations.
 
 ### TypeScript Configuration
@@ -442,9 +441,17 @@ To address this, you can add the following to your `tsconfig.json`:
 }
 ```
 
+Or use the triple-slash reference.
+
+To do that, create a typing file, e.g. `types/storybook-addon-vis.d.ts`:
+
+```ts
+/// <reference types="storybook-addon-vis/matcher" />
+```
+
 ## Usage - automatic snapshot
 
-With the `auto` or `enable` preset, [`storybook-addon-vis`][storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
+With visual testing enabled, [`storybook-addon-vis`][storybook-addon-vis] automatically captures image snapshot for stories with `snapshot` tag.
 
 As how tags work in [Storybook], you can add the tag globally, per story file, or per story.
 
@@ -498,10 +505,12 @@ export const MyStory = {
 }
 
 // in vitest.setup.ts
-vis.presets.theme({
-	async light({ tags }) {
-		if (tags.includes('!light')) return false
-		document.body.classList.remove('dark')
+vis.setup({
+	auto: {
+		async light({ tags }) {
+			if (tags.includes('!light')) return false
+			document.body.classList.remove('dark')
+		}
 	}
 })
 ```

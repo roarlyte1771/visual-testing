@@ -63,9 +63,9 @@ export type ImageSnapshotCompareOptions<M extends ComparisonMethod = 'pixel'> = 
 
 export type ImageSnapshotSubjectOptions = {
 	/**
-	 * Specify the data-testid of the subject element. Default is `subject`.
+	 * Specify the query of the subject element.
 	 *
-	 * If the test does not have an element with the specified data-testid,
+	 * If the test does not have an element with the specified query,
 	 * the `body` element will be used.
 	 */
 	subject?: string | undefined
