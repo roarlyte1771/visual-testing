@@ -1,6 +1,6 @@
+import { AddonPanel, Placeholder, ScrollArea } from '@storybook/components'
 import { memo } from 'react'
-import { AddonPanel, Placeholder, ScrollArea } from 'storybook/internal/components'
-import { styled } from 'storybook/internal/theming'
+import { styled } from 'storybook/theming'
 import { SNAPSHOT_ROOT_DIR } from 'vitest-plugin-vis/client-api'
 import type { ImageSnapshotResults } from '../shared/events.ts'
 
