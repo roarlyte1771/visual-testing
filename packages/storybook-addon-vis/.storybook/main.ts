@@ -7,9 +7,9 @@ const config: StorybookConfig = {
 		getAbsolutePath('@storybook/addon-links'),
 		getAbsolutePath('@storybook/addon-essentials'),
 		getAbsolutePath('@storybook/addon-storysource'),
-		getAbsolutePath('storybook-addon-tag-badges'),
 		getAbsolutePath('@storybook/experimental-addon-test'),
 		getAbsolutePath('storybook-dark-mode'),
+		getAbsolutePath('storybook-addon-tag-badges'),
 		{
 			name: './local-preset.cjs',
 			options: {
