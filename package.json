@@ -4,7 +4,7 @@
 	"scripts": {
 		"b": "tsc -w",
 		"build": "turbo run build",
-		"build:sb": "turbo run build:sb",
+		"build:doc": "pnpm --filter=./packages/storybook-addon-vis build:sb",
 		"check": "biome check",
 		"check:fix": "biome check --write",
 		"clean": "turbo clean",
